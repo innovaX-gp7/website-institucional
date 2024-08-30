@@ -1,19 +1,26 @@
 * {
     padding: 0;
     margin: 0;
-}
+}   
 
 body {
     font-family: 'Poppins', sans-serif;
-}
-
-section, header {
-    margin: 0 4rem;
+    transition: .2s;
 }
 
 header {
-    padding: 30px 0;
+    position: fixed;
+    top: 0;
+    width: 90%;
+
+    padding: 30px 4rem;
+    background-color: white;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 4rem;
+
+    z-index: 10000;
 }
 
 nav {
@@ -24,7 +31,19 @@ nav {
 nav ul {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
+}
+
+nav a:hover {
+    color: rgb(0, 129, 0);
+}
+
+nav ul li:last-child {
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    
+    border: 2px solid black;
 }
 
 ul {
@@ -36,10 +55,28 @@ a {
     text-decoration: none;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
+section {
+    padding: 4rem 4rem;
+}
+
 .home {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+
+    margin-top: 7rem;
+}
+
+.home h1 {
+    font-size: 5rem;
+}
+
+.section h1 {
+    font-size: 3rem;
 }
 
 .home p {
@@ -54,14 +91,21 @@ a {
 section a {
     color: white;
     margin-top: 3rem;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     padding: 10px 20px;
     border-radius: 10px;
+    transition: .2s;
+}
+
+section a:hover {
+    background-color: rgba(0, 143, 0, 0.829);
+    transition: .2s;
 }
 
 .about {
-    margin-top: 4rem;
     display: flex;
+    background-color: #ececec;
+    align-items: center;
     justify-content: space-between;
     gap: 2rem;
 }
@@ -75,13 +119,18 @@ section a {
     max-width: 400px;
 }
 
-.values {
-    margin: 4rem;
-}
-
 .values .card {
+    padding: 40px 0;
     margin-top: 30px;
+    transition: .2s;
 } 
+
+.values .card:hover {
+    background-color: rgba(15, 15, 15, 0.123);
+    transform: translateY(-15px);
+
+    transition: .2s;
+}
 
 .values .card img {
     width: 100%;
@@ -91,21 +140,26 @@ section a {
 
 .values .card-content {
     display: flex;
+    gap: 1rem;
     justify-content: space-between;
 }
 
 .values .card {
     text-align: center;
     width: 200px;
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(236, 236, 236);
     padding: 20px;
     border-radius: 10px;
+
+    flex: 1;
 } 
 
 .services {
+    background-color: #ececec;
     margin-top: 4rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 2rem;
 }
 
@@ -119,10 +173,84 @@ section a {
 }
 
 footer {
-    font-size: 5rem;
-    padding: 3rem;
-    background-color: black;
+    background-color: #0e0e0e;
     color: white;
+    padding: 20px 2rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
     text-align: center;
-    height: 10rem;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+@media (max-width: 800px) {
+
+    header {
+        display: none;
+    }
+
+    section {
+        padding: 2rem 2rem;
+    }
+
+    .home {
+        flex-direction: column;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    .home br {
+        display: none;
+    }
+
+    .home a {
+        display: block;
+        text-align: center;
+    }
+
+    .about, .services {
+        flex-direction: column;
+    }
+
+    .values .card-content {
+        flex-wrap: wrap;
+    }
+
+
+
 }
