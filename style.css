@@ -4,6 +4,8 @@
 }   
 
 body {
+    background-color: black;
+    color: white;
     font-family: 'Poppins', sans-serif;
     transition: .2s;
 }
@@ -11,16 +13,21 @@ body {
 header {
     position: fixed;
     top: 0;
-    width: 90%;
+    width: 100%;
 
-    padding: 30px 4rem;
-    background-color: white;
+    padding: 20px 2rem;
+    background-color: rgb(0, 0, 0);
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin-bottom: 4rem;
 
     z-index: 10000;
+}
+
+header img {
+    width: 100%;
+    max-width: 100px;
 }
 
 nav {
@@ -35,15 +42,16 @@ nav ul {
 }
 
 nav a:hover {
-    color: rgb(0, 129, 0);
+    color: rgb(149, 255, 149);
 }
 
 nav ul li:last-child {
     padding: 10px 20px;
     border-radius: 20px;
-    margin-left: 20px;
+    margin: 0 50px 0 0px;
+
     
-    border: 2px solid black;
+    border: 2px solid white;
 }
 
 ul {
@@ -51,7 +59,7 @@ ul {
 }
 
 a {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
@@ -61,18 +69,29 @@ h1 {
 
 section {
     padding: 4rem 4rem;
+    color: white;
 }
 
 .home {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    text-align: center;
     gap: 2rem;
 
-    margin-top: 7rem;
+
+    margin: 0;
+    min-height: 100vh;
+    background-image: url('assets/background.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .home h1 {
-    font-size: 5rem;
+    margin-top: 7rem;
+    font-size: 4rem;
+    text-shadow: 2px 6px 5px rgba(0, 0, 0, 0.935);
 }
 
 .section h1 {
@@ -81,6 +100,8 @@ section {
 
 .home p {
     margin: 40px 0;
+    font-size: 1.3rem;
+    text-shadow: 2px 6px 5px rgba(0, 0, 0, 0.935);
 }
 
 .home img {
@@ -89,22 +110,24 @@ section {
 }
 
 section a {
-    color: white;
+    color: black;
+    font-size: 1rem;
     margin-top: 3rem;
-    background-color: rgb(0, 0, 0);
+    background-color: white;
     padding: 10px 20px;
     border-radius: 10px;
     transition: .2s;
 }
 
 section a:hover {
-    background-color: rgba(0, 143, 0, 0.829);
+    background-color: rgba(0, 0, 0, 0.829);
+    color: white;
     transition: .2s;
 }
 
 .about {
+    background-color: #0e0e0e;
     display: flex;
-    background-color: #ececec;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
@@ -120,13 +143,22 @@ section a:hover {
 }
 
 .values .card {
-    padding: 40px 0;
+    background-color: #0e0e0e;
+
     margin-top: 30px;
     transition: .2s;
+    padding: 20px;
+
+    text-align: center;
+    width: 200px;
+
+    border-radius: 10px;
+
+    flex: 1;
 } 
 
 .values .card:hover {
-    background-color: rgba(15, 15, 15, 0.123);
+    background-color: rgb(25, 25, 25);
     transform: translateY(-15px);
 
     transition: .2s;
@@ -144,18 +176,8 @@ section a:hover {
     justify-content: space-between;
 }
 
-.values .card {
-    text-align: center;
-    width: 200px;
-    background-color: rgb(236, 236, 236);
-    padding: 20px;
-    border-radius: 10px;
-
-    flex: 1;
-} 
-
 .services {
-    background-color: #ececec;
+    background-color: #0e0e0e;
     margin-top: 4rem;
     display: flex;
     justify-content: space-between;
@@ -173,7 +195,7 @@ section a:hover {
 }
 
 footer {
-    background-color: #0e0e0e;
+    background-color: #000000;
     color: white;
     padding: 20px 2rem;
 }
