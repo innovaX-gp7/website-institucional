@@ -1,0 +1,155 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0e0e0e;
+    color: white;
+    padding: 2rem;
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+header img {
+    max-width: 150px;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.form-header {
+    align-self: flex-start;
+    margin-bottom: 2rem;
+}
+
+.form-header h1 {
+    font-size: 3rem;
+}
+
+.input-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+}
+
+.input-content p {
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.input-content div input {
+    width: 100%;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 5px;
+    background-color: #343434;
+    color: white;
+}
+
+.input-content input::placeholder {
+    color: white;
+}
+
+form .input-content div:nth-child(2) svg {
+    position: absolute;
+    top: 157px;
+    left: 10px;
+}
+
+form .input-content div:nth-child(3) svg {
+    position: absolute;
+    top: 265px;
+    left: 10px;
+}
+
+form svg {
+    position: absolute;
+    top: 49px;
+    left: 10px;
+}
+
+form a{
+    text-align: right;
+    color: white;
+    text-decoration: none;
+}
+
+form a span {
+    color: #4cb44c;
+    text-decoration: underline;
+}
+
+form button {
+    padding: 20px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #478547;
+    cursor: pointer;
+    color: white;
+    font-weight: bolder;
+    transition: .2s;
+}
+
+form button:hover {
+    background-color: #275927;
+    transition: .2s;
+}
+
+aside {
+    display: none;
+}
+
+
+
+@media (min-width: 900px) {
+    
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 50px;
+        justify-items: center;
+    }
+
+    header {
+        margin-bottom: 2rem;
+    }
+
+    aside {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #1b1b1b;
+        border-radius: 40% 0 00% 70%;
+        position: fixed;
+        top: -150px;
+        right: 0;
+        width: 58vw;
+        height: 170vh;
+    }
+
+    aside img {
+        max-width: 500px;
+        width: 100%;
+        top: 250px;
+        position: absolute;
+    
+    }
+
+
+}
