@@ -33,25 +33,26 @@
             <div class="input-content">
                 <div>
                     <p> Digite seu email </p>
-                    <input type="email" placeholder="Roberto@exemplo.com">
+                    <input id="iptEmail" type="email" placeholder="Roberto@exemplo.com">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
 
                 <div>
                     <p> Digite o CNPJ </p>
-                    <input type="text" placeholder="00.000.000/0001-00">
+                    <input id="iptCNPJ" type="text" placeholder="00.000.000/0001-00">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building-2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
                 </div>  
 
                 <div>
                     <p> Digite sua senha </p>
-                    <input type="password" placeholder="Senha">
+                    <input id="iptPasswd" type="password" placeholder="Senha">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-keyhole"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
                 </div>
 
                 <a href="./login.html">Já tem uma conta? <span>Logar</span></a>
+                <p id="warning">Preencha todos os campos!</p>
 
-                <button type="button" onclick="window.location.href = './login.html'">Registrar</button>
+                <button onclick="validar()" value="Registrar" id="btnSubmit" type="button">Registrar</button>
                 
                 
             </div>
@@ -61,5 +62,75 @@
             <img src="../assets/Reforestation-bro.svg" alt="">
         </aside>
     </main>
+
+    <script>
+
+        function validar() {
+
+            const email = iptEmail
+            const cnpj = iptCNPJ
+            const passwd = iptPasswd
+
+            if(!passwd.value && !cnpj.value && !email.value) {
+
+                passwd.classList.add("input-warning")
+                cnpj.classList.add("input-warning")
+                email.classList.add("input-warning")
+
+                warning.style.display = "block"
+
+                email.focus()
+            } else if (!email.value) {
+                passwd.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                email.classList.add("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o email"
+
+                email.focus()
+            } else if (!cnpj.value) {
+                passwd.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                cnpj.classList.add("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o CNPJ"
+
+                cnpj.focus()
+            } else if (!passwd.value) {
+                email.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                passwd.classList.add("input-warning")
+
+                
+                warning.style.display = "block"
+                warning.innerText = "Preencha a senha"
+                
+                passwd.focus()
+            } else if(passwd.value.length < 8) {
+                    email.classList.remove("input-warning")
+                    cnpj.classList.remove("input-warning")
+                    passwd.classList.add("input-warning")
+                    
+                    warning.style.display = "block"
+                    warning.innerText = "a senha deve conter mais de 8 caracteres" 
+            } else {
+
+                passwd.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+
+                 btnSubmit.innerText = "redirecionando"
+                 btnSubmit.style.background = "green"
+
+                setTimeout(() => window.location = "./login.html", 3000)
+            } 
+                
+            }
+
+
+    </script>
 </body>
 </html>

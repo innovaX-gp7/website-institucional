@@ -54,11 +54,12 @@ form {
 
 .input-content div input {
     width: 100%;
-    border: none;
+    border: 3px solid transparent;
     padding: 20px 40px;
     border-radius: 5px;
     background-color: #343434;
     color: white;
+    outline: none;
 }
 
 .input-content input::placeholder {
@@ -67,19 +68,19 @@ form {
 
 form .input-content div:nth-child(2) svg {
     position: absolute;
-    top: 157px;
+    top: 165px;
     left: 10px;
 }
 
 form .input-content div:nth-child(3) svg {
     position: absolute;
-    top: 265px;
+    top: 277px;
     left: 10px;
 }
 
 form svg {
     position: absolute;
-    top: 49px;
+    top: 52px;
     left: 10px;
 }
 
@@ -108,6 +109,15 @@ form button {
 form button:hover {
     background-color: #275927;
     transition: .2s;
+}
+
+#warning {
+    color: #ff5757;
+    display: none;
+}
+
+.input-warning {
+    border: 3px solid #ff5757 !important;
 }
 
 aside {
