@@ -143,7 +143,7 @@
 
                 fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj.value}`)
                     .then(response => {
-                        if (response.status == 400) {
+                        if (response.status == 400 || cnpj.value.length > 14) {
                             passwd.classList.remove("input-warning")
                             email.classList.remove("input-warning")
                             cnpj.classList.add("input-warning")
@@ -163,7 +163,7 @@
                         return response.json();
                     })
                     .catch(error => {
-                        console.error('Erro:    ' + error);
+                        console.error('Erro: ' + error);
                     });
 
 
