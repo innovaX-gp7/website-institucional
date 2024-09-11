@@ -1,139 +1,242 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <!-- METADADOS -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- TITLE -->
     <title>Innovax</title>
+    <link rel="shortcut icon" type="imagex/png" href="./assets/82-Sem-Título_20240828181654.ico">
 
     <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- STYLE -->
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <img src="assets/logo.png" alt="" srcset="">
+      <div class="logo">
+        <img src="assets/logo.png" alt="Logo" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="#about">Sobre nós</a></li>
+          <li><a href="#services">Nosso Serviço</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <!-- <li><a href="./login/login.html">Entrar</a></li>
+          <li><a href="./login/cadastro.html">Cadastrar</a></li> -->
+        </ul>
         
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#about">Sobre nós</a></li>
-                <li><a href="#values">Valores</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="./login/login.html">Logar</a></li>
-                <li><a href="./login/cadastro.html">Cadastrar</a></li>
-            </ul>
-        </nav>
+      </nav>
+      <button class="join-btn"><a href="./login/cadastro.html">Entrar/Cadastre-se</a></button>
     </header>
 
     <main>
-        <section class="home">
-            <div>
-                <h1>Refloreste com a <br /> INNOVAX</h1>
-                <p> Potencialize o Reflorestamento com a <br /> nossa solução inteligente de dados </p>
-                <a href="#about">Saiba Mais</a>
-            </div>
-        </section>
+      <section class="home" id="inicio">
+        <div>
+          <h1>
+            Refloreste 
+            com a
+          </h1>
+          <h2>INNOVAX</h2>
+          <p>
+            Potencialize o Reflorestamento com a <br />
+            nossa solução inteligente de dados
+          </p>
+          
+          <a href="#about">Saiba Mais!</a>
+        </div>
+      </section>
 
-        <section id="about" class="about">
-            <div>
-                <h1>Sobre nós</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br /> Molestiae assumenda iusto velit voluptas, odio,
-                    sint dolores <br /> perspiciatis iste exercitationem delectus  aliquam quae veniam odit <br /> qui aperiam blanditiis
-                    ad? Iste, in. <br /> <br />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br /> Molestiae assumenda iusto velit voluptas, odio,
-                    sint dolores <br /> perspiciatis iste exercitationem delectus  aliquam quae veniam odit <br /> qui aperiam blanditiis
-                    ad? Iste, in. <br /></p>
+      <section id="about" class="about">
+        <h1 class="tit">Descubra o Coração da InnovaX: <br>
+            Nossa Missão e Valores</h1>
+
+            <div class="card-1">
+                <div class="img-1"> 
+                </div>
+                <div class="text">
+                    <h3>Inovação e X</h3>
+                    <p>A InnovaX nasceu de duas palavras <br> que remetem aos valores principais <br> da empresa: "innova" que vem de <br> "inovação", e "X" 
+                    que simboliza a <br>busca pelo desconhecido e o desejo <br> de encontrar soluções para desafios <br> globais.</p>
+                </div>
             </div>
 
-            <img src="./assets/planta.png" alt="">
+            <div class="card-2">
+                <div class="text">
+                    <h3>Nossa Missão</h3>
+                    <p>Na InnovaX, nossa missão é <br> transformar o mundo por <br>meio da inovação e da tecnologia, <br>Acreditamos que a tecnologia e a <br>natureza podem caminhar juntas para <br> restaurar os ecossistemas do planeta.</p>
+                </div>
+            </div>
+
+            <div class="card-3">
+                <div class="text">
+                    <h3>Inovação Contínua</h3>
+                    <p>Estamos comprometidos com <br>a busca incessante por <br>novas soluções e tecnologias <br> que possam potencializar <br> o reflorestamento e enfrentar <br> desafios ambientais globais.</p>
+                </div>
+            </div>
+
+            <div class="card-4">
+                <div class="text">
+                    <h3>Sustentabilidade</h3>
+                    <p>Acreditamos que todas as <br> nossas ações devem ser <br> guiadas pelo respeito ao <br>meio ambiente, garantindo <br> um futuro sustentável para <br> as próximas gerações.</p>
+                </div>
+            </div>
+        <!-- <div>
+          <h1>Sobre nós</h1>
+          <p>
+            Na InnovaX, nossa missão é transformar o mundo <br />por meio da
+            inovação e da tecnologia, <br />
+            utilizando dados avançados <br />
+            para reflorestamento em larga escala. <br />Acreditamos que a
+            tecnologia e a natureza <br />podem caminhar juntas para <br />
+            restaurar os ecossistemas do planeta.
+          </p>
+        </div>
+
+        <img src="./assets/planta.png" alt="" /> -->
+      </section>
+
+      <section id="values" class="values">
+        <p class="subt">
+            A InnovaX nasceu para utilizar o poder dos dados e da tecnologia, <br> promovendo iniciativas de reflorestamento que ajudam a restaurar os ecossistemas. <br> Nosso objetivo é unir a natureza e a inovação para criar um futuro sustentável.</p>
+
+        <div class="card-content">
+          <div class="card">
+            <div class="quadrinho"></div>
+
+            <h3>Ecossistema de Integração</h3>
+            <p>Facilitamos a colaboração entre ONGs, governos e empresas através de ferramentas que conectam dados e promovem ações de reflorestamento coordenadas.</p>
+          </div>
+          <div class="card">
+            <div class="quadrinho"></div>
+
+            <h3>Análise Inteligente de Dados</h3>
+            <p>Oferecemos monitoramento contínuo das áreas reflorestadas, com painéis interativos que permitem avaliar o impacto das iniciativas em tempo real.</p>
+          </div>
+
+          <div class="card">
+            <div class="quadrinho"></div>
+
+            <h3>Segurança de Dados</h3>
+            <p>Protegemos seus dados e informações com tecnologia de criptografia avançada, assegurando que todas as operações sejam seguras e confiáveis.</p>
+          </div>
+          <!-- <div class="card">
+            <img src="./assets/planta.png" alt="" />
+            <p>Resiliência</p>
+          </div> -->
+        </div>
+      </section>
+
+      <section id="services" class="services">
+        <div>
+          <h1 class="tit">Entenda como ajudamos o reflorestamento!</h1>
+          <h5>em breve</h5>
+
+          <img src="./assets/novaimagem.png" alt="" />
+
+          <p>
+            <span>Relatórios Visuais: </span>Obtenha insights claros e visuais sobre o desempenho das suas áreas de reflorestamento.
+            <br><br>
+            <span>Definição de Metas Ambientais: </span>Estabeleça e alcance suas metas ambientais com nossa orientação especializada.
+            <br><br>
+            <span>Otimização com um Clique: </span>Realize análises e melhorias avançadas em seus projetos de reflorestamento de forma simples e rápida.
+            <br><br>
+            <span>Gerador Inteligente de Soluções: </span>Receba sugestões automáticas das melhores práticas e áreas prioritárias para reflorestamento.
+            <br><br>
+            <span>Alertas Automatizados: </span>Mantenha-se atualizado com notificações automáticas sobre o progresso e soluções rápidas para seus projetos.
+          </p>
+        </div>
+
         
-        </section>
+      </section>
 
+      <section id="contato">
+        <div class="contact">
+            <div class="entrar-em-contato">
     
-
-        <section id="values" class="values">
-            <h1>Valores</h1>
-
-            <div class="card-content">
-                <div class="card">
-                    <img src="./assets/planta.png" alt="">
-                    <p>Resiliência</p>
-                </div>
-                <div class="card">
-                    <img src="./assets/planta.png" alt="">
-                    <p>Resiliência</p>
-                </div>
-                
-                <div class="card">
-                    <img src="./assets/planta.png" alt="">
-                    <p>Resiliência</p>
-                </div>
-                <div class="card">
-                    <img src="./assets/planta.png" alt="">
-                    <p>Resiliência</p>
-                </div>
+                <h1>Fale conosco!</h1>
+                <p>Entre em contato conosco e descubra como podemos potencializar suas iniciativas de reflorestamento!</p>
+    
             </div>
-        </section>
+    
+                <form action="" class="form-contato">
+                    <div class="info-principais">
+    
+                        <div class="inputs">
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome-usuario" placeholder="Carolina">
+                        </div>
+    
+                        <div class="inputs">
+                            <label for="sobrenome">Sobrenome:</label>
+                            <input type="text" id="nome-usuario" placeholder="Pasquali">
+                        </div>
+    
+                    </div>
+    
+                    <div class="info-principais">
+    
+                        <div class="inputs">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email-usuario" placeholder="carolinapasquali@greenpeace.com">
+                        </div>
+    
+                        <div class="inputs">
+                            <label for="instituicao">Nome da instituição:</label>
+                            <input type="text" id="empresa-usuario" placeholder="Greenpeace Brasil">
+                        </div>
+    
+                    </div>
+                    
+                    <div class="info-principais">
+                        <div class="inputs">
+                        <label for="mensagem">Como podemos ajudar?</label>
+                        <textarea id="messagem-usuario" placeholder="Digite aqui a sua mensagem"></textarea>
+                    </div>
+                    </div>
+                    
+    
+                    <button class="btn-enviar" type="submit">
+                        Enviar
+                    </button>
+                </form>
+    
+        </div>
+    
+      </section>
 
-        <section id="services" class="services">
-            <div>
-                <h1>Nossos Serviços</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br /> Molestiae assumenda iusto velit voluptas, odio,
-                    sint dolores <br /> perspiciatis iste exercitationem delectus  aliquam quae veniam odit <br /> qui aperiam blanditiis
-                    ad? Iste, in. <br /> <br />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br /> Molestiae assumenda iusto velit voluptas, odio,
-                    sint dolores <br /> perspiciatis iste exercitationem delectus  aliquam quae veniam odit <br /> qui aperiam blanditiis
-                    ad? Iste, in. <br /></p>
-            </div>
-
-            <img src="./assets/planta.png" alt="">
-        
-        </section>
     </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Links Úteis</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-                
-            </div>
-            <div class="footer-section">
-                <h4>Contato</h4>
-                <p>Email: InnovaX@gmail.com</p>
-                <p>Telefone: (11) 1234-5678</p>
-            </div>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h4>Links Rápidos</h4>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="#about">Sobre nós</a></li>
+            <li><a href="#services">Nosso serviço</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 InnovaX. Todos os direitos reservados.</p>
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <p>Email: InnovaX@gmail.com</p>
+          <p>Telefone: (11) 1234-5678</p>
         </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 InnovaX. Todos os direitos reservados.</p>
+      </div>
     </footer>
-
-
-</body>
-
+  </body>
 </html>
