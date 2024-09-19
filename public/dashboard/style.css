@@ -1,0 +1,148 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black-color:#041802;
+    --green-color: #357200;
+    --gray-color: #1d1d1d;
+    --darker-gray: #071307;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: black;
+    background-image: url(../assets/backgrounddash.png);
+    color: white;
+}
+
+
+aside {
+    background-color: #071307;
+    width: 350px;
+    position: fixed;
+    height: 100vh;
+    align-items: center;
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+aside img {
+    max-width: 150px;
+    width: 100%;
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+}
+
+li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+aside a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+main {
+    margin-left: 350px;
+    padding: 2rem;
+}
+
+
+.flex-kpi {
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    margin: 20px 0px;
+    gap: 20px;
+    
+}
+
+.card-kpi {
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.171);
+    border-radius: 10px;
+    flex: 1;
+    background-color: var(--darker-gray);
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    transition: transform .3s;
+}
+
+.card-kpi:hover {
+    transform: scale(1.01);
+    background-color: #0c200c;
+}
+
+.card-kpi div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.card-kpi span {
+    align-self: center;
+    font-size: 5rem;
+}
+
+
+main p {
+    color: #c5c5c5;
+}
+
+.grid-content {
+    align-items: center;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+}
+
+
+.card-grid {
+    background-color: var(--darker-gray);
+    border-radius: 5px;
+    justify-items: center;
+    padding: 30px;
+}
+
+.card-grid:nth-child(1) {
+    grid-row: 1; 
+}
+
+.card-grid:nth-child(2) {
+    grid-row: 1; 
+}
+
+.card-grid:nth-child(3) {
+    grid-column: 1 / 3; 
+    grid-row: 2; 
+    height: 100%;
+}
+
+.card-grid:nth-child(3) h2 {
+    margin-bottom: 20px;
+}
+
+.card-grid:nth-child(3) p {
+    font-size: 1.2rem;
+}
