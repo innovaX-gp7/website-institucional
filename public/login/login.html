@@ -104,7 +104,7 @@
                     passwd.classList.remove("input-warning")
                     email.classList.remove("input-warning")
 
-                    fetch("/usuarios/autenticar", {
+                    fetch("/empresas/autenticar", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
