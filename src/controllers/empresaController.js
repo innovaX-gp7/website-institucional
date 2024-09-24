@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/usuarioModel");
+var empresaModel = require("../models/empresaModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -10,7 +10,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(email, senha)
+        empresaModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -43,6 +43,7 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nome = req.body.nomeServer
     var cnpj = req.body.cnpjServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -56,8 +57,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {
         console.log(cnpj)
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(cnpj, email, senha)
+        // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
+        empresaModel.cadastrar(nome, cnpj, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

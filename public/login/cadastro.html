@@ -143,8 +143,6 @@
                 btnSubmit.disabled = true
                 fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj.value}`)
                     .then(response => {
-                        console.log("Cnpj Response: ")
-                        console.log(response)
                         if (!response.ok) {
                             passwd.classList.remove("input-warning")
                             email.classList.remove("input-warning")
@@ -154,33 +152,41 @@
                             warning.innerText = "CNPJ Inválido"
                             btnSubmit.disabled = false
                         } else {
-                            fetch("/usuarios/cadastrar", {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    cnpjServer: cnpj.value,
-                                    emailServer: email.value,
-                                    senhaServer: passwd.value
-                                })
-                            }).then(response => {
-                                console.log("Insert Response: ")
-                                console.log(response)
-                                if (response.ok) {
-                                    warning.innerText = ""
-                                    passwd.classList.remove("input-warning")
-                                    email.classList.remove("input-warning")
-                                    cnpj.classList.remove("input-warning")
-
-                                    btnSubmit.innerText = "redirecionando"
-                                    btnSubmit.style.background = "green"
-                                    setTimeout(() => window.location = "./login.html", 3000)
-                                }
-                            }).catch(error => {
-                                btnSubmit.disabled = false
-                                console.log("Erro na Inserção: " + error)
-                            })
+                            return response.json()
                         }
-                    }) .catch(error => {
+                    })
+                    .then(response => {
+                        console.log("Cnpj Response: ")
+                        console.log(response)
+                        let nome = response.nome_fantasia
+                        fetch("/empresas/cadastrar", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                nomeServer: nome,
+                                cnpjServer: cnpj.value,
+                                emailServer: email.value,
+                                senhaServer: passwd.value
+                            })
+                        }).then(response => {
+                            console.log("Insert Response: ")
+                            console.log(response)
+                            if (response.ok) {
+                                warning.innerText = ""
+                                passwd.classList.remove("input-warning")
+                                email.classList.remove("input-warning")
+                                cnpj.classList.remove("input-warning")
+
+                                btnSubmit.innerText = "redirecionando"
+                                btnSubmit.style.background = "green"
+                                setTimeout(() => window.location = "./login.html", 3000)
+                            }
+                        }).catch(error => {
+                            btnSubmit.disabled = false
+                            console.log("Erro na Inserção: " + error)
+                        })
+                    }
+                    ).catch(error => {
                         btnSubmit.disabled = false
                         console.log("Erro no cnpj: " + error)
                     })
