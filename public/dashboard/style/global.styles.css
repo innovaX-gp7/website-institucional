@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black-color:#041802;
+    --green-color: #357200;
+    --gray-color: #1d1d1d;
+    --darker-gray: #071307;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: black;
+    background-image: url(../../assets/backgrounddash.png);
+    color: white;
+}
+
+
+aside {
+    background-color: #071307;
+    width: 350px;
+    position: fixed;
+    height: 100vh;
+    align-items: center;
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+aside img {
+    max-width: 150px;
+    width: 100%;
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+}
+
+li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+aside a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+main {
+    margin-left: 350px;
+    padding: 2rem;
+}

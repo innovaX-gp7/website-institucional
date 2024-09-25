@@ -1,0 +1,73 @@
+main header > div {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+
+.flex-kpi {
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    margin: 20px 0px;
+    gap: 20px;
+    
+}
+
+.card-kpi {
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.171);
+    border-radius: 10px;
+    flex: 1;
+    background-color: var(--darker-gray);
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    transition: transform .3s;
+}
+
+.card-kpi:hover {
+    transform: scale(1.01);
+    background-color: #0c200c;
+}
+
+.card-kpi div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-kpi span {
+    align-self: center;
+    font-size: 5rem;
+}
+
+main p {
+    color: #c5c5c5;
+}
+
+.grid-content {
+    align-items: center;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr .6fr;
+    grid-template-rows: auto auto auto;
+}
+
+.card-grid {
+    background-color: var(--darker-gray);
+    border-radius: 5px;
+    justify-items: center;
+    height: 100%;
+    padding: 30px;
+}
+
+
+.card-grid:nth-child(4) h2 {
+    margin-bottom: 20px;
+}
+
+.card-grid:nth-child(4) p {
+    font-size: 1.2rem;
+}
