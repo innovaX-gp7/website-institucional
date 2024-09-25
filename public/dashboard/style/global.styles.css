@@ -14,12 +14,11 @@
 body {
     font-family: "Poppins", sans-serif;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-color: black;
     background-image: url(../../assets/backgrounddash.png);
     color: white;
 }
-
 
 aside {
     background-color: #071307;
@@ -62,4 +61,18 @@ aside a {
 main {
     margin-left: 350px;
     padding: 2rem;
+}
+
+main header {
+    margin-bottom: 20px;
+}
+
+main header > div {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+main p {
+    color: #c5c5c5;
 }

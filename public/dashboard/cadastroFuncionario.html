@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DASHBOARD</title>
+
+    <!-- LINKS -->
     <link rel="stylesheet" href="./style/global.styles.css">
-    <link rel="stylesheet" href="./style/dash.styles.css">
+    <link rel="stylesheet" href="./style/cadastroFuncionario.styles.css">
 
 
     <!-- FONTS -->
@@ -23,7 +25,8 @@
 
         <nav>
             <ul>
-                <li><a style="background: #006622" href=""> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                <li><a href="./dashboard.html" onmouseover="this.style.color='#00d300'"
+                        onmouseout="this.style.color='white'"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house">
                             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
@@ -48,7 +51,7 @@
                             <circle cx="12" cy="7" r="4" />
                         </svg><span>Conta</span></a>
                 </li>
-                <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
+                <li><a style="background: #006622" href="./cadastroFuncionario.html"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-badge-plus">
@@ -83,137 +86,30 @@
                     <path d="M8 11h.01" />
                     <path d="M8 16h.01" />
                 </svg>
-                <h1>Dashboard</h1>
+                <h1>Cadastrar novo funcionário</h1>
             </div>
-            <p> Aqui está detalhes da floresta amazonica </p>
+            <p> Cadastre novos funcionários </p>
         </header>
-
-        <div class="flex-kpi">
-
-            <div class="card-kpi">
+        <div class="flex-content">
+            <form action="" method="post">
+                <h2>Cadastro Funcionário</h2>
                 <div>
-                    <h2>Notificações</h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-library">
-                        <path d="m16 6 4 14" />
-                        <path d="M12 6v14" />
-                        <path d="M8 8v12" />
-                        <path d="M4 4v16" />
-                    </svg>
+                    <p>Nome</p>
+                    <input type="Nome">
                 </div>
-                <span>59</span>
-            </div>
-
-
-
-            <div class="card-kpi">
                 <div>
-                    <h2>Total áreas desmatadas</h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-library">
-                        <path d="m16 6 4 14" />
-                        <path d="M12 6v14" />
-                        <path d="M8 8v12" />
-                        <path d="M4 4v16" />
-                    </svg>
+                    <p>Email</p>
+                    <input type="email" type="email" placeholder="miguel@exemplo.com">
                 </div>
-                <span>59</span>
-            </div>
-
-        </div>
-
-        <div class="grid-content">
-            <div class="card-grid">
-                <h3>Gráficos de precipitação da floresta amazonica</h3>
-                <canvas id="myChart2"></canvas>
-            </div>
-            <div class="card-grid">
-                <h3>Àreas desmatadas</h3>
-                <canvas id="myChart" width="100%" height="100%"></canvas>
-            </div>
-            <div class="card-grid">
-                <h3>Gráficos de precipitação da floresta amazonica</h3>
-                <canvas id="myChart3"></canvas>
-            </div>
-            <div class="card-grid">
-                <h2>Sugestões</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero a ullam modi consectetur ipsa,
-                    nostrum corporis illo quam laborum eius distinctio error voluptates in, nobis tenetur earum
-                    praesentium accusantium dolore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-                    suscipit inventore sint quaerat. Assumenda temporibus illo voluptatem commodi veritatis ducimus
-                    dolorum repellat obcaecati asperiores repudiandae, pariatur, eveniet inventore expedita eligendi?
-                </p>
-            </div>
+                <div>
+                    <p>CPF</p>
+                    <input type="CPF" placeholder="000.000.000-00">
+                </div>
+                <button>Cadastrar</button>
+            </form>
+            <img src="../assets/funcionario.png" alt="">
         </div>
     </main>
 </body>
 
 </html>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    const ctx = document.getElementById('myChart');
-    const ctv = document.getElementById('myChart3');
-    const cty = document.getElementById('myChart2');
-
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Estado1', 'Estado2', 'Estado3', 'Estado4', 'Estado5'],
-            datasets: [{
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1,
-                backgroundColor: ['#00de90', '#00FA9A', '#00FF7F', '#2E8B57'],
-                borderColor: 'white',
-
-            },
-            ]
-        },
-        options: {
-            plugins: {
-            },
-        }
-    });
-
-    new Chart(cty, {
-        type: 'line',
-        data: {
-            labels: ['janeiro', 'fevereiro', 'março', 'setembro', 'outubro', 'novembro', 'dezembro'],
-            datasets: [{
-                data: [12, 19, 3, 5, 2, 3, 10],
-                borderWidth: 1,
-                backgroundColor: '#00ce90',
-                borderColor: 'rgb(75, 192, 192)',
-            },
-            ]
-        },
-        options: {
-            plugins: {
-            },
-        }
-    });
-
-    new Chart(ctv, {
-        type: 'line',
-        data: {
-            labels: ['janeiro', 'fevereiro', 'março', 'setembro', 'outubro', 'novembro', 'dezembro'],
-            datasets: [{
-                data: [12, 19, 3, 5, 2, 3, 10],
-                borderWidth: 1,
-                backgroundColor: '#00ce90',
-                borderColor: 'rgb(75, 192, 192)',
-            },
-            ]
-        },
-        options: {
-            plugins: {
-            },
-        }
-    });
-</script>
