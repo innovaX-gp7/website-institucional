@@ -76,3 +76,30 @@ main header > div {
 main p {
     color: #c5c5c5;
 }
+
+.warning {
+    
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 90vw;
+    height: 90vh;
+    border-radius: 10px;
+    border: 5px dashed rgb(161, 161, 161);
+    background-color: #0f0f0f;
+    z-index: 100;
+    
+    flex-direction: column;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+    font-size: 1.5rem;
+    font-weight: 700;
+    
+     display: none;
+}
