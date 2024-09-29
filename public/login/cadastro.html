@@ -33,6 +33,18 @@
             </div>
 
             <div class="input-content">
+
+                <div>
+                    <p> Digite o nome da empresa </p>
+                    <input id="iptNome" type="text" placeholder="Nome da empresa">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </div>
+
                 <div>
                     <p> Digite seu email </p>
                     <input id="iptEmail" type="email" placeholder="Roberto@exemplo.com">
@@ -93,19 +105,32 @@
             const email = iptEmail
             const cnpj = iptCNPJ
             const passwd = iptPasswd
+            const nome = iptNome
 
-            if (!passwd.value && !cnpj.value && !email.value) {
+            if (!passwd.value && !cnpj.value && !email.value && !nome.value) {
 
                 passwd.classList.add("input-warning")
                 cnpj.classList.add("input-warning")
                 email.classList.add("input-warning")
+                nome.classList.add("input-warning")
 
                 warning.style.display = "block"
 
                 email.focus()
+            } else if (!nome.value) {
+                passwd.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                nome.classList.add("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o nome"
+
+                nome.focus()
             } else if (!email.value) {
                 passwd.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
                 email.classList.add("input-warning")
 
                 warning.style.display = "block"
@@ -115,6 +140,7 @@
             } else if (!cnpj.value) {
                 passwd.classList.remove("input-warning")
                 email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
                 cnpj.classList.add("input-warning")
 
 
@@ -125,6 +151,7 @@
             } else if (!passwd.value) {
                 email.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
                 passwd.classList.add("input-warning")
 
 
@@ -135,64 +162,43 @@
             } else if (passwd.value.length < 8) {
                 email.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
                 passwd.classList.add("input-warning")
 
                 warning.style.display = "block"
                 warning.innerText = "a senha deve conter mais de 8 caracteres"
             } else {
-                btnSubmit.disabled = true
-                fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj.value}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            passwd.classList.remove("input-warning")
-                            email.classList.remove("input-warning")
-                            cnpj.classList.add("input-warning")
+        btnSubmit.disabled = true
+        
+        fetch("/empresas/cadastrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                nomeServer: nome.value, 
+                cnpjServer: cnpj.value,
+                emailServer: email.value,
+                senhaServer: passwd.value
+            })
+        }).then(response => {
+            console.log("Insert Response: ")
+            console.log(response)
+            if (response.ok) {
+                warning.innerText = ""
+                passwd.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
 
-                            warning.style.display = "block"
-                            warning.innerText = "CNPJ Inválido"
-                            btnSubmit.disabled = false
-                        } else {
-                            return response.json()
-                        }
-                    })
-                    .then(response => {
-                        console.log("Cnpj Response: ")
-                        console.log(response)
-                        let nome = response.nome_fantasia
-                        fetch("/empresas/cadastrar", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                nomeServer: nome,
-                                cnpjServer: cnpj.value,
-                                emailServer: email.value,
-                                senhaServer: passwd.value
-                            })
-                        }).then(response => {
-                            console.log("Insert Response: ")
-                            console.log(response)
-                            if (response.ok) {
-                                warning.innerText = ""
-                                passwd.classList.remove("input-warning")
-                                email.classList.remove("input-warning")
-                                cnpj.classList.remove("input-warning")
-
-                                btnSubmit.innerText = "redirecionando"
-                                btnSubmit.style.background = "green"
-                                setTimeout(() => window.location = "./login.html", 3000)
-                            }
-                        }).catch(error => {
-                            btnSubmit.disabled = false
-                            console.log("Erro na Inserção: " + error)
-                        })
-                    }
-                    ).catch(error => {
-                        btnSubmit.disabled = false
-                        console.log("Erro no cnpj: " + error)
-                    })
+                btnSubmit.innerText = "Redirecionando"
+                btnSubmit.style.background = "green"
+                setTimeout(() => window.location = "./login.html", 3000)
             }
-
-        }
+        }).catch(error => {
+            btnSubmit.disabled = false
+            console.log("Erro na Inserção: " + error)
+        })
+    }
+}
 
 
     </script>
