@@ -1,6 +1,6 @@
 
 create database if not exists InnovaxDB;
-use innovaxDB;
+use InnovaxDB;
 
 create table empresa (
 id int not null auto_increment,
@@ -33,7 +33,7 @@ mes tinyint,
 ano year,
 areaDesmatada decimal (4,2) not null,
 temperaturaMensal  decimal (4,2) not null,
-precipitaçãoMensal decimal (4,2) not null,
+precipitacaoMensal decimal (4,2) not null,
 fk_empresa int,
 constraint fk_empresa foreign key (fk_empresa) references empresa(id)
 )auto_increment=100;
