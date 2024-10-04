@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD</title>
+    <title>Cadastro de Funcionários | Innovax</title>
+    <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
 
     <!-- LINKS -->
     <link rel="stylesheet" href="./style/global.styles.css">
@@ -63,7 +64,7 @@
                 </li>
             </ul>
 
-            <li class="exit"><a href="#" onmouseover="this.style.color='#00d300'"
+            <li class="exit"><a href="../index.html" onmouseover="this.style.color='#00d300'"
                     onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="lucide lucide-log-out">
@@ -95,21 +96,131 @@
                 <h2>Cadastro Funcionário</h2>
                 <div>
                     <p>Nome</p>
-                    <input type="Nome">
+                    <input type="Nome" id="iptNome">
                 </div>
                 <div>
                     <p>Email</p>
-                    <input type="email" type="email" placeholder="miguel@exemplo.com">
+                    <input type="email" type="email" id="iptEmail" placeholder="miguel@exemplo.com">
                 </div>
                 <div>
                     <p>CPF</p>
-                    <input type="CPF" placeholder="000.000.000-00">
+                    <input type="CPF" id="iptCPF" placeholder="000.000.000-00">
                 </div>
-                <button>Cadastrar</button>
+                <button onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
             </form>
             <img src="../assets/funcionario.png" alt="">
         </div>
     </main>
+
+    <script>
+         
+     
+    function cadastrar() {
+
+
+        const email = iptEmail
+        const cpf = iptCPF
+       /* const passwd = iptPasswd*/
+        const nome = iptNome
+      
+       
+
+        if (!cpf.value && !email.value && !nome.value) {
+
+            /* passwd.classList.add("input-warning") */
+            cpf.classList.add("input-warning")
+            email.classList.add("input-warning")
+            nome.classList.add("input-warning")
+
+            warning.style.display = "block"
+
+            email.focus()
+        } else if (!nome.value) {
+          /*   passwd.classList.remove("input-warning") */
+            cpf.classList.remove("input-warning")
+            email.classList.remove("input-warning")
+            nome.classList.add("input-warning")
+
+            warning.style.display = "block"
+            warning.innerText = "Preencha o nome"
+
+            nome.focus()
+        } else if (!email.value) {
+           /*  passwd.classList.remove("input-warning") */
+            cpf.classList.remove("input-warning")
+            nome.classList.remove("input-warning")
+            email.classList.add("input-warning")
+
+            warning.style.display = "block"
+            warning.innerText = "Preencha o email"
+
+            email.focus()
+        } else if (!cpf.value) {
+          /*   passwd.classList.remove("input-warning") */
+            email.classList.remove("input-warning")
+            nome.classList.remove("input-warning")
+            cpf.classList.add("input-warning")
+
+
+            warning.style.display = "block"
+            warning.innerText = "Preencha o CPF"
+
+            cpf.focus()
+        } /* else if (!passwd.value) {
+            email.classList.remove("input-warning")
+            cpf.classList.remove("input-warning")
+            nome.classList.remove("input-warning")
+            passwd.classList.add("input-warning") 
+
+
+            warning.style.display = "block"
+            warning.innerText = "Preencha a senha"
+
+            passwd.focus() 
+        } else if (passwd.value.length < 8) {
+            email.classList.remove("input-warning")
+            cpf.classList.remove("input-warning")
+            nome.classList.remove("input-warning")
+            passwd.classList.add("input-warning") 
+
+            warning.style.display = "block"
+            warning.innerText = "a senha deve conter mais de 8 caracteres"
+        } */ else {
+    btnSubmit.disabled = true
+    
+    fetch("/funcionario/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            nomeServer: nome.value, 
+            cpfServer: cpf.value,
+            emailServer: email.value,
+           senhaServer: cpf.value
+           
+        })
+    }).then(response => {
+        console.log("Insert Response: ")
+        console.log(response)
+        if (response.ok) {
+            warning.innerText = ""
+          /*   passwd.classList.remove("input-warning") */
+            email.classList.remove("input-warning")
+            cpf.classList.remove("input-warning")
+            nome.classList.remove("input-warning")
+
+            btnSubmit.innerText = "Redirecionando"
+            btnSubmit.style.background = "green"
+            setTimeout(() => window.location = "../login/login.html", 3000)
+        }
+    }).catch(error => {
+        btnSubmit.disabled = false
+        console.log("Erro na Inserção: " + error)
+    })
+}
+}
+
+
+</script>
 </body>
 
 </html>
