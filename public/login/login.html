@@ -8,6 +8,7 @@
 
     <!-- TITLE -->
     <title>Login | Innovax </title>
+    <link rel="shortcut icon" type="imagex/png" href="./assets/82-Sem-Título_20240828181654.ico">
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +62,7 @@
 
                 <p id="warning">Preencha todos os campos</p>
 
-                <button onclick="validar()" id="btnSubmit" type="button">Entrar</button>
+                <button onclick="validar()" onclick="entrar()"   id="btnSubmit" type="button">Entrar</button>
             </div>
         </form>
 
@@ -117,7 +118,7 @@
                             btnSubmit.innerText = "Acessando"
                             btnSubmit.style.background = "green"
         
-                            setTimeout(() => window.location = "../index.html", 3000)
+                            setTimeout(() => window.location = "../dashboard/dashboard.html", 3000)
                         }
                     })
                     .catch(error => {

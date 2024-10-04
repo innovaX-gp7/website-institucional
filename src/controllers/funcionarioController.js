@@ -1,4 +1,4 @@
-var empresaModel = require("../models/empresaModel");
+var funcionarioModel = require("../models/funcionarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -10,7 +10,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        empresaModel.autenticar(email, senha)
+        funcionarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -19,9 +19,9 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json({
-                            idEmpresa: resultadoAutenticar[0].idEmpresa,
+                            idFuncionario: resultadoAutenticar[0].idFuncionario,
                             email: resultadoAutenticar[0].email,
-                            cnpj: resultadoAutenticar[0].cnpj,
+                            cpf: resultadoAutenticar[0].cpf,
                             senha: resultadoAutenticar[0].senha
                         });
                     } else if (resultadoAutenticar.length == 0) {
@@ -44,21 +44,21 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer
-    var cnpj = req.body.cnpjServer;
+    var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     
     // Faça as validações dos valores
-    if (cnpj == undefined) {
+    if (cpf == undefined) {
         res.status(400).send("Seu cnpj está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        console.log(cnpj)
+        console.log(cpf)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        empresaModel.cadastrar(nome, cnpj, email, senha)
+        funcionarioModel.cadastrar(nome, cpf, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
