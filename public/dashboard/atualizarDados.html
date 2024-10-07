@@ -23,6 +23,7 @@
 <body>
     <aside>
         <img src="../assets/logo.png" alt="">
+        Olá,<span id="b_usuario"></span>!
 
         <nav>
             <ul>
@@ -114,3 +115,13 @@
 </body>
 
 </html>
+<script>
+    if(sessionStorage.getItem("NOME_EMPRESA")) {
+        b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+    } else {
+        b_usuario.innerHTML =  sessionStorage.NOME_FUNCIONARIO;
+
+    }
+  
+   
+</script>

@@ -71,3 +71,12 @@ form button:hover {
     max-width: 450px;
     height: 100%;
 }
+
+#warning {
+    color: #ff5757;
+    display: none;
+}
+
+.input-warning {
+    border: 3px solid #ff5757 !important;
+}
