@@ -8,7 +8,7 @@
 
     <!-- TITLE -->
     <title>Cadastro | Innovax </title>
-    <link rel="shortcut icon" type="imagex/png" href="./assets/82-Sem-Título_20240828181654.ico">
+    <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,6 +108,17 @@
             const passwd = iptPasswd
             const nome = iptNome
 
+            let emailValido = email.value.indexOf("@") > 0 && (email.value.indexOf(".com") > email.value.indexOf("@"));
+            let regexMaiuscula = /[A-Z]/;
+            let regexMinuscula = /[a-z]/;
+            let regexNumeros = /[0-9]/;
+            let regexEspecial = /[!@#$%^&*(),.?":{}|<>]/;
+
+
+            
+
+
+
             if (!passwd.value && !cnpj.value && !email.value && !nome.value) {
 
                 passwd.classList.add("input-warning")
@@ -128,17 +139,9 @@
                 warning.innerText = "Preencha o nome"
 
                 nome.focus()
-            } else if (!email.value) {
-                passwd.classList.remove("input-warning")
-                cnpj.classList.remove("input-warning")
-                nome.classList.remove("input-warning")
-                email.classList.add("input-warning")
+            }
 
-                warning.style.display = "block"
-                warning.innerText = "Preencha o email"
-
-                email.focus()
-            } else if (!cnpj.value) {
+            else if (!cnpj.value) {
                 passwd.classList.remove("input-warning")
                 email.classList.remove("input-warning")
                 nome.classList.remove("input-warning")
@@ -149,6 +152,26 @@
                 warning.innerText = "Preencha o CNPJ"
 
                 cnpj.focus()
+            }
+
+            else if (cnpj.value.length < 14 || cnpj.value.length > 14 || regexMaiuscula.test(cnpj.value) || regexMinuscula.test(cnpj.value)  ) {
+                passwd.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cnpj.classList.add("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha apenas com os 14 dígitos numéricos do CNPJ"
+                cnpj.focus()
+            } else if (!emailValido) {
+                passwd.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                email.classList.add("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha um email válido"
             } else if (!passwd.value) {
                 email.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
@@ -160,46 +183,48 @@
                 warning.innerText = "Preencha a senha"
 
                 passwd.focus()
-            } else if (passwd.value.length < 8) {
+            } else if (passwd.value.length < 8 || !regexMaiuscula.test(passwd.value) ||
+                !regexMinuscula.test(passwd.value) ||  !regexNumeros.test(passwd.value) || !regexEspecial.test(passwd.value)) {
                 email.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
                 nome.classList.remove("input-warning")
                 passwd.classList.add("input-warning")
 
                 warning.style.display = "block"
-                warning.innerText = "a senha deve conter mais de 8 caracteres"
+                warning.innerText = "A senha deve conter mais de 8 caracteres, caracteres numéricos, especiais e letras maiúsculas e minúsculas"
             } else {
-        btnSubmit.disabled = true
-        
-        fetch("/empresas/cadastrar", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                nomeServer: nome.value, 
-                cnpjServer: cnpj.value,
-                emailServer: email.value,
-                senhaServer: passwd.value
-            })
-        }).then(response => {
-            console.log("Insert Response: ")
-            console.log(response)
-            if (response.ok) {
+                btnSubmit.disabled = true
                 warning.innerText = ""
-                passwd.classList.remove("input-warning")
-                email.classList.remove("input-warning")
-                cnpj.classList.remove("input-warning")
-                nome.classList.remove("input-warning")
 
-                btnSubmit.innerText = "Redirecionando"
-                btnSubmit.style.background = "green"
-                setTimeout(() => window.location = "./login.html", 3000)
+                fetch("/empresas/cadastrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        nomeServer: nome.value,
+                        cnpjServer: cnpj.value,
+                        emailServer: email.value,
+                        senhaServer: passwd.value
+                    })
+                }).then(response => {
+                    console.log("Insert Response: ")
+                    console.log(response)
+                    if (response.ok) {
+                        warning.innerText = ""
+                        passwd.classList.remove("input-warning")
+                        email.classList.remove("input-warning")
+                        cnpj.classList.remove("input-warning")
+                        nome.classList.remove("input-warning")
+
+                        btnSubmit.innerText = "Redirecionando"
+                        btnSubmit.style.background = "green"
+                        setTimeout(() => window.location = "./login.html", 3000)
+                    }
+                }).catch(error => {
+                    btnSubmit.disabled = false
+                    console.log("Erro na Inserção: " + error)
+                })
             }
-        }).catch(error => {
-            btnSubmit.disabled = false
-            console.log("Erro na Inserção: " + error)
-        })
-    }
-}
+        }
 
 
     </script>

@@ -23,6 +23,7 @@
 <body>
     <aside>
         <img src="../assets/logo.png" alt="">
+        Olá,<span id="b_usuario"></span>!
 
         <nav>
             <ul>
@@ -44,10 +45,10 @@
                                 d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
                             <path d="m2 13 6 6" />
                         </svg><span>Ajuda</span></a></li>
-                <li><a href="./atualizarDados.html" onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-user">
+                <li><a href="./atualizarDados.html" onmouseover="this.style.color='#00d300'"
+                        onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user">
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                             <circle cx="12" cy="7" r="4" />
                         </svg><span>Conta</span></a>
@@ -106,6 +107,7 @@
                     <p>CPF</p>
                     <input type="CPF" id="iptCPF" placeholder="000.000.000-00">
                 </div>
+                <p id="warning">Preencha todos os campos!</p>
                 <button onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
             </form>
             <img src="../assets/funcionario.png" alt="">
@@ -113,114 +115,124 @@
     </main>
 
     <script>
-         
-     
-    function cadastrar() {
 
+        if (sessionStorage.getItem("NOME_EMPRESA")) {
+            b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+        } else {
+            b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
 
-        const email = iptEmail
-        const cpf = iptCPF
-       /* const passwd = iptPasswd*/
-        const nome = iptNome
-      
-       
-
-        if (!cpf.value && !email.value && !nome.value) {
-
-            /* passwd.classList.add("input-warning") */
-            cpf.classList.add("input-warning")
-            email.classList.add("input-warning")
-            nome.classList.add("input-warning")
-
-            warning.style.display = "block"
-
-            email.focus()
-        } else if (!nome.value) {
-          /*   passwd.classList.remove("input-warning") */
-            cpf.classList.remove("input-warning")
-            email.classList.remove("input-warning")
-            nome.classList.add("input-warning")
-
-            warning.style.display = "block"
-            warning.innerText = "Preencha o nome"
-
-            nome.focus()
-        } else if (!email.value) {
-           /*  passwd.classList.remove("input-warning") */
-            cpf.classList.remove("input-warning")
-            nome.classList.remove("input-warning")
-            email.classList.add("input-warning")
-
-            warning.style.display = "block"
-            warning.innerText = "Preencha o email"
-
-            email.focus()
-        } else if (!cpf.value) {
-          /*   passwd.classList.remove("input-warning") */
-            email.classList.remove("input-warning")
-            nome.classList.remove("input-warning")
-            cpf.classList.add("input-warning")
-
-
-            warning.style.display = "block"
-            warning.innerText = "Preencha o CPF"
-
-            cpf.focus()
-        } /* else if (!passwd.value) {
-            email.classList.remove("input-warning")
-            cpf.classList.remove("input-warning")
-            nome.classList.remove("input-warning")
-            passwd.classList.add("input-warning") 
-
-
-            warning.style.display = "block"
-            warning.innerText = "Preencha a senha"
-
-            passwd.focus() 
-        } else if (passwd.value.length < 8) {
-            email.classList.remove("input-warning")
-            cpf.classList.remove("input-warning")
-            nome.classList.remove("input-warning")
-            passwd.classList.add("input-warning") 
-
-            warning.style.display = "block"
-            warning.innerText = "a senha deve conter mais de 8 caracteres"
-        } */ else {
-    btnSubmit.disabled = true
-    
-    fetch("/funcionario/cadastrar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            nomeServer: nome.value, 
-            cpfServer: cpf.value,
-            emailServer: email.value,
-           senhaServer: cpf.value
-           
-        })
-    }).then(response => {
-        console.log("Insert Response: ")
-        console.log(response)
-        if (response.ok) {
-            warning.innerText = ""
-          /*   passwd.classList.remove("input-warning") */
-            email.classList.remove("input-warning")
-            cpf.classList.remove("input-warning")
-            nome.classList.remove("input-warning")
-
-            btnSubmit.innerText = "Redirecionando"
-            btnSubmit.style.background = "green"
-            setTimeout(() => window.location = "../login/login.html", 3000)
         }
-    }).catch(error => {
-        btnSubmit.disabled = false
-        console.log("Erro na Inserção: " + error)
-    })
-}
-}
 
 
-</script>
+        function cadastrar() {
+
+            var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+
+            if (!idEmpresa) {
+                console.error("ID da empresa não encontrado no sessionStorage");
+                return;
+            }
+
+            const email = iptEmail
+            const cpf = iptCPF
+            const nome = iptNome
+
+            let emailValido = email.value.indexOf("@") > 0 && (email.value.indexOf(".com") > email.value.indexOf("@"));
+            let regexMaiuscula = /[A-Z]/;
+            let regexMinuscula = /[a-z]/;
+            let regexNumeros = /[0-9]/;
+            let regexEspecial = /[!@#$%^&*(),.?":{}|<>]/;
+
+
+
+            if (!cpf.value && !email.value && !nome.value) {
+
+                cpf.classList.add("input-warning")
+                email.classList.add("input-warning")
+                nome.classList.add("input-warning")
+
+                warning.style.display = "block"
+
+                email.focus()
+            } else if (!nome.value) {
+                cpf.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                nome.classList.add("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o nome"
+
+                nome.focus()
+            }
+
+            else if (!cpf.value) {
+                email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.add("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o CPF"
+
+                cnpj.focus()
+            }
+
+            else if (cpf.value.length < 11 || cpf.value.length > 11 || regexMaiuscula.test(cpf.value) || regexMinuscula.test(cpf.value)) {
+               
+                email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.add("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha apenas com os 11 dígitos numéricos do CPF"
+                cpf.focus()
+            } else if (!emailValido) {
+        
+                cpf.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                email.classList.add("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha um email válido"
+            } else {
+                btnSubmit.disabled = true
+
+
+                fetch("/funcionario/cadastrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        nomeServer: nome.value,
+                        cpfServer: cpf.value,
+                        emailServer: email.value,
+                        senhaServer: cpf.value,
+                        fkEmpresaFuncioServer: idEmpresa
+
+                    })
+                }).then(response => {
+                    console.log("Insert Response: ")
+                    console.log(response)
+                    if (response.ok) {
+                        warning.innerText = ""
+                        /*   passwd.classList.remove("input-warning") */
+                        email.classList.remove("input-warning")
+                        cpf.classList.remove("input-warning")
+                        nome.classList.remove("input-warning")
+
+                        btnSubmit.innerText = "Redirecionando"
+                        btnSubmit.style.background = "green"
+                        setTimeout(() => window.location = "../login/login.html", 3000)
+                    }
+                }).catch(error => {
+                    btnSubmit.disabled = false
+                    console.log("Erro na Inserção: " + error)
+                })
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>

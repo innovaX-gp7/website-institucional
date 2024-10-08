@@ -1,5 +1,6 @@
 var funcionarioModel = require("../models/funcionarioModel");
 
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -20,9 +21,13 @@ function autenticar(req, res) {
                         console.log(resultadoAutenticar);
                         res.json({
                             idFuncionario: resultadoAutenticar[0].idFuncionario,
+                            nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             cpf: resultadoAutenticar[0].cpf,
-                            senha: resultadoAutenticar[0].senha
+                            senha: resultadoAutenticar[0].senha,
+                            fkEmpresaFuncio: resultadoAutenticar[0].fkEmpresaFuncio
+
+
                         });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -47,6 +52,7 @@ function cadastrar(req, res) {
     var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var fkEmpresaFuncio = req.body.fkEmpresaFuncioServer; 
     
     // Faça as validações dos valores
     if (cpf == undefined) {
@@ -55,10 +61,12 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (fkEmpresaFuncio === undefined || fkEmpresaFuncio === 'undefined') {
+        return res.status(400).send("O ID da empresa está indefinido!");
     } else {
         console.log(cpf)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        funcionarioModel.cadastrar(nome, cpf, email, senha)
+        funcionarioModel.cadastrar(nome, cpf, email, senha, fkEmpresaFuncio)
             .then(
                 function (resultado) {
                     res.json(resultado);
