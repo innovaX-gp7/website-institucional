@@ -41,7 +41,7 @@
                                 d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
                             <path d="m2 13 6 6" />
                         </svg><span>Ajuda</span></a></li>
-                <li><a href="./atualizarDados.html" onmouseover="this.style.color='#00d300'"
+                <li><a href="" id="atualizarDados" onmouseover="this.style.color='#00d300'"
                         onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user">
@@ -185,9 +185,11 @@
     
     if(sessionStorage.getItem("NOME_EMPRESA")) {
         b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+        atualizarDados.href = "./atualizarDadosEmpresa.html"
         document.querySelector(".display-none").classList.remove("display-none")
     } else {
         b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
+        atualizarDados.href = "./atualizarDados.html"
     }
 
     const ctx = document.getElementById('myChart');
