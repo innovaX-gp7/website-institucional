@@ -126,6 +126,31 @@
         b_usuario.innerHTML =  sessionStorage.NOME_FUNCIONARIO;
 
     }
+
+    function editar() {
+        fetch(`/funcionario/editar/${sessionStorage.getItem("ID_FUNCIONARIO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_FUNCIONARIO") + "!");
+                window.location = "/dashboard/dashboard.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar atualização! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
   
    
 </script>
