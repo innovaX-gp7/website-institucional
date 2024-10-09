@@ -107,7 +107,7 @@
                     <p>CPF</p>
                     <input type="CPF" value="123.123.123-12" placeholder="000.000.000-00">
                 </div>
-                <button>Atualizar</button>
+                <button onclick="editar">Atualizar</button>
             </form>
             <img src="../assets/update.png" alt="">
         </div>
@@ -122,6 +122,34 @@
         b_usuario.innerHTML =  sessionStorage.NOME_FUNCIONARIO;
 
     }
+
+    
+    function editar() {
+        fetch(`/empresa/editar/${sessionStorage.getItem("ID_EMPRESA")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Dados atualizados com sucesso pelo usuário de email: " + sessionStorage.getItem("EMAIL_EMPRESA") + "!");
+                window.location = "/dashboard/dashboard.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a atualização! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+
+
   
    
 </script>

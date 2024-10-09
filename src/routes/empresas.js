@@ -12,6 +12,8 @@ router.post("/autenticar", function (req, res) {
     empresaController.autenticar(req, res);
 });
 
-
+router.put("/editar/:idEmpresa", function (req, res) {
+    empresaController.editar(req, res);
+});
 
 module.exports = router;
