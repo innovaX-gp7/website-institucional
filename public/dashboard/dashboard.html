@@ -49,20 +49,22 @@
                             <circle cx="12" cy="7" r="4" />
                         </svg><span>Conta</span></a>
                 </li>
-                <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'"
-                        onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-plus">
-                            <path
-                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-                            <line x1="12" x2="12" y1="8" y2="16" />
-                            <line x1="8" x2="16" y1="12" y2="12" />
-                        </svg><span>Cadastrar funcionário</span></a>
-                </li>
-                <li><a href="./personalizarSugestoes.html" onmouseover="this.style.color='#00d300'"
-                        onmouseout="this.style.color='white'">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg><span>Personalizar sugestões</span></a>
-                </li>
+                <span class="display-none">
+                    <li><a  href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'"
+                            onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-plus">
+                                <path
+                                    d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                                <line x1="12" x2="12" y1="8" y2="16" />
+                                <line x1="8" x2="16" y1="12" y2="12" />
+                            </svg><span>Cadastrar funcionário</span></a>
+                    </li>
+                    <li><a href="./personalizarSugestoes.html" onmouseover="this.style.color='#00d300'"
+                            onmouseout="this.style.color='white'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg><span>Personalizar sugestões</span></a>
+                    </li>
+                </span>
             </ul>
 
             <li class="exit"><a href="#" onmouseover="this.style.color='#00d300'"
@@ -174,8 +176,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-   if(sessionStorage.getItem("NOME_EMPRESA")) {
+
+    
+    if(sessionStorage.getItem("NOME_EMPRESA")) {
         b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+        document.querySelector(".display-none").classList.remove("display-none")
     } else {
         b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
     }
