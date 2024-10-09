@@ -41,7 +41,10 @@ aside nav {
     flex-direction: column;
     justify-content: space-between;
     height: 70%;
+}
 
+.display-none {
+    display: none;
 }
 
 aside p {
