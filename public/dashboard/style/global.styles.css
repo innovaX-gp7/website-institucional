@@ -40,7 +40,13 @@ aside nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80%;
+    height: 70%;
+
+}
+
+aside p {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 li {
