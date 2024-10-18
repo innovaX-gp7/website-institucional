@@ -103,22 +103,22 @@
                 <h2>Atualizar Dados</h2>
                 <div>
                     <p>Nome</p>
-                    <input value="Miguel de Oliveira Santos" type="Nome">
+                    <input id="inputNome" type="Nome">
                 </div>
                 <div>
                     <p>Email</p>
-                    <input type="email" type="email" value="miguel@exemplo.com" placeholder="miguel@exemplo.com">
+                    <input type="email" type="email" id="inputEmail">
                 </div>
                 <div>
                     <p>CPF</p>
-                    <input type="CNPJ" value="12312312312321" placeholder="000.000.000-00">
+                    <input type="CNPJ" id="inputCPF">
  
                 </div>
                 <div>
                     <p>Senha</p>
-                    <input type="CNPJ" value="12312312312321" placeholder="000.000.000-00">
+                    <input type="CNPJ" id="inputSenha"  >
                 </div>
-                <button>Atualizar</button>
+                <button type="button" onclick="editar()">Atualizar</button>
             </form>
             <img src="../assets/update.png" alt="">
         </div>
@@ -133,6 +133,45 @@
         b_usuario.innerHTML =  sessionStorage.NOME_FUNCIONARIO;
 
     }
+
+    inputNome.value = sessionStorage.getItem("NOME_FUNCIONARIO")
+    inputEmail.value = sessionStorage.getItem("EMAIL_FUNCIONARIO")
+    inputCPF.value = sessionStorage.getItem("CPF_FUNCIONARIO")
+    inputSenha.value = sessionStorage.getItem("SENHA_FUNCIONARIO")
+
+    function editar() {
+
+        let idFuncionario = sessionStorage.ID_FUNCIONARIO;
+        fetch(`/funcionario/editar/${sessionStorage.getItem("ID_FUNCIONARIO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: idFuncionario,
+                nomeServer: inputNome.value,
+                emailServer: inputEmail.value,
+                cpfServer: inputCPF.value,
+                senhaServer: inputSenha.value
+                        })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Seus dados foram atualizados com sucesso!");
+            
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a atualização de dados! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    
+
+    
 
     function deslogar() {
         sessionStorage.clear()
