@@ -77,10 +77,34 @@ function cadastrar(req, res) {
     }
 }
 
+function editar(req, res) {
+    var idEmpresa = req.body.idEmpresaServer;
+    var nome = req.body.nomeServer;
+    var cnpj = req.body.cnpjServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    empresaModel.editar(idEmpresa, nome, cnpj, email, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
 
 
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    editar
 }

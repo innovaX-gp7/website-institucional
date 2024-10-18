@@ -12,9 +12,16 @@ router.post("/autenticar", function (req, res) {
     funcionarioController.autenticar(req, res);
 });
 
+
+router.put("/editar/:idFuncionario", function (req, res) {
+    funcionarioController.editar(req, res);
+});
+
+
 router.get("/:idEmpresa", (req, res) => {
     funcionarioController.getAllFuncionario(req, res);
 });
+
 
 router.delete("/deletar/:id", (req, res) => {
     funcionarioController.deletarFuncionario(req, res);
