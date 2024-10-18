@@ -25,6 +25,7 @@ function editar(idFuncionario, nome, cpf, email, senha) {
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
+}
 
 function getAllFuncionario(idEmpresa) {
     const instrucaoSql = `SELECT * FROM funcionario WHERE fkEmpresaFuncio = ${idEmpresa}`
