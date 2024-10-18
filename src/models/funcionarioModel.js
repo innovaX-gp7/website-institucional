@@ -17,7 +17,19 @@ function cadastrar(nome, cpf, email, cpf, fkEmpresaFuncio) {
     return database.executar(instrucaoSql);
 }
 
+function getAllFuncionario(idEmpresa) {
+    const instrucaoSql = `SELECT * FROM funcionario WHERE fkEmpresaFuncio = ${idEmpresa}`
+    return database.executar(instrucaoSql)
+}
+
+function deletarFuncionario(id) {
+    const instrucaoSql = `DELETE FROM funcionario WHERE idFuncionario = ${id}`
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    getAllFuncionario,
+    deletarFuncionario
 };
