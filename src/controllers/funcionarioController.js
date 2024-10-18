@@ -84,6 +84,7 @@ function cadastrar(req, res) {
     }
 }
 
+
 function editar(req, res) {
     var idFuncionario = req.body.idFuncionarioServer;
     var nome = req.body.nomeServer;
@@ -107,8 +108,31 @@ function editar(req, res) {
 
 }
 
+function getAllFuncionario(req, res) {
+
+    const id = req.params.idEmpresa
+
+    funcionarioModel.getAllFuncionario(id)
+    .then((funcionario) => { 
+        return res.status(200).json(funcionario) 
+    })
+}
+
+function deletarFuncionario(req, res) {
+    const id = req.params.id
+
+    funcionarioModel.deletarFuncionario(id)
+    .then((funcionario) => {
+        return res.status(204).json(funcionario)
+    })
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
-    editar
+    editar,
+    getAllFuncionario,
+    deletarFuncionario
+
 }

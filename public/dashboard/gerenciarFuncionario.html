@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualização de Dados | Innovax</title>
+    <title>Dashboard | Innovax</title>
     <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
-
-    <!-- LINKS -->
     <link rel="stylesheet" href="./style/global.styles.css">
-    <link rel="stylesheet" href="./style/form.styles.css">
+    <link rel="stylesheet" href="./style/dash.styles.css">
 
 
     <!-- FONTS -->
@@ -24,12 +22,11 @@
     <aside>
         <img src="../assets/logo.png" alt="">
         <p>Olá, <span id="b_usuario"></span>!</p>
-
         <nav>
             <ul>
-                <li><a href="./dashboard.html" onmouseover="this.style.color='#00d300'"
-                        onmouseout="this.style.color='white'"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                <li><a onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"
+                        href="./dashboard.html"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house">
                             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
                             <path
@@ -45,16 +42,13 @@
                                 d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
                             <path d="m2 13 6 6" />
                         </svg><span>Ajuda</span></a></li>
-
-                <li><a id="atualizarDados" style="background: #006622" href="#""><svg
-
-                            xmlns=" http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-user">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                        </svg><span>Conta</span>
-                    </a>
+                <li><a href="" id="atualizarDados" onmouseover="this.style.color='#00d300'"
+                        onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg><span>Conta</span></a>
                 </li>
                 <span class="display-none">
                     <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'"
@@ -77,9 +71,7 @@
                                     d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
                             </svg><span>Personalizar sugestões</span></a>
                     </li>
-
-                    <li><a href="./gerenciarFuncionario.html" onmouseover="this.style.color='#00d300'"
-                            onmouseout="this.style.color='white'">
+                    <li><a style="background: #006622" href="./gerenciarFuncionario.html">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-users">
@@ -115,40 +107,57 @@
                     <path d="M8 11h.01" />
                     <path d="M8 16h.01" />
                 </svg>
-                <h1>Atualizar Dados</h1>
+                <h1>Gerenciar Funcionário</h1>
             </div>
-            <p> Atualize seus dados </p>
+            <p> Gerencie os funcionários </p>
         </header>
-        <div class="flex-content">
-            <form action="" method="post">
-                <h2>Atualizar Dados</h2>
-                <div>
-                    <p>Nome</p>
-                    <input id="inputNome" type="Nome">
-                </div>
-                <div>
-                    <p>Email</p>
-                    <input type="email" id="inputEmail">
-                </div>
-                <div>
-                    <p>CNPJ</p>
-                    <input type="CNPJ" id="inputCNPJ">
+
+        <div class="funcionario-content">
+
+            <table>
+                <tr>
+                    <td class="info-table-content">ID</td>
+                    <td class="info-table-content">Nome</td>
+                    <td class="info-table-content">Email</td>
+                    <td class="info-table-content">Deletar</td>
+                </tr>
+
+            </table>
 
 
-                </div>
-                <div>
-                    <p>Senha</p>
-                    <input type="CNPJ" id="inputSenha">
-                </div>
-                <button type="button" onclick="editar()">Atualizar</button>
-            </form>
-            <img src="../assets/update.png" alt="">
+
+
         </div>
-    </main>
+
+        <div id="warningDelete">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-shield-check">
+                <path
+                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                <path d="m9 12 2 2 4-4" />
+            </svg>
+            <div>
+                <h3>Funcionario deletado com sucesso!</h3>
+                <p>O funcionario foi deletado, recarregue a página para a visualização</p>
+            </div>
+        </div>
+
 </body>
 
 </html>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+
+    function deslogar() {
+        sessionStorage.clear()
+        window.location = "../"
+    }
+
 
     if (sessionStorage.getItem("NOME_EMPRESA")) {
         b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
@@ -156,53 +165,59 @@
         document.querySelector(".display-none").classList.remove("display-none")
     } else {
         b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
-
-    }
-
-    inputNome.value = sessionStorage.getItem("NOME_EMPRESA")
-    inputEmail.value = sessionStorage.getItem("EMAIL_EMPRESA")
-    inputCNPJ.value = sessionStorage.getItem("CNPJ_EMPRESA")
-    inputSenha.value = sessionStorage.getItem("SENHA_EMPRESA")
-
-    function editar() {
-
-        let idEmpresa = sessionStorage.ID_EMPRESA;
-        fetch(`/empresas/editar/${sessionStorage.getItem("ID_EMPRESA")}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idEmpresaServer: idEmpresa,
-                nomeServer: inputNome.value,
-                emailServer: inputEmail.value,
-                cnpjServer: inputCNPJ.value,
-                senhaServer: inputSenha.value
-            })
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Seus dados foram atualizados com sucesso!");
-          
-
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a atualização de dados! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
         atualizarDados.href = "./atualizarDados.html"
+    }
+
+    const id = sessionStorage.ID_EMPRESA
+
+    function gerarTabela(api) {
+
+        const cardContent = document.querySelector("table")
+
+        fetch(api)
+            .then(response => response.json())
+            .then(data => {
+
+                data.forEach(element => {
+
+                    const table = document.createElement('tr')
+
+                    table.innerHTML = `
+                    <td>${element.idFuncionario}</td>
+                    <td>${element.nome}</td>
+                    <td>${element.email}</td>
+                    <td onclick="deletarFuncionario(${element.idFuncionario})"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></td>
+                    `
+                    cardContent.append(table)
+
+                })
+
+            })
+            .catch(error => console.error(error))
 
     }
 
+    gerarTabela(`http://localhost:80/funcionario/${id}`);
 
-    function deslogar() {
-        sessionStorage.clear()
-        window.location = "../"
+    function deletarFuncionario(idFuncionario) {
+        fetch(`http://localhost:80/funcionario/deletar/${idFuncionario}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (response.status == 204) {
+                    warningDelete.style.display = "flex"
+
+                    setTimeout(() => {
+                        warningDelete.style.display = "none"
+                        location.reload()
+                    }, 3000)
+                }
+            })
+            .catch(error => console.error(error))
     }
+
+
+
 
 
 </script>
