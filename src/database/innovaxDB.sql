@@ -1,5 +1,4 @@
 
-
 create database if not exists InnovaxDB;
 use InnovaxDB;
 
@@ -27,16 +26,15 @@ fkEmpresaFuncio int,
 constraint fk_empresa_funcio foreign key (fkEmpresaFuncio) references empresa(idEmpresa)
 )auto_increment=10;
 
-create table dashboard (
-idDashboard int primary key not null auto_increment,
-unidadeFederativa varchar(50) not null,
-mes tinyint, 
-ano year,
+create table dados (
+idDados int primary key not null auto_increment,
 areaDesmatada decimal (4,2) not null,
 temperaturaMensal  decimal (4,2) not null,
 precipitacaoMensal decimal (4,2) not null,
-fkEmpresa int,
-constraint fk_empresa foreign key (fkEmpresa) references empresa(idEmpresa)
+cidade varchar(45),
+unidadeFederativa varchar(50),
+mes tinyint, 
+ano year
 )auto_increment=100;
 
 
@@ -44,8 +42,8 @@ create table recomendacoesIA (
 idRecomendacoes int primary key not null auto_increment,
 unidadeFederativa varchar(50) not null,
 recomendacao varchar(100) not null,
-fkDashboard int,
-constraint fk_dashboard foreign key (fkDashboard) references dashboard(idDashboard)
+fkEmpresa int,
+constraint fk_empresa foreign key (fkEmpresa) references empresa(idEmpresa)
 )auto_increment=1000;
 
 
@@ -71,8 +69,6 @@ idPrompt int primary key auto_increment,
 descricao varchar(1000),
 dataHora datetime
 );
-
-
 
 
 
