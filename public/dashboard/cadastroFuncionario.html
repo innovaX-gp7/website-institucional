@@ -238,9 +238,9 @@
                         cpf.classList.remove("input-warning")
                         nome.classList.remove("input-warning")
 
-                        btnSubmit.innerText = "Redirecionando"
+                        btnSubmit.innerText = "Cadastro realizado com sucesso"
                         btnSubmit.style.background = "green"
-                        setTimeout(() => window.location = "../login/login.html", 3000)
+                
                     }
                 }).catch(error => {
                     btnSubmit.disabled = false
