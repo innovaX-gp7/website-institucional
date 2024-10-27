@@ -1,6 +1,7 @@
 # Projeto Innovax 🌳
 ## Bem vindo ao nosso site institucional!
 Somos a Innovax, uma equipe de desenvolvedores com o intuito de ajudar a corrigir o desmatamento da floresta amazônica, utilizando tecnologias modernas para o desenvolvimento do nosso projeto. 
+
 Venha conhecer o nosso website e também a nossa dashboard, para uma experiência enriquecedora!
 
 ### Por dentro do projeto
