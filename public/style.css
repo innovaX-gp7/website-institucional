@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter';
 }
 
 body {
@@ -43,7 +44,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.819);
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -58,7 +59,7 @@ body {
 }
 
 .nav-links a:hover {
-    text-shadow: 0px 0px 15px #44ff00;
+    text-shadow: 0px 0px 5px #44ff00;
     transform: scale(1.05);
 }
 
@@ -149,16 +150,16 @@ body {
 }
 
 .button-two:hover, :focus {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
+    color: #000000;
+    background: rgb(255, 255, 255);
     border: 1px solid #2bff00;
-    text-shadow: 0 0 5px #000000,
-              0 0 10px #000000,
-              0 0 20px #000000;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.15),
-              0 0 20px rgba(255, 255, 255, 0.15),
-              0 0 50px rgba(255, 255, 255, 0.15),
-              0 0 100px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 5px #ffffff,
+              0 0 10px #ffffff,
+              0 0 20px #fcfcfc;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.54),
+              0 0 20px rgba(255, 255, 255, 0.54),
+              0 0 50px rgba(255, 255, 255, 0.54),
+              0 0 100px rgba(255, 255, 255, 0.54);
     font-size: 14px;
     border-color: transparent;
 }
@@ -224,7 +225,7 @@ section img#grafico{
 
 section img#plat {
     position: absolute;
-    left: 50%;
+    left: 47%;
     transform: translateX(-50%);
     z-index: 3;
     width: 40%;
@@ -240,7 +241,7 @@ section img#planta {
     object-fit: cover;
     height: 55%;
     top: 5%;
-    left: 55%;
+    margin-left: 70px;
     animation: flutuar 4s ease-in-out infinite;
     animation-delay: 0.5s;
     filter: drop-shadow(5px 28px 30px #07c314b8);
@@ -315,12 +316,12 @@ button.saiba-mais{
     position: absolute;
     width: 121px;
     height: 51px;
-    top: 110%;
+    top: 116%;
     background: #FFFFFF;
     border-radius: 6px;
     text-transform: uppercase;
     font-weight: 500;
-    left: 45%;
+    margin-left: -12%;
 }
 
 button.saiba-mais:hover {
@@ -359,7 +360,7 @@ section.about {
 .img-1 img {
     width: 100%;
     border-radius: 10px;
-    opacity: 0.1;
+    object-fit: cover;
 }
 
 h1.tit {
@@ -397,7 +398,8 @@ h1.tit {
     bottom: 0%;
     left: 0%;
     border-radius: 10px;
-    background: linear-gradient(280deg, #000, #0e5407);
+    background: linear-gradient(280deg, #000000f1, #0d540760);
+    z-index: 2;
 }
 
 .sombra-2 {
@@ -409,7 +411,12 @@ h1.tit {
     bottom: 0%;
     left: 0%;
     border-radius: 10px;
-    background: linear-gradient(280deg, #0e5407, #000);
+    background: linear-gradient(280deg, #0d540760, #000000f1);
+    z-index: 2;
+}
+
+.header{
+    top: -2%;
 }
 
 .card-1 {
@@ -511,10 +518,11 @@ h1.tit {
 .card-2 video {
     width: 100%;
     height: 100%;
+    height: 398px;
     object-fit: cover; /*não deixa o vídeo esticado*/
+    border-radius: 10px;
+    transform: scaleX(-1);
 }
-
-
 
 .grupo-2{
     display: flex;
@@ -568,6 +576,15 @@ h1.tit {
     text-align: left;
     font-size: 16px;
 }
+
+.card-3 video {
+    width: 100%;
+    height: 100%;
+    height: 398px;
+    object-fit: cover; /*não deixa o vídeo esticado*/
+    border-radius: 10px;
+    transform: scaleX(-1);
+}
   
 .card-3:hover {
     filter: drop-shadow(0px 0px 30px rgb(49, 209, 38));
@@ -615,6 +632,11 @@ h1.tit {
     z-index: 3;
     text-align: left;
     font-size: 16px;
+}
+
+.card-4 img{
+    margin-top: 4px;
+    height: 397px;
 }
   
 .card-4:hover {
@@ -1151,13 +1173,13 @@ color: rgba(255, 255, 255, 0.5);
 /* Animação de flutuação */
 @keyframes flutuar {
     0% {
-        transform: translate(-50%, -5px);
+        transform: translate( 0%, 5px);
     }
     50% {
-        transform: translate(-50%, 5px);
+        transform: translate( 0%, 0px);
     }
     100% {
-        transform: translate(-50%, -5px);
+        transform: translate( 0%, 5px);
     }
 }
 
