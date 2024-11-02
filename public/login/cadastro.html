@@ -115,9 +115,6 @@
             let regexEspecial = /[!@#$%^&*(),.?":{}|<>]/;
 
 
-            
-
-
 
             if (!passwd.value && !cnpj.value && !email.value && !nome.value) {
 
@@ -227,32 +224,32 @@
         }
 
      //o tal do regex
-//      function formatCNPJ(input) {
-//     // Remove todos os caracteres que não sejam números
-//     let cnpj = input.value.replace(/\D/g, '');
+     function formatCNPJ(input) {
+    // Remove todos os caracteres que não sejam números
+    let cnpj = input.value.replace(/\D/g, '');
 
-//     // Limita o CNPJ a no máximo 14 dígitos
-//     if (cnpj.length > 14) {
-//         cnpj = cnpj.slice(0, 14);
-//     }
+    // Limita o CNPJ a no máximo 14 dígitos
+    if (cnpj.length > 14) {
+        cnpj = cnpj.slice(0, 14);
+    }
 
-//     // Aplica a formatação do CNPJ apenas se tiver 14 dígitos
-//     if (cnpj.length === 14) {
-//         cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
-//         cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-//         cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
-//         cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
-//     }
+    // Aplica a formatação do CNPJ apenas se tiver 14 dígitos
+    if (cnpj.length === 14) {
+        cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+        cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+        cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+        cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+    }
 
-//     // Define o valor formatado no campo de entrada
-//     input.value = cnpj;
+    // Define o valor formatado no campo de entrada
+    input.value = cnpj;
 
-//     // Verifica se o CNPJ contém exatamente 14 dígitos numéricos
-//     if (cnpj.replace(/\D/g, '').length < 14) {
-//         // Aqui você pode adicionar um aviso ou lógica se necessário
-//         console.warn("O CNPJ deve conter exatamente 14 dígitos numéricos.");
-//     }
-// }
+    // Verifica se o CNPJ contém exatamente 14 dígitos numéricos
+    if (cnpj.replace(/\D/g, '').length < 14) {
+        // Aqui você pode adicionar um aviso ou lógica se necessário
+        console.warn("O CNPJ deve conter exatamente 14 dígitos numéricos.");
+    }
+}
 
 
 
