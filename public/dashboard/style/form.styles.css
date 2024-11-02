@@ -9,7 +9,7 @@ body {
     width: 100vw;
 }
 
-form {
+.form {
     margin: 0 auto;
     background-color: var(--darker-gray);
     padding: 20px;
@@ -26,11 +26,11 @@ form {
 }
 
 
-form div {
+.form div {
     width: 100%;
 }
 
-form input {
+.form input {
     padding: 17px;
     width: 100%;
     border-radius: 5px;
@@ -40,7 +40,7 @@ form input {
     outline: none;
 }
 
-form button {
+.form button {
     background-color: #478547;
     width: 100%;
     padding: 17px;
@@ -48,7 +48,7 @@ form button {
     border-radius: 5px;
 }
 
-form button {
+.form button {
     background-color: #1d331d;
     width: 100%;
     padding: 17px;
@@ -61,7 +61,7 @@ form button {
     border: none;
 }
 
-form button:hover {
+.form button:hover {
     background-color: #1d331de0;
     transition: .2s;
 }
@@ -81,11 +81,16 @@ form button:hover {
     border: 3px solid #ff5757 !important;
 }
 
-#btn-delete {
-    background: rgba(121, 0, 0, 0.514);
+.btn-content {
+    display: flex;
+    gap: 5px;
 }
 
-#btn-delete:hover {
+.btn-content #btn-delete {
+    background: rgba(165, 0, 0, 0.514);
+}
+
+.btn-content #btn-delete:hover {
     background: rgba(121, 0, 0, 0.356);
 }
 
