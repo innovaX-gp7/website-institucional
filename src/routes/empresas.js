@@ -16,6 +16,10 @@ router.put("/editar/:idEmpresa", function (req, res) {
     empresaController.editar(req, res);
 });
 
+router.delete("/deletar/:idEmpresa", function (req, res) {
+    empresaController.deletar(req, res);
+});
+
 
 
 module.exports = router;

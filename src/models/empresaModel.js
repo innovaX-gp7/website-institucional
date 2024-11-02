@@ -26,9 +26,15 @@ function editar(idEmpresa, nome, cnpj, email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function deletar(idEmpresa) {
+    const sql = `DELETE FROM empresa WHERE idEmpresa = ${idEmpresa}`
+    return database.executar(sql)
+}
+
 
 module.exports = {
     autenticar,
     cadastrar,
-    editar
+    editar,
+    deletar
 };

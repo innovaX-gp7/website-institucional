@@ -101,10 +101,20 @@ function editar(req, res) {
 }
 
 
+function deletar(req, res) {
+    const idEmpresa = req.params.idEmpresa
+
+    empresaModel.deletar(idEmpresa)
+    .then((empresa) => {
+        return res.status(204).json(empresa)
+    })
+}
+
 
 
 module.exports = {
     autenticar,
     cadastrar,
-    editar
+    editar,
+    deletar
 }
