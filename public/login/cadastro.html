@@ -59,7 +59,7 @@
 
                 <div>
                     <p> Digite o CNPJ </p>
-                    <input id="iptCNPJ" type="text" placeholder="00.000.000/0001-00">
+                    <input id="iptCNPJ" type="text" placeholder="00.000.000/0001-00"> <!--oninput="formatCNPJ(this)"-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-building-2">
@@ -73,12 +73,12 @@
                     </svg>
                 </div>
 
-                <div>
-                    <p> Digite sua senha </p>
-                    <input id="iptPasswd" type="password" placeholder="Senha">
+                <div style="position: relative; margin-bottom: 1rem;">
+                    <p>Digite sua senha</p>
+                    <input id="iptPasswd" type="password" placeholder="Senha" style="padding-right: 30px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-lock-keyhole">
+                        class="lucide lucide-lock-keyhole" style="position: absolute; right: 10px; top: 65%; transform: translateY(-50%);">
                         <circle cx="12" cy="16" r="1" />
                         <rect x="3" y="10" width="18" height="12" rx="2" />
                         <path d="M7 10V7a5 5 0 0 1 10 0v3" />
@@ -225,6 +225,36 @@
                 })
             }
         }
+
+     //o tal do regex
+//      function formatCNPJ(input) {
+//     // Remove todos os caracteres que não sejam números
+//     let cnpj = input.value.replace(/\D/g, '');
+
+//     // Limita o CNPJ a no máximo 14 dígitos
+//     if (cnpj.length > 14) {
+//         cnpj = cnpj.slice(0, 14);
+//     }
+
+//     // Aplica a formatação do CNPJ apenas se tiver 14 dígitos
+//     if (cnpj.length === 14) {
+//         cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+//         cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+//         cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+//         cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+//     }
+
+//     // Define o valor formatado no campo de entrada
+//     input.value = cnpj;
+
+//     // Verifica se o CNPJ contém exatamente 14 dígitos numéricos
+//     if (cnpj.replace(/\D/g, '').length < 14) {
+//         // Aqui você pode adicionar um aviso ou lógica se necessário
+//         console.warn("O CNPJ deve conter exatamente 14 dígitos numéricos.");
+//     }
+// }
+
+
 
 
     </script>
