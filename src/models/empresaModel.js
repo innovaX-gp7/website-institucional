@@ -27,9 +27,9 @@ function editar(id, nome, cnpj, email, senha) {
 }
 
 function deletar(id) {
-    let sql = `DELETE FROM funcionario WHERE fkEmpresa = ${id}`
+    let sql = `DELETE FROM usuario WHERE fkEmpresa = ${id}`
     database.executar(sql)
-    sql = `DELETE FROM logJAR WHERE fkLogEmpresa = ${id}`
+    sql = `DELETE FROM logJAR WHERE fkEmpresa = ${id}`
     database.executar(sql)
     sql = `DELETE FROM recomendacaoIA WHERE fkEmpresa = ${id}`
     database.executar(sql)

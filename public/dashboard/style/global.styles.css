@@ -20,8 +20,6 @@ body {
     background-color: black;
     background-image: url(../../assets/backgrounddash.png);
     color: white;
-
-    overflow-y: hidden;
 }
 
 aside {

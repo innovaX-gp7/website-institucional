@@ -29,7 +29,7 @@
                             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
                             <path
                                 d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                             </svg> <span>Dashboard</span></a></li>
+                        </svg> <span>Dashboard</span></a></li>
                 <li><a href="mailto:innovax@gmail.com?subject=Assunto%20do%20Email&body=Corpo%20do%20Email"
                         onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -48,9 +48,9 @@
                             <circle cx="12" cy="7" r="4" />
                         </svg><span>Conta</span></a>
                 </li>
-                
+
                 <span class="display-none">
-                    <li><a  href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'"
+                    <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'"
                             onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-plus">
@@ -62,11 +62,24 @@
                     </li>
                     <li><a href="./personalizarSugestoes.html" onmouseover="this.style.color='#00d300'"
                             onmouseout="this.style.color='white'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg><span>Personalizar sugestões</span></a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-square-pen">
+                                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                <path
+                                    d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+                            </svg><span>Personalizar sugestões</span></a>
                     </li>
                     <li><a href="./gerenciarFuncionario.html" onmouseover="this.style.color='#00d300'"
                             onmouseout="this.style.color='white'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Gerenciar funcionários</span></a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-users">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg><span>Gerenciar funcionários</span></a>
                     </li>
                 </span>
             </ul>
@@ -103,7 +116,7 @@
 
             <div class="card-kpi">
                 <div>
-                    <h2>Estado com maior área desmatada </h2>
+                    <h2>Estado com maior área desmatada comparado ao ano anterior </h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-library">
@@ -113,12 +126,12 @@
                         <path d="M4 4v16" />
                     </svg>
                 </div>
-                <span>Amapá</span>
+                <span id="estadoPrejudicado">Amapá</span>
             </div>
-            
+
             <div class="card-kpi">
                 <div>
-                    <h2> Alteração de temperatura total </h2>
+                    <h2> Alteração de temperatura total comparado ao ano anterior</h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-library">
@@ -128,7 +141,15 @@
                         <path d="M4 4v16" />
                     </svg>
                 </div>
-                <span>10%</span>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="#ff7070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevrons-up">
+                        <path d="m17 11-5-5-5 5" />
+                        <path d="m17 18-5-5-5 5" />
+                    </svg>
+                    <span>10%</span>
+                </div>
             </div>
 
             <div class="card-kpi">
@@ -143,27 +164,29 @@
                         <path d="M4 4v16" />
                     </svg>
                 </div>
-                <span>20%</span>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="#ff7070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevrons-up">
+                        <path d="m17 11-5-5-5 5" />
+                        <path d="m17 18-5-5-5 5" />
+                    </svg>
+                    <span> 20%</span>
+                </div>
             </div>
-           
 
 
-           
 
         </div>
 
         <div class="grid-content">
             <div class="card-grid">
-                <h3>Gráfico de Precipitação mensal (mm)</h3>
-                <canvas id="myChart2" width="100" height="40"></canvas>
+                <h3>Gráfico de temperatura (°C) e umidade (mm) mensal </h3>
+                <canvas id="myChart" class="grafico"></canvas>
             </div>
             <div class="card-grid">
-                <h3>Gráfico de temperatura mensal (°C) </h3>
-                <canvas id="myChart" width="100" height="40"></canvas>
-            </div>
-            <div class="card-grid">
-                <h3>Áreas desmatadas total (km²)</h3> 
-                <canvas id="myChart3" width="100" height="40"></canvas>
+                <h3>Área desmatada total (km²)</h3>
+                <canvas id="myChart3" class="grafico"></canvas>
             </div>
 
             <div class="card-grid">
@@ -194,7 +217,7 @@
         window.location = "../"
     }
 
-    
+
     if (sessionStorage.getItem("NOME_EMPRESA")) {
         b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
         atualizarDados.href = "./atualizarDadosEmpresa.html"
@@ -206,64 +229,42 @@
 
     const ctx = document.getElementById('myChart');
     const ctv = document.getElementById('myChart3');
-    const cty = document.getElementById('myChart2');
 
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
             datasets: [{
+                label: 'Temperatura',
                 data: [12, 19, 3, 5, 2, 3, 10, 20, 30],
                 borderWidth: 1,
-                backgroundColor: ['#00de90', '#00FA9A', '#00FF7F', '#2E8B57'],
-                borderColor: 'white',
-
+                backgroundColor: '#00ad79',
+                borderColor: 'black',
+                order: 2,
             },
-            ]
+            {
+                label: 'Umidade',
+                data: [20, 20, 20, 20, 20, 10, 10, 10, 5],
+                type: 'line',
+                backgroundColor: 'white',
+                borderColor: '#006546',
+                order: 1
+            }],
         },
         options: {
-    scales: {
-      y: {
-        stacked: true
-      }
-    },
-    plugins: {
-      filler: {
-        propagate: false
-      },
-      'samples-filler-analyser': {
-        target: 'chart-analyser'
-      }
-    },
-    interaction: {
-      intersect: false,
-    },
-  },
-    });
-
-    new Chart(cty, {
-        type: 'bar',
-        data: {
-            labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
-            datasets: [{
-                data: [12, 19, 3, 5, 2, 3, 10, 10, 12],
-                borderWidth: 1,
-                backgroundColor: '#00ce90',
-                borderColor: 'rgb(75, 192, 192)',
-            },
-            ]
-        },
-        options: {
-            plugins: {
-            },
+            layout: {
+                padding: 10
+            }
         }
     });
 
     new Chart(ctv, {
         type: 'bar',
         data: {
+            label: 'Estado',
             labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
             datasets: [{
+                label: 'Área desmatada',
                 data: [12, 19, 3, 5, 2, 3, 10, 10],
                 borderWidth: 1,
                 backgroundColor: '#00ce90',
