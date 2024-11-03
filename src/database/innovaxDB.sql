@@ -1,4 +1,4 @@
-
+drop database if exists InnovaxDB;
 create database if not exists InnovaxDB;
 use InnovaxDB;
 
@@ -22,8 +22,8 @@ senha varchar(45) not null,
 primary key (id),
 unique key email (email),
 unique key cnpj (cpf),
-fkEmpresaFuncio int,
-constraint fk_empresa_funcio foreign key (fkEmpresaFuncio) references empresa(id)
+fkEmpresa int,
+constraint fk_empresa_funcio foreign key (fkEmpresa) references empresa(id)
 )auto_increment=10;
 
 create table leitura (
@@ -34,29 +34,21 @@ precipitacaoMensal decimal (4,2) not null,
 cidade varchar(45),
 unidadeFederativa varchar(50),
 mes tinyint, 
-ano year
+ano year,
+fkEmpresa int,
+constraint fk_empresa_leitu foreign key (fkEmpresa) references empresa(id)
 )auto_increment=100;
 
-
-create table recomendacoesIA (
-id int primary key not null auto_increment,
-unidadeFederativa varchar(50) not null,
-recomendacao varchar(100) not null,
-fkEmpresa int,
-constraint fk_empresa foreign key (fkEmpresa) references empresa(id)
-)auto_increment=1000;
-
-
-create table parametrosRecomendacoes (
+create table parametro_recomendacao (
 id int primary key not null auto_increment,
 limiteArea decimal (4,2),
 horarioNotificacoes time,
-fkEmpresaRecomendacoes int,
-constraint fk_empresa_recom foreign key (fkEmpresaRecomendacoes) references empresa(id)
+fkEmpresa int,
+constraint fk_empresa_recom foreign key (fkEmpresa) references empresa(id)
 );
 
 
-create table logsJAR (
+create table logJAR (
 id int primary key auto_increment,
 descricao varchar(1000),
 dataHora datetime,
@@ -70,12 +62,12 @@ descricao varchar(1000),
 dataHora datetime
 );
 
-
-
-
-
-
-
-
-
-
+create table recomendacaoIA (
+id int primary key not null auto_increment,
+unidadeFederativa varchar(50) not null,
+recomendacao varchar(100) not null,
+fkEmpresa int,
+fkPrompt int,
+constraint fk_empresa foreign key (fkEmpresa) references empresa(id),
+constraint fk_prompt foreign key (fkPrompt) references promptIA(id)
+)auto_increment=1000;
