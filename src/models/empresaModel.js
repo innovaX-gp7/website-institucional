@@ -35,7 +35,7 @@ function deletar(id) {
     database.executar(sql)
     sql = `DELETE FROM leitura WHERE fkEmpresa = ${id}`
     database.executar(sql)
-    sql = `DELETE FROM parametro_recomendacao WHERE fkEmpresa = ${id}`
+    sql = `DELETE FROM parametroRecomendacao WHERE fkEmpresa = ${id}`
     database.executar(sql)
     sql = `DELETE FROM empresa WHERE id = ${id}`
     return database.executar(sql);
