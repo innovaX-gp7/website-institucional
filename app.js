@@ -16,7 +16,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var empresaRouter = require("./src/routes/empresas");
 var funcionarioRouter = require("./src/routes/funcionario");
-var parametroRouter = require(".src/routes/parametros");
+var parametroRouter = require("./src/routes/parametros");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
