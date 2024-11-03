@@ -1,4 +1,4 @@
-
+drop database if exists InnovaxDB;
 create database if not exists InnovaxDB;
 use InnovaxDB;
 
@@ -18,10 +18,10 @@ cpf varchar(11) default null,
 email varchar(45) not null,
 senha varchar(45) not null,
 hierarquia varchar(45),
+fkEmpresa int,
 primary key (id),
 unique key email (email),
 unique key cpf (cpf),
-fkEmpresa int,
 constraint fk_empresa_funcio foreign key (fkEmpresa) references empresa(id)
 )auto_increment=10;
 
@@ -33,7 +33,9 @@ precipitacaoMensal decimal (4,2) not null,
 cidade varchar(45),
 unidadeFederativa varchar(50) not null,
 mes tinyint, 
-ano year
+ano year,
+fkEmpresa int,
+constraint fk_empresa_leitu foreign key (fkEmpresa) references empresa(id)
 )auto_increment=100;
 
 create table promptIA (
@@ -68,14 +70,3 @@ dataHora datetime,
 fkEmpresa int,
 constraint fk_empresa_log foreign key (fkEmpresa) references empresa(id)
 );
-
-
-
-
-
-
-
-
-
-
-
