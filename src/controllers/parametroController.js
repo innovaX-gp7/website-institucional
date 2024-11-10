@@ -3,17 +3,20 @@ var parametroModel = require("../models/parametroModel");
 
 function cadastrar(req, res) {
     var parametro = req.body.parametroServer
+    var tipoParametro = req.body.tipoParametroServer;
     var fkEmpresa = req.body.fkEmpresaServer; 
     
     // Faça as validações dos valores
     if (parametro == undefined) {
         res.status(400).send("Seu parametro está undefined!");
+    } else if (tipoParametro == undefined) {
+        res.status(400).send("O tipoParametro está indefinido!");
     } else if (fkEmpresa === undefined || fkEmpresa === 'undefined') {
         return res.status(400).send("O ID da empresa está indefinido!");
     } else {
         console.log(parametro)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        parametroModel.cadastrar(parametro, fkEmpresa)
+        parametroModel.cadastrar(parametro, tipoParametro, fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
