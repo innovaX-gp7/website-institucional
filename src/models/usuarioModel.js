@@ -9,12 +9,24 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, cpf, email, cpf, fkEmpresa) {
+function cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha) {
+    let idEmpresa;
     var instrucaoSql = `
-        INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}', '${email}', '${cpf}', '${fkEmpresa}');
+        INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) VALUES ('${razaoSocial}','${nomeFantasia}','${cnpj}');
     `;
+    database.executar(instrucaoSql)
+
+    instrucaoSql = `
+    SET ${idEmpresa} = last_insert_id();
+`;
+   database.executar(instrucaoSql)
+
+    instrucaoSql = `
+    INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}', '${email}', '${senha}', @empresa_id);
+`;
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql).then(response => console.log(response)).catch(e => console.error(e))
 }
 
 
@@ -27,10 +39,10 @@ function editar(id, nome, cpf, email, senha) {
     return database.executar(instrucaoSql);
 }
 
-function getAllFuncionario(id) {
+/*function getAllFuncionario(id) {
     const instrucaoSql = `SELECT * FROM usuario WHERE fkEmpresa = ${id}`
     return database.executar(instrucaoSql)
-}
+}*/
 
 function deletarFuncionario(id) {
     const instrucaoSql = `DELETE FROM usuario WHERE id = ${id}`
@@ -41,6 +53,5 @@ module.exports = {
     autenticar,
     cadastrar,
     editar,
-    getAllFuncionario,
     deletarFuncionario
 };

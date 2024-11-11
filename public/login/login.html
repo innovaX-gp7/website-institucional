@@ -74,6 +74,7 @@
 
 
             function validar() {
+              
                 const email = document.getElementById('iptEmail');
                 const passwd = document.getElementById('iptPasswd');
                 const warning = document.getElementById('warning');
@@ -118,7 +119,7 @@
             }
 
 
-            function autenticarEmpresa(email, senha) {
+          /*  function autenticarEmpresa(email, senha) {
                 return fetch("/empresas/autenticar", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -127,20 +128,19 @@
                     .then((res) => res.ok ? res.json() : null)
                     .then((json) => {
                         if (json) {
-                            sessionStorage.setItem("ID_EMPRESA", json.idEmpresa);
-                            sessionStorage.setItem("NOME_EMPRESA", json.nome);
-                            sessionStorage.setItem("EMAIL_EMPRESA", json.email);
+                            sessionStorage.setItem("ID_EMPRESA", json.id);
+                            sessionStorage.setItem("NOME_EMPRESA", json.nomeFantasia);
+                            sessionStorage.setItem("RAZAO_SOCIAL_EMPRESA", json.razaoSocial);
                             sessionStorage.setItem("CNPJ_EMPRESA", json.cnpj);
-                            sessionStorage.setItem("SENHA_EMPRESA", json.senha);
                             return true;
                         }
                         return false;
                     });
-            }
+            }*/
 
 
             function autenticarFuncionario(email, senha) {
-                return fetch("/funcionario/autenticar", {
+                return fetch("/usuario/autenticar", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ emailServer: email, senhaServer: senha }),
@@ -148,12 +148,16 @@
                     .then((res) => res.ok ? res.json() : null)
                     .then((json) => {
                         if (json) {
-                            sessionStorage.setItem("ID_FUNCIONARIO", json.idFuncionario);
+                            sessionStorage.setItem("ID_EMPRESA", json.id);
+                            sessionStorage.setItem("NOME_EMPRESA", json.nomeFantasia);
+                            sessionStorage.setItem("RAZAO_SOCIAL_EMPRESA", json.razaoSocial);
+                            sessionStorage.setItem("CNPJ_EMPRESA", json.cnpj);
+                            sessionStorage.setItem("ID_FUNCIONARIO", json.id);
                             sessionStorage.setItem("NOME_FUNCIONARIO", json.nome);
                             sessionStorage.setItem("EMAIL_FUNCIONARIO", json.email);
                             sessionStorage.setItem("CPF_FUNCIONARIO", json.cpf);
                             sessionStorage.setItem("SENHA_FUNCIONARIO", json.senha);
-                            sessionStorage.setItem("FK_EMPRESA", json.fkEmpresaFuncio);
+                            sessionStorage.setItem("FK_EMPRESA", json.fkEmpresa);
                             return true;
                         }
                         return false;

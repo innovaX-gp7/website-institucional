@@ -12,11 +12,11 @@ router.post("/autenticar", function (req, res) {
     empresaController.autenticar(req, res);
 });
 
-router.put("/editar/:idEmpresa", function (req, res) {
+router.put("/editar/:id", function (req, res) {
     empresaController.editar(req, res);
 });
 
-router.delete("/deletar/:idEmpresa", function (req, res) {
+router.delete("/deletar/:id", function (req, res) {
     empresaController.deletar(req, res);
 });
 
