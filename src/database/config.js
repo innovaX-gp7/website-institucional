@@ -1,5 +1,6 @@
 var mysql = require("mysql2");
 
+
 // CONEXÃO DO BANCO MYSQL SERVER
 var mySqlConfig = {
     host: process.env.DB_HOST,
@@ -33,6 +34,9 @@ function executar(instrucao) {
     });
 }
 
+
+
+
 module.exports = {
-    executar
+    executar,
 };

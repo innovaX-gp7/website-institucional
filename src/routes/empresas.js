@@ -8,6 +8,10 @@ router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
+router.get("/empresas", (req, res) => {
+    empresaController.getEmpresas(req, res);
+})
+
 router.post("/autenticar", function (req, res) {
     empresaController.autenticar(req, res);
 });

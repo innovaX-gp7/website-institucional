@@ -34,8 +34,15 @@ function deletar(id) {
     return database.executar(sql);
 }
 
+function getEmpresa(cnpj) {
+    let sql = `SELECT id FROM empresa WHERE cnpj = ${cnpj};`
+
+    return database.executar(sql)
+}
+
 
 module.exports = {
     editar,
-    deletar
+    deletar,
+    getEmpresa
 };

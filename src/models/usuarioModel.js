@@ -1,4 +1,6 @@
+
 var database = require("../database/config")
+var empresaModel = require("./empresaModel")
 
 function autenticar(email, senha) {
     var instrucaoSql = `
@@ -10,23 +12,30 @@ function autenticar(email, senha) {
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha) {
-    let idEmpresa;
-    var instrucaoSql = `
-        INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) VALUES ('${razaoSocial}','${nomeFantasia}','${cnpj}');
+
+
+
+    let instrucaoSql = `
+       	INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) VALUES ('${razaoSocial}','${nomeFantasia}','${cnpj}');
     `;
-    database.executar(instrucaoSql)
 
-    instrucaoSql = `
-    SET ${idEmpresa} = last_insert_id();
-`;
-   database.executar(instrucaoSql)
+    let empresaDados;
+    empresaModel.getEmpresa(cnpj).then((response) => { 
+        
+        console.log(response)
+    
+        instrucaoSql = `
+                INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}', '${email}', '${senha}', ${empresaDados.id});
+                `
+    
+        return database.executar(instrucaoSql)
+    }
+).catch(e => console.error(e));
 
-    instrucaoSql = `
-    INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}', '${email}', '${senha}', @empresa_id);
-`;
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql).then(response => console.log(response)).catch(e => console.error(e))
+    
+
+
 }
 
 

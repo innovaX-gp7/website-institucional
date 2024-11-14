@@ -110,9 +110,17 @@ function deletar(req, res) {
     })
 }
 
+function getEmpresas(req, res) {
+    empresaModel.getEmpresas()
+    .then((empresa) => {
+        return res.status(200).json(empresa)
+    })
+}
+
 
 
 module.exports = {
     editar,
-    deletar
+    deletar,
+    getEmpresas
 }

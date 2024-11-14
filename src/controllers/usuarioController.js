@@ -59,20 +59,18 @@ function cadastrar(req, res) {
     
     // Faça as validações dos valores
     if (cpf == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
+        res.status(400).send("Seu cpf está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa === undefined || fkEmpresa === 'undefined') {
-        return res.status(400).send("O ID da empresa está indefinido!");
     } else {
         console.log(cpf)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
         usuarioModel.cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha, fkEmpresa)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.json();
                 }
             ).catch(
                 function (erro) {
