@@ -8,6 +8,7 @@
 
     <!-- TITLE -->
     <title>Login | Innovax </title>
+    <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,63 +71,103 @@
         </aside>
 
         <script>
+
+
             function validar() {
+              
+                const email = document.getElementById('iptEmail');
+                const passwd = document.getElementById('iptPasswd');
+                const warning = document.getElementById('warning');
 
-                const email = iptEmail
-                const passwd = iptPasswd
-
-                if (!passwd.value && !email.value) {
-
+                if (!email.value || !passwd.value) {
+                    warning.style.display = "block";
+                    warning.innerText = "Preencha todos os campos";
                     passwd.classList.add("input-warning")
                     email.classList.add("input-warning")
 
-                    warning.style.display = "block"
-
-                    email.focus()
-                } else if (!email.value) {
-                    email.classList.add("input-warning")
-                    passwd.classList.remove("input-warning")
-
-                    warning.style.display = "block"
-                    warning.innerText = "Preencha o email"
-
-                    email.focus()
-                } else if (!passwd.value) {
-                    passwd.classList.add("input-warning")
-                    email.classList.remove("input-warning")
-
-
-                    warning.style.display = "block"
-                    warning.innerText = "Preencha a senha"
-
-                    passwd.focus()
-                } else {
-                    passwd.classList.remove("input-warning")
-                    email.classList.remove("input-warning")
-
-                    fetch("/empresas/autenticar", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            emailServer: email.value,
-                            senhaServer: passwd.value
-                        })
-                    })
-                    .then(response => {
-                        if(response.ok){
-                            btnSubmit.innerText = "Acessando"
-                            btnSubmit.style.background = "green"
-        
-                            setTimeout(() => window.location = "../index.html", 3000)
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
-
+                    return;
                 }
 
+
+                autenticarEmpresa(email.value, passwd.value)
+                    .then((empresaLogada) => {
+                        if (empresaLogada) {
+                            // Redireciona para o dashboard de empresa
+                            setTimeout(() => {
+                                window.location.href = "../dashboard/dashboard.html";
+                            }, 1000);
+                        } else {
+                            // Se falhou como empresa, tenta autenticar como funcionário
+                            autenticarFuncionario(email.value, passwd.value)
+                                .then((funcionarioLogado) => {
+                                    if (funcionarioLogado) {
+                                        setTimeout(() => {
+                                            btnSubmit.innerText = "Login realizado com sucesso"
+                                            btnSubmit.style.background = "green"
+                                            window.location.href = "../dashboard/dashboard.html";
+                                          
+                                        }, 1000);
+                                    } else {
+                                        warning.style.display = "block";
+                                        warning.innerText = "Email ou senha incorretos!";
+                                    }
+                                })
+                                .catch((erro) => console.error(erro));
+                        }
+                    })
+                    .catch((erro) => console.error(erro));
             }
+
+
+          /*  function autenticarEmpresa(email, senha) {
+                return fetch("/empresas/autenticar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ emailServer: email, senhaServer: senha }),
+                })
+                    .then((res) => res.ok ? res.json() : null)
+                    .then((json) => {
+                        if (json) {
+                            sessionStorage.setItem("ID_EMPRESA", json.id);
+                            sessionStorage.setItem("NOME_EMPRESA", json.nomeFantasia);
+                            sessionStorage.setItem("RAZAO_SOCIAL_EMPRESA", json.razaoSocial);
+                            sessionStorage.setItem("CNPJ_EMPRESA", json.cnpj);
+                            return true;
+                        }
+                        return false;
+                    });
+            }*/
+
+
+            function autenticarFuncionario(email, senha) {
+                return fetch("/usuario/autenticar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ emailServer: email, senhaServer: senha }),
+                })
+                    .then((res) => res.ok ? res.json() : null)
+                    .then((json) => {
+                        if (json) {
+                            sessionStorage.setItem("ID_EMPRESA", json.id);
+                            sessionStorage.setItem("NOME_EMPRESA", json.nomeFantasia);
+                            sessionStorage.setItem("RAZAO_SOCIAL_EMPRESA", json.razaoSocial);
+                            sessionStorage.setItem("CNPJ_EMPRESA", json.cnpj);
+                            sessionStorage.setItem("ID_FUNCIONARIO", json.id);
+                            sessionStorage.setItem("NOME_FUNCIONARIO", json.nome);
+                            sessionStorage.setItem("EMAIL_FUNCIONARIO", json.email);
+                            sessionStorage.setItem("CPF_FUNCIONARIO", json.cpf);
+                            sessionStorage.setItem("SENHA_FUNCIONARIO", json.senha);
+                            sessionStorage.setItem("FK_EMPRESA", json.fkEmpresa);
+                            return true;
+                        }
+                        return false;
+                    });
+            }
+
+
+
+
+
 
         </script>
     </main>

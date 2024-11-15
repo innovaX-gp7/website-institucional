@@ -1,6 +1,6 @@
 var empresaModel = require("../models/empresaModel");
 
-function autenticar(req, res) {
+/* function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
@@ -8,7 +8,7 @@ function autenticar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
-    } else {
+     } else {
 
         empresaModel.autenticar(email, senha)
             .then(
@@ -19,7 +19,8 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json({
-                            id: resultadoAutenticar[0].id,
+                            idEmpresa: resultadoAutenticar[0].id,
+                            nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             cnpj: resultadoAutenticar[0].cnpj,
                             senha: resultadoAutenticar[0].senha
@@ -39,9 +40,9 @@ function autenticar(req, res) {
             );
     }
 
-}
+} */
 
-function cadastrar(req, res) {
+/* function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer
     var cnpj = req.body.cnpjServer;
@@ -74,9 +75,52 @@ function cadastrar(req, res) {
                 }
             );
     }
+} */
+
+function editar(req, res) {
+    var id = req.body.idServer;
+    var razaoSocial = req.body.razaoSocialServer;
+    var nomeFantasia = req.body.nomeFantasiaServer;
+    var cnpj = req.body.cnpjServer;
+  
+
+    empresaModel.editar(id, razaoSocial, nomeFantasia, cnpj)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
 }
 
+
+function deletar(req, res) {
+    const idEmpresa = req.params.idEmpresa
+
+    empresaModel.deletar(idEmpresa)
+    .then((empresa) => {
+        return res.status(204).json(empresa)
+    })
+}
+
+function getEmpresas(req, res) {
+    empresaModel.getEmpresas()
+    .then((empresa) => {
+        return res.status(200).json(empresa)
+    })
+}
+
+
+
 module.exports = {
-    autenticar,
-    cadastrar
+    editar,
+    deletar,
+    getEmpresas
 }

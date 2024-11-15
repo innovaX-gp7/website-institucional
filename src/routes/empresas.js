@@ -8,8 +8,22 @@ router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
+router.get("/empresas", (req, res) => {
+    empresaController.getEmpresas(req, res);
+})
+
 router.post("/autenticar", function (req, res) {
     empresaController.autenticar(req, res);
 });
+
+router.put("/editar/:id", function (req, res) {
+    empresaController.editar(req, res);
+});
+
+router.delete("/deletar/:id", function (req, res) {
+    empresaController.deletar(req, res);
+});
+
+
 
 module.exports = router;

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TITLE -->
-    <title>Login | Innovax </title>
+    <title>Cadastro | Innovax </title>
+    <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,20 +34,30 @@
             </div>
 
             <div class="input-content">
-                <div>
-                    <p> Digite seu email </p>
-                    <input id="iptEmail" type="email" placeholder="Roberto@exemplo.com">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-mail">
-                        <rect width="20" height="16" x="2" y="4" rx="2" />
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
-                </div>
 
                 <div>
+                    <p> Digite a razão social da empresa </p>
+                    <input id="iptRazaoSocial" type="text" placeholder="Razão Social">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </div>
+                <div>
+                    <p> Digite o nome fantasia da empresa </p>
+                    <input id="iptNomeFantasia" type="text" placeholder="Nome Fantasia">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </div>
+                <div>
                     <p> Digite o CNPJ </p>
-                    <input id="iptCNPJ" type="text" placeholder="00.000.000/0001-00">
+                    <input id="iptCNPJ" type="text" placeholder="00.000.000/0001-00"> <!--oninput="formatCNPJ(this)"-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-building-2">
@@ -59,13 +70,53 @@
                         <path d="M10 18h4" />
                     </svg>
                 </div>
-
+                
                 <div>
-                    <p> Digite sua senha </p>
-                    <input id="iptPasswd" type="password" placeholder="Senha">
+                    <p> Digite seu nome </p>
+                    <input id="iptNome" type="text" placeholder="Nome">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-lock-keyhole">
+                        class="lucide lucide-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </div>
+                <div>
+                    <p> Digite o seu CPF </p>
+                    <input id="iptCPF" type="text" placeholder="00.000.000/0001-00"> <!--oninput="formatCNPJ(this)"-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-building-2">
+                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                        <path d="M10 6h4" />
+                        <path d="M10 10h4" />
+                        <path d="M10 14h4" />
+                        <path d="M10 18h4" />
+                    </svg>
+                </div>
+                        
+                <div>
+                    <p> Digite seu email </p>
+                    <input id="iptEmail" type="email" placeholder="roberto@exemplo.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-mail">
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </div>
+
+                <div>
+
+                <div style="position: relative; margin-bottom: 1rem;">
+                    <p>Digite sua senha</p>
+                    <input id="iptPasswd" type="password" placeholder="Senha" style="padding-right: 30px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-lock-keyhole"
+                        style="position: absolute; right: 10px; top: 65%; transform: translateY(-50%);">
                         <circle cx="12" cy="16" r="1" />
                         <rect x="3" y="10" width="18" height="12" rx="2" />
                         <path d="M7 10V7a5 5 0 0 1 10 0v3" />
@@ -90,109 +141,267 @@
 
         function validar() {
 
+        
+            const razaoSocial = iptRazaoSocial
+            const nomeFantasia = iptNomeFantasia
             const email = iptEmail
             const cnpj = iptCNPJ
             const passwd = iptPasswd
+            const cpf = iptCPF
+            const nome = iptNome
 
-            if (!passwd.value && !cnpj.value && !email.value) {
+
+            let emailValido = email.value.indexOf("@") > 0 && (email.value.indexOf(".com") > email.value.indexOf("@"));
+            let regexMaiuscula = /[A-Z]/;
+            let regexMinuscula = /[a-z]/;
+            let regexNumeros = /[0-9]/;
+            let regexEspecial = /[!@#$%^&*(),.?":{}|<>]/;
+
+
+
+            if (!passwd.value && !cnpj.value && !email.value && !razaoSocial.value && !nomeFantasia.value && !nome.value && !cpf.value) {
 
                 passwd.classList.add("input-warning")
                 cnpj.classList.add("input-warning")
                 email.classList.add("input-warning")
+                razaoSocial.classList.add("input-warning")
+                nome.classList.add("input-warning")
+                cpf.classList.add("input-warning")
+                nomeFantasia.classList.add("input-warning")
 
                 warning.style.display = "block"
 
                 email.focus()
-            } else if (!email.value) {
+            } else if (!razaoSocial.value) {
                 passwd.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
-                email.classList.add("input-warning")
+                email.classList.remove("input-warning")
+                razaoSocial.classList.add("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
 
                 warning.style.display = "block"
-                warning.innerText = "Preencha o email"
+                warning.innerText = "Preencha a razão social da sua empresa"
 
-                email.focus()
-            } else if (!cnpj.value) {
+                razaoSocial.focus()
+            } else if (!nomeFantasia.value) {
+                passwd.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.add("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o nome fantasia da sua empresa"
+
+                nomeFantasia.focus()
+            }
+
+            else if (!cnpj.value) {
                 passwd.classList.remove("input-warning")
                 email.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
                 cnpj.classList.add("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
 
 
                 warning.style.display = "block"
                 warning.innerText = "Preencha o CNPJ"
 
                 cnpj.focus()
+            }
+
+            else if (cnpj.value.length < 14 || cnpj.value.length > 14 || regexMaiuscula.test(cnpj.value) || regexMinuscula.test(cnpj.value)) {
+                passwd.classList.remove("input-warning")
+                email.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
+                cnpj.classList.add("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha apenas com os 14 dígitos numéricos do CNPJ"
+                cnpj.focus()
+            } else if (!cpf.value) {
+                email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                passwd.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
+                cnpj.classList.add("input-warning")
+                nomeFantasia.classList.remove("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha o CPF"
+
+                cpf.focus()
+            }
+
+            else if (cpf.value.length < 11 || cpf.value.length > 11 || regexMaiuscula.test(cpf.value) || regexMinuscula.test(cpf.value)) {
+
+                email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.add("input-warning")
+                passwd.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha apenas com os 11 dígitos numéricos do CPF"
+                cpf.focus()
+            }
+
+
+            else if (!emailValido) {
+                passwd.classList.remove("input-warning")
+                cnpj.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
+                email.classList.add("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
+
+                warning.style.display = "block"
+                warning.innerText = "Preencha um email válido"
             } else if (!passwd.value) {
                 email.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
                 passwd.classList.add("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
 
 
                 warning.style.display = "block"
                 warning.innerText = "Preencha a senha"
 
                 passwd.focus()
-            } else if (passwd.value.length < 8) {
+            } else if (passwd.value.length < 8 || !regexMaiuscula.test(passwd.value) ||
+                !regexMinuscula.test(passwd.value) || !regexNumeros.test(passwd.value) || !regexEspecial.test(passwd.value)) {
                 email.classList.remove("input-warning")
                 cnpj.classList.remove("input-warning")
+                razaoSocial.classList.remove("input-warning")
                 passwd.classList.add("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                nomeFantasia.classList.remove("input-warning")
 
                 warning.style.display = "block"
-                warning.innerText = "a senha deve conter mais de 8 caracteres"
+                warning.innerText = "A senha deve conter mais de 8 caracteres, caracteres numéricos, especiais e letras maiúsculas e minúsculas"
             } else {
                 btnSubmit.disabled = true
-                fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj.value}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            passwd.classList.remove("input-warning")
-                            email.classList.remove("input-warning")
-                            cnpj.classList.add("input-warning")
+                warning.innerText = ""
 
-                            warning.style.display = "block"
-                            warning.innerText = "CNPJ Inválido"
-                            btnSubmit.disabled = false
-                        } else {
-                            return response.json()
-                        }
+          /*      fetch("/empresas/cadastrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        razaoSocialServer: razaoSocial.value,
+                        cnpjServer: cnpj.value,
+                        nomeFantasiaServer: nomeFantasia.value
                     })
-                    .then(response => {
-                        console.log("Cnpj Response: ")
-                        console.log(response)
-                        let nome = response.nome_fantasia
-                        fetch("/empresas/cadastrar", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                nomeServer: nome,
-                                cnpjServer: cnpj.value,
-                                emailServer: email.value,
-                                senhaServer: passwd.value
-                            })
-                        }).then(response => {
-                            console.log("Insert Response: ")
-                            console.log(response)
-                            if (response.ok) {
-                                warning.innerText = ""
-                                passwd.classList.remove("input-warning")
-                                email.classList.remove("input-warning")
-                                cnpj.classList.remove("input-warning")
+                }).then(response => {
+                    console.log("Insert Response: ")
+                    console.log(response)
+                    if (response.ok) {
+                        warning.innerText = ""
+                        passwd.classList.remove("input-warning")
+                        email.classList.remove("input-warning")
+                        cnpj.classList.remove("input-warning")
+                        razaoSocial.classList.remove("input-warning")
+                        nome.classList.remove("input-warning")
+                        cpf.classList.add("input-warning")
 
-                                btnSubmit.innerText = "redirecionando"
-                                btnSubmit.style.background = "green"
-                                setTimeout(() => window.location = "./login.html", 3000)
-                            }
-                        }).catch(error => {
-                            btnSubmit.disabled = false
-                            console.log("Erro na Inserção: " + error)
-                        })
+                        btnSubmit.innerText = "Redirecionando"
+                        btnSubmit.style.background = "green"
+                        setTimeout(() => window.location = "./login.html", 3000)
                     }
-                    ).catch(error => {
-                        btnSubmit.disabled = false
-                        console.log("Erro no cnpj: " + error)
-                    })
-            }
+                }).catch(error => {
+                    btnSubmit.disabled = false
+                    console.log("Erro na Inserção: " + error)
+                })
+            } */
+
+
+            fetch("/usuario/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                        razaoSocialServer: razaoSocial.value,
+                        cnpjServer: cnpj.value,
+                        nomeFantasiaServer: nomeFantasia.value,
+                        nomeServer: nome.value,
+                        cpfServer: cpf.value,
+                        emailServer: email.value,
+                        senhaServer: cpf.value,
+                    
+                })
+            }).then(response => {
+                console.log("Insert Response: ")
+                console.log(response)
+                if (response.ok) {
+                    warning.innerText = ""
+                    passwd.classList.remove("input-warning")
+                    email.classList.remove("input-warning")
+                    cnpj.classList.remove("input-warning")
+                    razaoSocial.classList.remove("input-warning")
+                    nomeFantasia.classList.remove("input-warning")
+                    nome.classList.remove("input-warning")
+                    cpf.classList.remove("input-warning")
+                    
+                    
+                
+
+                    btnSubmit.innerText = "Redirecionando"
+                    btnSubmit.style.background = "green"
+                    setTimeout(() => window.location = "./login.html", 3000)
+                }
+            }).catch(error => {
+                btnSubmit.disabled = false
+                console.log("Erro na Inserção: " + error)
+            })
 
         }
+        }
+        //o tal do regex
+        function formatCNPJ(input) {
+            // Remove todos os caracteres que não sejam números
+            let cnpj = input.value.replace(/\D/g, '');
+
+            // Limita o CNPJ a no máximo 14 dígitos
+            if (cnpj.length > 14) {
+                cnpj = cnpj.slice(0, 14);
+            }
+
+            // Aplica a formatação do CNPJ apenas se tiver 14 dígitos
+            if (cnpj.length === 14) {
+                cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+                cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+                cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+                cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+            }
+
+            // Define o valor formatado no campo de entrada
+            input.value = cnpj;
+
+            // Verifica se o CNPJ contém exatamente 14 dígitos numéricos
+            if (cnpj.replace(/\D/g, '').length < 14) {
+                // Aqui você pode adicionar um aviso ou lógica se necessário
+                console.warn("O CNPJ deve conter exatamente 14 dígitos numéricos.");
+            }
+        }
+
+
 
 
     </script>

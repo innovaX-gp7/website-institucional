@@ -9,7 +9,7 @@ body {
     width: 100vw;
 }
 
-form {
+.form {
     margin: 0 auto;
     background-color: var(--darker-gray);
     padding: 20px;
@@ -19,19 +19,18 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    
+
     height: 100%;
-    min-height: 60vh;
     max-width: 700px;
     flex: 1;
 }
 
 
-form div {
+.form div {
     width: 100%;
 }
 
-form input {
+.form input {
     padding: 17px;
     width: 100%;
     border-radius: 5px;
@@ -41,7 +40,7 @@ form input {
     outline: none;
 }
 
-form button {
+.form button {
     background-color: #478547;
     width: 100%;
     padding: 17px;
@@ -49,8 +48,8 @@ form button {
     border-radius: 5px;
 }
 
-form button {
-    background-color: #478547;
+.form button {
+    background-color: #1d331d;
     width: 100%;
     padding: 17px;
     color: white;
@@ -59,15 +58,103 @@ form button {
     font-weight: 700;
     transition: .2s;
     cursor: pointer;
+    border: none;
 }
 
-form button:hover {
-    background-color: #366436;
+.form button:hover {
+    background-color: #1d331de0;
     transition: .2s;
 }
 
-.flex-content > img {
+.flex-content>img {
     width: 100%;
     max-width: 450px;
     height: 100%;
 }
+
+#warning {
+    color: #ff5757;
+    display: none;
+}
+
+.input-warning {
+    border: 3px solid #ff5757 !important;
+}
+
+.btn-content {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-content #btn-delete {
+    background: rgba(165, 0, 0, 0.514);
+}
+
+.btn-content #btn-delete:hover {
+    background: rgba(121, 0, 0, 0.356);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: rgb(0, 0, 0, 0.8);
+}
+
+.excluirModal {
+    display: none;
+    background-color: rgb(1, 14, 3);
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 250px;
+
+    z-index: 1000;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+}
+
+.excluirModal div {
+    display: flex;
+    gap: 5px;
+}
+
+.excluirModal div:nth-of-type(1) {
+    align-items: center;
+    flex-direction: column;
+}
+
+.excluirModal div:nth-of-type(2) {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.excluirModal div:nth-of-type(2) button {
+    background-color: rgb(224, 224, 224);
+    cursor: pointer;
+    flex: 1;
+    border: none;
+    padding: 10px;
+}
+
+.excluirModal div:nth-of-type(2) button:hover {
+    opacity: .8;
+}
+
+.excluirModal div button:nth-of-type(2) {
+    background-color: rgba(255, 0, 0, 0.568);
+    color: white;
+}
+
+

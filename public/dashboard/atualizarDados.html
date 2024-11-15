@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD</title>
+    <title>Atualização de Dados | Innovax</title>
+    <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
 
     <!-- LINKS -->
     <link rel="stylesheet" href="./style/global.styles.css">
@@ -22,6 +23,7 @@
 <body>
     <aside>
         <img src="../assets/logo.png" alt="">
+        <p>Olá, <span id="b_usuario"></span>!</p>
 
         <nav>
             <ul>
@@ -51,19 +53,25 @@
                             <circle cx="12" cy="7" r="4" />
                         </svg><span>Conta</span></a>
                 </li>
-                <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-badge-plus">
-                            <path
-                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-                            <line x1="12" x2="12" y1="8" y2="16" />
-                            <line x1="8" x2="16" y1="12" y2="12" />
-                        </svg><span>Cadastrar funcionário</span></a>
-                </li>
+                <span class="display-none">
+                    <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-badge-plus">
+                                <path
+                                    d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                                <line x1="12" x2="12" y1="8" y2="16" />
+                                <line x1="8" x2="16" y1="12" y2="12" />
+                            </svg><span>Cadastrar funcionário</span></a>
+                    </li>
+                    <li><a href="./personalizarSugestoes.html" onmouseover="this.style.color='#00d300'"
+                        onmouseout="this.style.color='white'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg><span>Personalizar sugestões</span></a>
+                                </li>
+                </span>
             </ul>
 
-            <li class="exit"><a href="#" onmouseover="this.style.color='#00d300'"
+            <li onclick="deslogar()" class="exit"><a href="#" onmouseover="this.style.color='#00d300'"
                     onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="lucide lucide-log-out">
@@ -91,25 +99,84 @@
             <p> Atualize seus dados </p>
         </header>
         <div class="flex-content">
-            <form action="" method="post">
+            <div class="form">
                 <h2>Atualizar Dados</h2>
                 <div>
                     <p>Nome</p>
-                    <input value="Miguel de Oliveira Santos" type="Nome">
+                    <input id="inputNome" type="Nome">
                 </div>
                 <div>
                     <p>Email</p>
-                    <input type="email" type="email" value="miguel@exemplo.com" placeholder="miguel@exemplo.com">
+                    <input type="email" type="email" id="inputEmail">
                 </div>
                 <div>
                     <p>CPF</p>
-                    <input type="CPF" value="123.123.123-12" placeholder="000.000.000-00">
+                    <input type="CNPJ" id="inputCPF">
+ 
                 </div>
-                <button>Atualizar</button>
-            </form>
+                <div>
+                    <p>Senha</p>
+                    <input type="CNPJ" id="inputSenha"  >
+                </div>
+                <button type="button" onclick="editar()">Atualizar</button>
+            </div class="form">
             <img src="../assets/update.png" alt="">
         </div>
     </main>
 </body>
 
 </html>
+<script>
+    if(sessionStorage.getItem("NOME_EMPRESA")) {
+        b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+    } else {
+        b_usuario.innerHTML =  sessionStorage.NOME_FUNCIONARIO;
+
+    }
+
+    inputNome.value = sessionStorage.getItem("NOME_FUNCIONARIO")
+    inputEmail.value = sessionStorage.getItem("EMAIL_FUNCIONARIO")
+    inputCPF.value = sessionStorage.getItem("CPF_FUNCIONARIO")
+    inputSenha.value = sessionStorage.getItem("SENHA_FUNCIONARIO")
+
+    function editar() {
+
+        let idFuncionario = sessionStorage.ID_FUNCIONARIO;
+        fetch(`/funcionario/editar/${sessionStorage.getItem("ID_FUNCIONARIO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: idFuncionario,
+                nomeServer: inputNome.value,
+                emailServer: inputEmail.value,
+                cpfServer: inputCPF.value,
+                senhaServer: inputSenha.value
+                        })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Seus dados foram atualizados com sucesso!");
+            
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a atualização de dados! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    
+
+    
+
+    function deslogar() {
+        sessionStorage.clear()
+        window.location = "../"
+    }
+  
+   
+</script>

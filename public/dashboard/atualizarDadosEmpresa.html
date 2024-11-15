@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Dados | Innovax</title>
+    <link rel="shortcut icon" type="imagex/png" href="../assets/82-Sem-Título_20240828181654.ico">
+
+    <!-- LINKS -->
+    <link rel="stylesheet" href="./style/global.styles.css">
+    <link rel="stylesheet" href="./style/form.styles.css">
+
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <aside>
+        <img src="../assets/logo.png" alt="">
+        <p>Olá, <span id="b_usuario"></span>!</p>
+
+        <nav>
+            <ul>
+                <li><a href="./dashboard.html" onmouseover="this.style.color='#00d300'"
+                        onmouseout="this.style.color='white'"> <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house">
+                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                            <path
+                                d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        </svg> <span>Dashboard</span></a></li>
+                <li><a href="mailto:innovax@gmail.com?subject=Assunto%20do%20Email&body=Corpo%20do%20Email"
+                        onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-hand-helping">
+                            <path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14" />
+                            <path
+                                d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" />
+                            <path d="m2 13 6 6" />
+                        </svg><span>Ajuda</span></a></li>
+
+                <li><a id="atualizarDados" style="background: #006622" href="#""><svg
+
+                            xmlns=" http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                        </svg><span>Conta</span>
+                    </a>
+                </li>
+                <span class="display-none">
+                    <li><a href="./cadastroFuncionario.html" onmouseover="this.style.color='#00d300'"
+                            onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-plus">
+                                <path
+                                    d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                                <line x1="12" x2="12" y1="8" y2="16" />
+                                <line x1="8" x2="16" y1="12" y2="12" />
+                            </svg><span>Cadastrar funcionário</span></a>
+                    </li>
+                    <li><a href="./personalizarSugestoes.html" onmouseover="this.style.color='#00d300'"
+                            onmouseout="this.style.color='white'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-square-pen">
+                                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                <path
+                                    d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+                            </svg><span>Personalizar sugestões</span></a>
+                    </li>
+
+                    <li><a href="./gerenciarFuncionario.html" onmouseover="this.style.color='#00d300'"
+                            onmouseout="this.style.color='white'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-users">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg><span>Gerenciar funcionários</span></a>
+                    </li>
+                </span>
+            </ul>
+
+            <li onclick="deslogar()" class="exit"><a href="#" onmouseover="this.style.color='#00d300'"
+                    onmouseout="this.style.color='white'"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-log-out">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" x2="9" y1="12" y2="12" />
+                    </svg><span>Sair</span></a></li>
+        </nav>
+    </aside>
+    <main>
+        <header>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-clipboard-list">
+                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                    <path d="M12 11h4" />
+                    <path d="M12 16h4" />
+                    <path d="M8 11h.01" />
+                    <path d="M8 16h.01" />
+                </svg>
+                <h1>Atualizar Dados</h1>
+            </div>
+            <p> Atualize seus dados </p>
+        </header>
+        <div class="flex-content">
+            <div class="form">
+                <h2>Atualizar Dados</h2>
+                <div>
+                    <p>Nome</p>
+                    <input id="inputNome" type="Nome">
+                </div>
+                <div>
+                    <p>Email</p>
+                    <input type="email" id="inputEmail">
+                </div>
+                <div>
+                    <p>CNPJ</p>
+                    <input type="CNPJ" id="inputCNPJ">
+
+
+                </div>
+                <div>
+                    <p>Senha</p>
+                    <input type="CNPJ" id="inputSenha">
+                </div>
+                <div class="btn-content">
+                    <button type="button" onclick="editar()">Atualizar</button>
+                    <button type="button" id="btn-delete" onclick="gerarModalExcluir()">Deletar empresa</button>
+                </div>
+            </div>
+            <img src="../assets/update.png" alt="">
+        </div>
+    </main>
+
+    <div class="overlay"></div>
+    <div class="excluirModal" id="modal">
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ff4747"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" x2="12" y1="8" y2="12" />
+            <line x1="12" x2="12.01" y1="16" y2="16" />
+        </svg>
+        <h1>Deletar empresa</h1>
+        </div>
+        <p> Você tem certeza que quer deletar a empresa? </p>
+
+        <div>
+            <button onclick="cancelar()">Cancelar</button>
+            <button onclick="deletarEmpresa()">Excluir</button>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+
+    if (sessionStorage.getItem("NOME_EMPRESA")) {
+        b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+        atualizarDados.href = "./atualizarDadosEmpresa.html"
+        document.querySelector(".display-none").classList.remove("display-none")
+    } else {
+        b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
+
+    }
+
+    inputNome.value = sessionStorage.getItem("NOME_EMPRESA")
+    inputEmail.value = sessionStorage.getItem("EMAIL_EMPRESA")
+    inputCNPJ.value = sessionStorage.getItem("CNPJ_EMPRESA")
+    inputSenha.value = sessionStorage.getItem("SENHA_EMPRESA")
+
+    function editar() {
+
+        let idEmpresa = sessionStorage.ID_EMPRESA;
+        fetch(`/empresas/editar/${sessionStorage.getItem("ID_EMPRESA")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idEmpresaServer: idEmpresa,
+                nomeServer: inputNome.value,
+                emailServer: inputEmail.value,
+                cnpjServer: inputCNPJ.value,
+                senhaServer: inputSenha.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Seus dados foram atualizados com sucesso!");
+
+
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a atualização de dados! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        atualizarDados.href = "./atualizarDados.html"
+    }
+
+
+    function deslogar() {
+        sessionStorage.clear()
+        window.location = "../"
+    }
+
+    function gerarModalExcluir() {
+        document.querySelector("#modal").style.display = 'flex' 
+        document.querySelector(".overlay").style.display = 'block'
+    }
+
+    function cancelar() {
+        document.querySelector("#modal").style.display = 'none' 
+        document.querySelector(".overlay").style.display = 'none'
+    }
+
+    function deletarEmpresa() {
+        // lógica para deletar
+    }
+
+
+</script>   
