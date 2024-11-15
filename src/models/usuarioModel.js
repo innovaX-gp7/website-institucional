@@ -12,30 +12,18 @@ function autenticar(email, senha) {
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha) {
-
-
-
     let instrucaoSql = `
        	INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) VALUES ('${razaoSocial}','${nomeFantasia}','${cnpj}');
     `;
-
-    let empresaDados;
-    empresaModel.getEmpresa(cnpj).then((response) => { 
-        
-        console.log(response)
-    
-        instrucaoSql = `
-                INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}', '${email}', '${senha}', ${empresaDados.id});
-                `
-    
-        return database.executar(instrucaoSql)
-    }
-).catch(e => console.error(e));
-
-
-    
-
-
+    database.executar(instrucaoSql)
+        .then(() => { return empresaModel.getEmpresa(cnpj) })
+        .then((resultado) => {
+            instrucaoSql = `
+                    INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}', '${email}', '${senha}', ${resultado[0].id});
+                    `
+            return database.executar(instrucaoSql)
+        }).catch(e => console.error(e))
+    return null;
 }
 
 

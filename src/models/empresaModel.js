@@ -35,9 +35,10 @@ function deletar(id) {
 }
 
 function getEmpresa(cnpj) {
-    let sql = `SELECT id FROM empresa WHERE cnpj = ${cnpj};`
-
-    return database.executar(sql)
+    let sql = `SELECT id FROM empresa WHERE cnpj = '${cnpj}';`
+    let response = database.executar(sql)
+    console.log(`Resposta do getEmpresa: ${response}`) 
+    return response
 }
 
 

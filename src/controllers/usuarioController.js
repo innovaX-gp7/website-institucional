@@ -55,7 +55,6 @@ function cadastrar(req, res) {
     var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.fkEmpresaServer; 
     
     // Faça as validações dos valores
     if (cpf == undefined) {
@@ -67,10 +66,10 @@ function cadastrar(req, res) {
     } else {
         console.log(cpf)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        usuarioModel.cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha)
             .then(
                 function (resultado) {
-                    res.json();
+                    res.json(resultado);
                 }
             ).catch(
                 function (erro) {
