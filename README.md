@@ -22,7 +22,7 @@ Com o código do projeto em mãos, precisaremos mudar o arquivo `.env.dev` e col
 > **DB_PORT**=3306
 
 
-Agora, com isso feito, podemos finalmente executar no terminal:
+Agora, com isso feito, nós podemos finalmente executar no terminal:
 ```
 npm install
 npm run
