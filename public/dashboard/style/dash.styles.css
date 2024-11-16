@@ -24,14 +24,24 @@
     align-items: center;
 }
 
+.card-kpi div:nth-child(2) {
+    justify-content: center;
+    gap: 5px;
+}
+
 .card-kpi div h2 {
     font-size: .9rem;
 }
 
 .card-kpi span {
+    color: #ff7070;
     margin: 12px 0px;
     align-self: center;
     font-size: 1.5rem;
+}
+
+.card-kpi #estadoPrejudicado {
+    color: white;
 }
 
 main p {

@@ -120,7 +120,7 @@
             <p> Atualize seus dados </p>
         </header>
         <div class="flex-content">
-            <form action="" method="post">
+            <div class="form">
                 <h2>Atualizar Dados</h2>
                 <div>
                     <p>Nome</p>
@@ -140,11 +140,35 @@
                     <p>Senha</p>
                     <input type="CNPJ" id="inputSenha">
                 </div>
-                <button type="button" onclick="editar()">Atualizar</button>
-            </form>
+                <div class="btn-content">
+                    <button type="button" onclick="editar()">Atualizar</button>
+                    <button type="button" id="btn-delete" onclick="gerarModalExcluir()">Deletar empresa</button>
+                </div>
+            </div>
             <img src="../assets/update.png" alt="">
         </div>
     </main>
+
+    <div class="overlay"></div>
+    <div class="excluirModal" id="modal">
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ff4747"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" x2="12" y1="8" y2="12" />
+            <line x1="12" x2="12.01" y1="16" y2="16" />
+        </svg>
+        <h1>Deletar empresa</h1>
+        </div>
+        <p> Você tem certeza que quer deletar a empresa? </p>
+
+        <div>
+            <button onclick="cancelar()">Cancelar</button>
+            <button onclick="deletarEmpresa()">Excluir</button>
+        </div>
+
+    </div>
 </body>
 
 </html>
@@ -183,7 +207,7 @@
 
             if (resposta.ok) {
                 window.alert("Seus dados foram atualizados com sucesso!");
-          
+
 
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -195,7 +219,6 @@
         });
 
         atualizarDados.href = "./atualizarDados.html"
-
     }
 
 
@@ -204,5 +227,19 @@
         window.location = "../"
     }
 
+    function gerarModalExcluir() {
+        document.querySelector("#modal").style.display = 'flex' 
+        document.querySelector(".overlay").style.display = 'block'
+    }
 
-</script>
+    function cancelar() {
+        document.querySelector("#modal").style.display = 'none' 
+        document.querySelector(".overlay").style.display = 'none'
+    }
+
+    function deletarEmpresa() {
+        // lógica para deletar
+    }
+
+
+</script>   

@@ -93,17 +93,49 @@
             <p> Personalize suas sugestões </p>
         </header>
         <div class="flex-content">
-            <form action="" method="post">
+            <div class="form">
                 <h2>Personalizar dados</h2>
                 <div>
                     <p>Ser notificado quando atingir: (km²)</p>
                     <input placeholder="Ex: 200" type="Nome">
                 </div>
-                <button>Alterar</button>
-            </form>
+                <div>
+                    <p>Ser notificado quando a temperatura atingir: (°C)</p>
+                    <input placeholder="Ex: 20" type="Nome">
+                </div>
+                <div>
+                    <p>Ser notificado quando a precipitação atingir: (mm)</p>
+                    <input placeholder="Ex: 60" type="Nome">
+                </div>
+                <div class="btn-content">
+                    <button onclick="editarParametrizacao()">Alterar</button>
+                    <button id="btn-delete" onclick="gerarModalExcluir()">Excluir parametrização</button>
+                </div>
+            </div>
             <img src="../assets/update.png" alt="">
         </div>
     </main>
+
+    <div class="overlay"></div>
+    <div class="excluirModal" id="modal">
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ff4747"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" x2="12" y1="8" y2="12" />
+            <line x1="12" x2="12.01" y1="16" y2="16" />
+        </svg>
+        <h1>Deletar parametrização</h1>
+        </div>
+        <p> Você tem certeza que quer deletar a parametrização? </p>
+
+        <div>
+            <button onclick="cancelar()">Cancelar</button>
+            <button onclick="deletarEmpresa()">Excluir</button>
+        </div>
+
+    </div>
 </body>
 
 </html>
@@ -122,6 +154,24 @@
     } else {
         b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
         atualizarDados.href = "./atualizarDados.html"
+    }
+
+    function gerarModalExcluir() {
+        document.querySelector("#modal").style.display = 'flex' 
+        document.querySelector(".overlay").style.display = 'block'
+    }
+
+    function cancelar() {
+        document.querySelector("#modal").style.display = 'none' 
+        document.querySelector(".overlay").style.display = 'none'
+    }
+
+    function editarParametrizacao() {
+        // lógica para editar 
+    }
+
+    function deletarParametrizacao() {
+        // lógica para deletar
     }
 
    
