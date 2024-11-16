@@ -217,9 +217,9 @@
         window.location = "../"
     }
 
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    if (sessionStorage.getItem("NOME_EMPRESA")) {
-        b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
+    if (sessionStorage.ROLE = "representante") {
         atualizarDados.href = "./atualizarDadosEmpresa.html"
         document.querySelector(".display-none").classList.remove("display-none")
     } else {

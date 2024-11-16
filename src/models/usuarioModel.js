@@ -4,7 +4,7 @@ var empresaModel = require("./empresaModel")
 
 function autenticar(email, senha) {
     var instrucaoSql = `
-        SELECT id, nome, cpf, email, senha FROM usuario WHERE email = '${email}' AND senha = 'md5(${senha})';
+        SELECT id, nome, cpf, email, senha FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
