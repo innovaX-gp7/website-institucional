@@ -5,8 +5,6 @@ function cadastrar(req, res) {
     var parametro = req.body.parametroServer
     var fkEmpresa = req.body.fkEmpresaServer;
     var fkTipoParametro = req.body.fkTipoParametroServer;
-    var created_at = req.body.created_atServer;
-    var modified_at = req.body.modified_atServer;
     
     // Faça as validações dos valores
     if (parametro == undefined) {
@@ -15,14 +13,10 @@ function cadastrar(req, res) {
         res.status(400).send("O ID do Parâmetro está indefinido!");
     } else if (fkEmpresa === undefined || fkEmpresa === 'undefined') {
         return res.status(400).send("O ID da empresa está indefinido!");
-    } else if (created_at === undefined || created_at === 'undefined') {
-        return res.status(400).send("O creaeted_at está indefinido!");
-    } else if (modified_at === undefined || modified_at === 'undefined') {
-        return res.status(400).send("O modified_at está indefinido!");
     } else {
         console.log(parametro)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        parametroModel.cadastrar(parametro, fkEmpresa, fkTipoParametro, created_at, modified_at)
+        parametroModel.cadastrar(parametro, fkEmpresa, fkTipoParametro)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -42,7 +36,7 @@ function cadastrar(req, res) {
 
 
 function editar(req, res) {
-    var id = req.body.idServer;
+    var id = req.params.idParametro;
     var parametro = req.body.parametroServer;
 
     parametroModel.editar(id, parametro)
@@ -72,7 +66,7 @@ function getAllParametro(req, res) {
 }
 
 function deletarParametro(req, res) {
-    const id = req.params.id
+    const id = req.params.idParametro
 
     parametroModel.deletarParametro(id)
     .then((parametroRecomendacao) => {
@@ -86,5 +80,4 @@ module.exports = {
     editar,
     getAllParametro,
     deletarParametro
-
 }
