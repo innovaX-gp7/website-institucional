@@ -40,6 +40,16 @@ body {
     outline: none;
 }
 
+.form select {
+    padding: 17px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--gray-color);
+    border: none;
+    color: white;
+    outline: none;
+}
+
 .form button {
     background-color: #478547;
     width: 100%;

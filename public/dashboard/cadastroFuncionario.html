@@ -111,11 +111,20 @@
                 </div>
                 <div>
                     <p>Email</p>
-                    <input type="email" type="email" id="iptEmail" placeholder="roberto@exemplo.com">
+                    <input type="email" id="iptEmail" placeholder="roberto@exemplo.com">
                 </div>
                 <div>
                     <p>CPF</p>
                     <input type="CPF" id="iptCPF" placeholder="000.000.000-00">
+                </div>
+                <div>
+                    <p>Cargo</p>
+                    <select id="iptCargo">
+                        <option value="">Selecione o cargo</option>
+                        <option value="1">Representante</option>
+                        <option value="2">Gestor</option>
+                        <option value="3">Funcionário</option>
+                    </select>
                 </div>
                 <p id="warning">Preencha todos os campos!</p>
                 <button onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
