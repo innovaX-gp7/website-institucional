@@ -78,13 +78,13 @@ var empresaModel = require("../models/empresaModel");
 } */
 
 function editar(req, res) {
-    var id = req.body.idServer;
+    var idEmpresa = req.body.idEmpresaServer;
     var razaoSocial = req.body.razaoSocialServer;
     var nomeFantasia = req.body.nomeFantasiaServer;
     var cnpj = req.body.cnpjServer;
   
 
-    empresaModel.editar(id, razaoSocial, nomeFantasia, cnpj)
+    empresaModel.editar(idEmpresa, razaoSocial, nomeFantasia, cnpj)
         .then(
             function (resultado) {
                 res.json(resultado);
