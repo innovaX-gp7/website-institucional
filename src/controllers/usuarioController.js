@@ -2,6 +2,12 @@ var usuarioModel = require("../models/usuarioModel");
 
 
 function autenticar(req, res) {
+    var idEmpresa = req.body.idEmpresaServer;
+    var fkUserRole = req.body.fkUserRoleServer;
+    var userRole = req.body.userRoleServer;
+    var razaoSocial = req.body.razaoSocialServer;
+    var nomeFantasia = req.body.nomeFantasiaServer
+    var cnpj = req.body.cnpjServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
@@ -11,7 +17,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(email, senha)
+        usuarioModel.autenticar(email, senha, razaoSocial, nomeFantasia, cnpj, idEmpresa,fkUserRole, userRole)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -25,7 +31,13 @@ function autenticar(req, res) {
                             email: resultadoAutenticar[0].email,
                             cpf: resultadoAutenticar[0].cpf,
                             senha: resultadoAutenticar[0].senha,
-                            fkEmpresa: resultadoAutenticar[0].fkEmpresa
+                            idEmpresa: resultadoAutenticar[0].idEmpresa,
+                            nomeFantasia: resultadoAutenticar[0].nomeFantasia,
+                            razaoSocial: resultadoAutenticar[0].razaoSocial,
+                            cnpj: resultadoAutenticar[0].cnpj,
+                            fkUserRole: resultadoAutenticar[0].fkUserRole,
+                            userRole: resultadoAutenticar[0].userRole
+
 
 
                         });
@@ -83,6 +95,46 @@ function cadastrar(req, res) {
 }
 
 
+function cadastrarFuncionario(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+  
+    var nome = req.body.nomeServer
+    var cpf = req.body.cpfServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+    var fkUserRole = req.body.fkUserRoleServer;
+    
+    // Faça as validações dos valores
+    if (cpf == undefined) {
+        res.status(400).send("Seu cpf está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        console.log(cpf)
+        // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
+        usuarioModel.cadastrarFuncionario( nome, cpf, email, senha, fkEmpresa, fkUserRole)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
+
 function editar(req, res) {
     var id = req.body.idServer;
     var nome = req.body.nomeServer;
@@ -106,22 +158,42 @@ function editar(req, res) {
 
 }
 
-/*function getAllFuncionario(req, res) {
+function editarCargo(req, res) {
+    const id = req.params.id
+    var fkUserRole = req.body.fkUserRoleServer;
 
-    const id = req.params.idEmpresa
+    usuarioModel.editarCargo(id, fkUserRole)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 
-    usuarioModel.getAllFuncionario(id)
-    .then((funcionario) => { 
-        return res.status(200).json(funcionario) 
+}
+
+function getAllFuncionario(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+
+    usuarioModel.getAllFuncionario(idEmpresa)
+    .then((usuario) => { 
+        return res.status(200).json(usuario) 
     })
-}*/
+}
 
 function deletarFuncionario(req, res) {
     const id = req.params.id
 
     usuarioModel.deletarFuncionario(id)
-    .then((funcionario) => {
-        return res.status(204).json(funcionario)
+    .then((usuario) => {
+        return res.status(204).json(usuario)
     })
 }
 
@@ -130,6 +202,9 @@ module.exports = {
     autenticar,
     cadastrar,
     editar,
-    deletarFuncionario
+    deletarFuncionario,
+    cadastrarFuncionario,
+    getAllFuncionario,
+    editarCargo
 
 }

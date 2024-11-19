@@ -36,7 +36,7 @@
             <div class="input-content">
                 <div class="relative">
                     <p> Digite seu email </p>
-                    <input type="email" id="iptEmail" placeholder="Roberto@exemplo.com">
+                    <input type="email" id="iptEmail" placeholder="roberto@exemplo.com">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-mail">
@@ -102,8 +102,16 @@
                             response.json().then(data => {
 
                                 sessionStorage.NOME_USUARIO = data.nome
-                                sessionStorage.cpf = data.cpf
-                                sessionStorage.role = data.role
+                                sessionStorage.ID_USUARIO = data.id
+                                sessionStorage.CPF_USUARIO = data.cpf
+                                sessionStorage.EMAIL_USUARIO = data.email
+                                sessionStorage.SENHA_USUARIO = data.senha
+                                sessionStorage.fkUserRole = data.fkUserRole
+                                sessionStorage.userRole = data.userRole
+                                sessionStorage.idEmpresa = data.idEmpresa
+                                sessionStorage.NOME_EMPRESA = data.nomeFantasia
+                                sessionStorage.RAZAO = data.razaoSocial
+                                sessionStorage.CNPJ = data.cnpj
 
                                 console.log(data)
 

@@ -51,10 +51,20 @@
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                             <circle cx="12" cy="7" r="4" />
                         </svg><span>Conta</span></a>
-                </li>
-                
-                <span class="display-none">
-                    <li><a  style="background: #006622" href="./cadastroFuncionario.html"
+                </li> 
+                <span class="total">
+                    <div class="atualizarDadosEmpresa">
+                        <li><a href="./atualizarDadosEmpresa.html" id="atualizarDados"
+                                onmouseover="this.style.color='#00d300'" onmouseout="this.style.color='white'"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-user">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg><span>Conta Empresa</span></a>
+                        </li>
+                    </div>
+                    <li class="cadastroFuncionario"><a  style="background: #006622" href="./cadastroFuncionario.html"
                             ><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-plus">
@@ -68,7 +78,7 @@
                             onmouseout="this.style.color='white'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg><span>Personalizar sugestões</span></a>
                     </li>
-                    <li><a href="./gerenciarFuncionario.html" onmouseover="this.style.color='#00d300'"
+                    <li class="gerenciarFuncionario"><a href="./gerenciarFuncionario.html" onmouseover="this.style.color='#00d300'"
                             onmouseout="this.style.color='white'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Gerenciar funcionários</span></a>
                     </li>
@@ -117,6 +127,15 @@
                     <p>CPF</p>
                     <input type="CPF" id="iptCPF" placeholder="000.000.000-00">
                 </div>
+               
+                    <p>Cargo</p>
+                  <select name="" id="iptCargo">
+                    <option value="">Selecione o cargo</option>
+                    <option class="cargoAlto" value="1">Representante</option>
+                    <option class="cargoAlto2" value="2">Gestor</option>
+                    <option value="3">Funcionário</option>
+                  </select>
+
                 <p id="warning">Preencha todos os campos!</p>
                 <button onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
             </div>
@@ -132,28 +151,30 @@
     }
 
     
-    if (sessionStorage.getItem("NOME_EMPRESA")) {
-        b_usuario.innerHTML = sessionStorage.NOME_EMPRESA;
-        atualizarDados.href = "./atualizarDadosEmpresa.html"
-        document.querySelector(".display-none").classList.remove("display-none")
-    } else {
-        b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
-        atualizarDados.href = "./atualizarDados.html"
-    }
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+    if (sessionStorage.getItem('fkUserRole') === '3') {
+        document.querySelector(".total").classList.add("display-none")
+    } else if (sessionStorage.getItem('fkUserRole') === '2') {
+        document.querySelector(".atualizarDadosEmpresa").style.display = 'none'
+        document.querySelector(".cargoAlto").style.display = 'none'
+        document.querySelector(".cargoAlto2").style.display = 'none'
+   
+       
+
+    }
 
         function cadastrar() {
 
-            var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+            var idEmpresa =  sessionStorage.idEmpresa;
+            
 
-            if (!idEmpresa) {
-                console.error("ID da empresa não encontrado no sessionStorage");
-                return;
-            }
+      
 
             const email = iptEmail
             const cpf = iptCPF
             const nome = iptNome
+            let userRole = iptCargo
 
             let emailValido = email.value.indexOf("@") > 0 && (email.value.indexOf(".com") > email.value.indexOf("@"));
             let regexMaiuscula = /[A-Z]/;
@@ -163,11 +184,12 @@
 
 
 
-            if (!cpf.value && !email.value && !nome.value) {
+            if (!cpf.value && !email.value && !nome.value && !iptCargo.value ) {
 
                 cpf.classList.add("input-warning")
                 email.classList.add("input-warning")
                 nome.classList.add("input-warning")
+                userRole.classList.add("input-warning")
 
                 warning.style.display = "block"
 
@@ -175,17 +197,30 @@
             } else if (!nome.value) {
                 cpf.classList.remove("input-warning")
                 email.classList.remove("input-warning")
+                userRole.classList.remove("input-warning")
                 nome.classList.add("input-warning")
 
                 warning.style.display = "block"
                 warning.innerText = "Preencha o nome"
 
                 nome.focus()
+            } else if (userRole.value == "") {
+                email.classList.remove("input-warning")
+                nome.classList.remove("input-warning")
+                cpf.classList.remove("input-warning")
+                userRole.classList.add("input-warning")
+
+
+                warning.style.display = "block"
+                warning.innerText = "Selecione o cargo do funcionário"
+
+                userRole.focus()
             }
 
             else if (!cpf.value) {
                 email.classList.remove("input-warning")
                 nome.classList.remove("input-warning")
+                userRole.classList.remove("input-warning")
                 cpf.classList.add("input-warning")
 
 
@@ -199,6 +234,7 @@
                
                 email.classList.remove("input-warning")
                 nome.classList.remove("input-warning")
+                userRole.classList.remove("input-warning")
                 cpf.classList.add("input-warning")
 
 
@@ -209,6 +245,7 @@
         
                 cpf.classList.remove("input-warning")
                 nome.classList.remove("input-warning")
+                userRole.classList.remove("input-warning")
                 email.classList.add("input-warning")
 
                 warning.style.display = "block"
@@ -216,8 +253,8 @@
             } else {
                 btnSubmit.disabled = true
 
-
-                fetch("/funcionario/cadastrar", {
+                console.log(userRole.value)
+                fetch("/usuario/cadastrarFuncionario", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -225,7 +262,9 @@
                         cpfServer: cpf.value,
                         emailServer: email.value,
                         senhaServer: cpf.value,
-                        fkEmpresaFuncioServer: idEmpresa
+                        fkEmpresaServer: idEmpresa,
+                        fkUserRoleServer: userRole.value
+                        
 
                     })
                 }).then(response => {
@@ -237,6 +276,7 @@
                         email.classList.remove("input-warning")
                         cpf.classList.remove("input-warning")
                         nome.classList.remove("input-warning")
+                        userRole.classList.remove("input-warning")
 
                         btnSubmit.innerText = "Cadastro realizado com sucesso"
                         btnSubmit.style.background = "green"
