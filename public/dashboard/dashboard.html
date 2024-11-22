@@ -226,6 +226,84 @@
 
 <script>
 
+    const idEmpresa = sessionStorage.idEmpresa
+
+    fetch(`/leitura/${idEmpresa}`)
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data)
+
+            const ctx = document.getElementById('myChart');
+            const ctv = document.getElementById('myChart3');
+
+            const estados = ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins', 'Mato Grosso', 'Maranhão'];
+            const temperaturas = estados.map(estado => {
+                const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+                return estadoData ? parseFloat(estadoData.temperaturaMensal) : 0;
+            });
+
+            const umidades = estados.map(estado => {
+                const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+                return estadoData ? parseFloat(estadoData.precipitacaoMensal) : 0; 
+            });
+
+            const areasDesmatadas = estados.map(estado => {
+            const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+            return estadoData ? parseFloat(estadoData.areaDesmatada) : 0; 
+        });
+
+
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
+                    datasets: [{
+                        label: 'Temperatura',
+                        data: temperaturas,
+                        borderWidth: 1,
+                        backgroundColor: '#00ad79',
+                        borderColor: 'black',
+                        order: 2,
+                    },
+                    {
+                        label: 'Umidade',
+                        data: umidades,
+                        type: 'line',
+                        backgroundColor: 'white',
+                        borderColor: '#006546',
+                        order: 1
+                    }],
+                },
+                options: {
+                    layout: {
+                        padding: 10
+                    }
+                }
+            });
+
+            new Chart(ctv, {
+                type: 'bar',
+                data: {
+                    label: 'Estado',
+                    labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
+                    datasets: [{
+                        label: 'Área desmatada',
+                        data: areasDesmatadas,
+                        borderWidth: 1,
+                        backgroundColor: '#00ce90',
+                        borderColor: 'rgb(75, 192, 192)',
+                    },
+                    ]
+                },
+                options: {
+                    plugins: {
+                    },
+                }
+            });;
+        })
+
     function deslogar() {
         sessionStorage.clear()
         window.location = "../"
@@ -240,54 +318,5 @@
 
     }
 
-    const ctx = document.getElementById('myChart');
-    const ctv = document.getElementById('myChart3');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
-            datasets: [{
-                label: 'Temperatura',
-                data: [12, 19, 3, 5, 2, 3, 10, 20, 30],
-                borderWidth: 1,
-                backgroundColor: '#00ad79',
-                borderColor: 'black',
-                order: 2,
-            },
-            {
-                label: 'Umidade',
-                data: [20, 20, 20, 20, 20, 10, 10, 10, 5],
-                type: 'line',
-                backgroundColor: 'white',
-                borderColor: '#006546',
-                order: 1
-            }],
-        },
-        options: {
-            layout: {
-                padding: 10
-            }
-        }
-    });
-
-    new Chart(ctv, {
-        type: 'bar',
-        data: {
-            label: 'Estado',
-            labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
-            datasets: [{
-                label: 'Área desmatada',
-                data: [12, 19, 3, 5, 2, 3, 10, 10],
-                borderWidth: 1,
-                backgroundColor: '#00ce90',
-                borderColor: 'rgb(75, 192, 192)',
-            },
-            ]
-        },
-        options: {
-            plugins: {
-            },
-        }
-    });;
 </script>
