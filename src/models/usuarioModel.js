@@ -31,19 +31,37 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha) {
-    let instrucaoSql = `
-       	INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) VALUES ('${razaoSocial}','${nomeFantasia}','${cnpj}');
-    `;
-    database.executar(instrucaoSql)
-        .then(() => { return empresaModel.getEmpresa(cnpj) })
-        .then((resultado) => {
-            instrucaoSql = `
-                    INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa, fkUserRole) VALUES ('${nome}', '${cpf}', '${email}', '${senha}', ${resultado[0].id}, 1);
-                    `
-            return database.executar(instrucaoSql)
-        }).catch(e => console.error(e))
-    return null;
+async function cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha) {
+    try {
+        // Inserir a empresa no banco de dados
+        let instrucaoSql = `
+            INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) 
+            VALUES ('${razaoSocial}', '${nomeFantasia}', '${cnpj}');
+        `;
+        await database.executar(instrucaoSql); // Espera a execução da inserção da empresa
+
+        console.log("Empresa inserida com sucesso.");
+
+        // Buscar o id da empresa recém inserida
+        const resultado = await empresaModel.getEmpresa(cnpj); // Espera o resultado da consulta da empresa
+
+        if (!resultado || resultado.length === 0) {
+            throw new Error("Empresa não encontrada após a inserção.");
+        }
+
+        const { id } = resultado[0]; // Acessa o id da empresa
+
+        // Inserir o usuário na tabela usuario
+        instrucaoSql = `
+            INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa, fkUserRole) 
+            VALUES ('${nome}', '${cpf}', '${email}', '${senha}', ${id}, 1);
+        `;
+        await database.executar(instrucaoSql); // Espera a execução da inserção do usuário
+
+        console.log("Usuário inserido com sucesso.");
+    } catch (e) {
+        console.error("Erro durante o cadastro:", e.message || e);
+    }
 }
 
 
