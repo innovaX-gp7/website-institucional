@@ -243,13 +243,11 @@
     }
 
     function deletar() {
-        fetch(`http://localhost:80/empresas/deletar/${idEmpresa}`, {
+        fetch(`http://localhost:80/empresas/deletar/${sessionStorage.getItem("idEmpresa")}`, {
             method: "DELETE"
         })
             .then(response => {
-                if (response.status == 204) {
-                   
-                }
+                deslogar();
             })
             .catch(error => console.error(error))
     }
