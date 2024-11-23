@@ -141,6 +141,7 @@
                     </svg>
                 </div>
                 <span id="estadoPrejudicado">Amapá</span>
+                <span id="percentualEstadoPrejudicado">10% comparado ao ano anterior</span>
             </div>
 
             <div class="card-kpi">
@@ -157,12 +158,12 @@
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="#ff7070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        stroke="#ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-chevrons-up">
                         <path d="m17 11-5-5-5 5" />
                         <path d="m17 18-5-5-5 5" />
                     </svg>
-                    <span>10%</span>
+                    <span id="temperatura">10%</span>
                 </div>
             </div>
 
@@ -180,12 +181,12 @@
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="#ff7070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        stroke="#ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-chevrons-up">
                         <path d="m17 11-5-5-5 5" />
                         <path d="m17 18-5-5-5 5" />
                     </svg>
-                    <span> 20%</span>
+                    <span id="desmatamentoTotal">20%</span>
                 </div>
             </div>
 
@@ -231,8 +232,6 @@
     fetch(`/leitura/${idEmpresa}`)
         .then(response => response.json())
         .then(data => {
-
-            console.log(data)
 
             const ctx = document.getElementById('myChart');
             const ctv = document.getElementById('myChart3');
@@ -303,6 +302,48 @@
                 }
             });;
         })
+
+        fetch(`/leitura/${idEmpresa}/maiordesmatamentopercentual`)
+        .then(response => response.json())
+        .then(data => {
+            data = data[0]
+            estadoPrejudicado.innerHTML = data.unidadeFederativa;
+            percentualEstadoPrejudicado.innerHTML = `${Math.floor(data.diferencaDesmatamento)}% comparado ao ano anterior`
+        })
+        .catch(e => console.error(e))
+
+        fetch(`/leitura/${idEmpresa}/temperatura`)
+        .then(response => response.json())
+        .then(data => {
+            data = data[0]
+
+            const texto = Math.floor(data.alteracaoPercentualTotalTemperatura) + '%'
+            
+            if (data.alteracaoPercentualTotalTemperatura < 0) {
+                temperatura.style.color = 'green'       
+            } 
+
+            temperatura.innerHTML = texto
+        })
+        .catch(e => console.error(e))
+
+        
+        fetch(`/leitura/${idEmpresa}/desmatamentoTotalComparadoAoAnoAnterior`)
+        .then(response => response.json())
+        .then(data => {
+            data = data[0]
+
+            const texto = Math.floor(data.alteracaoPercentualTotal) + '%'
+            
+            if (data.alteracaoPercentualTotal < 0) {
+                desmatamentoTotal.style.color = 'green'       
+            } 
+
+            desmatamentoTotal.innerHTML = texto  
+        })
+        .catch(e => console.error(e))
+
+        
 
     function deslogar() {
         sessionStorage.clear()
