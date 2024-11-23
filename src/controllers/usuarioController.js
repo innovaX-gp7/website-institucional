@@ -115,7 +115,7 @@ function cadastrarFuncionario(req, res) {
     } else {
         console.log(cpf)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        usuarioModel.cadastrarFuncionario( nome, cpf, email, senha, fkEmpresa, fkUserRole)
+        usuarioModel.cadastrarFuncionario(nome, cpf, email, senha, fkEmpresa, fkUserRole)
             .then(
                 function (resultado) {
                     res.json(resultado);
