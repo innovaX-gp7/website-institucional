@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,109 +10,113 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" />
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM Sans:wght@700&display=swap" />
-  	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM Sans:wght@700&display=swap" />
+
 
 </head>
+
 <body>
-    
+
     <header>
-    <nav class="navbar">
-        <div class="navbar-container">
-              <img class="logo-1-icon" alt="" src="assets/logo1.png">
-              
-              <ul class="nav-links">
-                
-                <a href="#main-info" id="inicio">
-                    <div class="nav">
-                        Início
-                    </div>
-                </a>
-                
-                <a href="#about" id="sobre">
-                    <div class="nav">
-                        Sobre nós
-                    </div>
-                </a>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <img src="assets/logo1.png">
+                <img id="logo-leaves" src="assets/logo-leaves.ico">
 
-                <a href="#services" id="servicos">
-                    <div class="nav">
-                        Nossos serviços
-                    </div>
-                </a>
+                <ul class="nav-links">
 
-                <a href="#contatos" id="contato">
-                    <div class="nav">
-                        Contato
-                    </div>
-                </a>
+                    <a href="#main-info" id="inicio">
+                        <div class="nav">
+                            Início
+                        </div>
+                    </a>
 
-              </ul>
-                
-                <div onclick="window.location.href='./login/cadastro.html'" class="button-one">
-                    <div class="nav">
-                        Cadastre-se
+                    <a href="#about" id="sobre">
+                        <div class="nav">
+                            Sobre nós
+                        </div>
+                    </a>
+
+                    <a href="#services" id="servicos">
+                        <div class="nav">
+                            Nossos serviços
+                        </div>
+                    </a>
+
+                    <a href="#contatos" id="contato">
+                        <div class="nav">
+                            Contato
+                        </div>
+                    </a>
+
+                </ul>
+
+                <div id="nav-buttons" class="nav">
+                    <div onclick="window.location.href='./login/cadastro.html'" class="button-one">
+                        <div class="nav">
+                            Cadastre-se
+                        </div>
+                    </div>
+    
+                    <div onclick="window.location.href='./login/login.html'" class="button-two">
+                        <div class="nav">
+                            Entrar
+                        </div>
                     </div>
                 </div>
+            </div>
+        </nav>
+    </header>
 
-                <div onclick="window.location.href='./login/login.html'" class="button-two">
-                    <div class="nav">
-                        Entrar
-                    </div>
-              </div>
-
-              
-              
+    <section id="main-info" class="main-info">
+        <img src="./assets/pattern 1.png" id="fundo" alt="">
+        <img src="./assets/background.png" id="background" alt="">
+        <div id="planta-container">
+            <img src="assets/tech-planta.png" id="planta" alt="">
         </div>
-  </nav>
-</header>
 
-<section id="main-info" class="main-info">
-    <img src="./assets/pattern 1.png" id="fundo" alt="">
-    <img src="assets/aaaaaaaaaaaaa.png" id="grafico" alt="">
-    <img src="./assets/camada1 1.png" id="plat" alt="">
-    <img src="assets/camada3 1.png" id="planta" alt="">
-
-    <div class="texto">
-        <div class="text__main">
-            <h1 class="titulo1">Refloreste com a</h1>
+        <div class="texto">
+            <div class="text__main">
+                <h1 class="titulo1">Refloreste com a</h1>
             </div>
             <div class="text__main2">
                 <p class="titulo2">INNOVAX</p>
             </div>
-       
+
             <div class="frase">
                 <p class="sub-text">Potencialize o Reflorestamento com a<br>nossa Solução Inteligente de Dados</p>
             </div>
-    
+
             <button class="saiba-mais" onclick="window.location.href='#about'">
                 Saiba mais!
             </button>
-    </div>
-</section>
+        </div>
+    </section>
 
-<section id="about" class="about">
-    <h1 class="tit">Descubra o Coração da InnovaX: <br>
-        Nossa Missão e Valores</h1>
+    <section id="about" class="about">
+        <h1 class="tit">Descubra o Coração da InnovaX: <br>
+            Nossa Missão e Valores</h1>
 
         <div class="grup-content">
 
             <div class="grupo-1">
 
                 <div class="card-1">
-                    
+
                     <div class="img-1">
                         <div class="sombra">
                         </div>
-                        <img src="assets/img1.png" alt=""> 
+                        <img src="assets/img1.png" alt="">
                     </div>
                     <div class="card-1-text">
                         <h3>Inovação e X</h3>
-                        <p>A InnovaX nasceu de duas <br>palavras que remetem aos <br>valores principais da empresa: <br> "innova" que vem de "inovação", <br>e "X"
-                        que simboliza a busca <br>pelo desconhecido e o desejo <br> de encontrar soluções para <br>desafios globais.</p>
+                        <p>A InnovaX nasceu de duas <br>palavras que remetem aos <br>valores principais da empresa: <br>
+                            "innova" que vem de "inovação", <br>e "X"
+                            que simboliza a busca <br>pelo desconhecido e o desejo <br> de encontrar soluções para
+                            <br>desafios globais.</p>
                     </div>
                 </div>
-        
+
                 <div class="card-2">
                     <div class="img-1">
                         <div class="sombra">
@@ -122,14 +127,16 @@
                     </div>
                     <div class="card-2-text">
                         <h3>Nossa Missão</h3>
-                        <p>Na InnovaX, nossa missão é <br> transformar o mundo por meio <br>da inovação e da tecnologia, <br>Acreditamos que a tecnologia e a <br>natureza podem caminhar juntas <br>para restaurar os ecossistemas <br>do planeta.</p>
+                        <p>Na InnovaX, nossa missão é <br> transformar o mundo por meio <br>da inovação e da tecnologia,
+                            <br>Acreditamos que a tecnologia e a <br>natureza podem caminhar juntas <br>para restaurar
+                            os ecossistemas <br>do planeta.</p>
                     </div>
                 </div>
-        
-              </div>
-        
-              <div class="grupo-2">
-        
+
+            </div>
+
+            <div class="grupo-2">
+
                 <div class="card-3">
                     <div class="img-1">
                         <div class="sombra-2">
@@ -140,167 +147,169 @@
                     </div>
                     <div class="card-3-text">
                         <h3>Inovação Contínua</h3>
-                        <p>Estamos comprometidos com <br>a busca incessante por <br>novas soluções e tecnologias <br> que possam potencializar <br> o reflorestamento e enfrentar <br> desafios ambientais globais.</p>
+                        <p>Estamos comprometidos com <br>a busca incessante por <br>novas soluções e tecnologias <br>
+                            que possam potencializar <br> o reflorestamento e enfrentar <br> desafios ambientais
+                            globais.</p>
                     </div>
                 </div>
-        
+
                 <div class="card-4">
                     <div class="img-1">
                         <div class="sombra-2">
                         </div>
-                        <img src="assets/img1-1.png" alt=""> 
+                        <img src="assets/img1-1.png" alt="">
                     </div>
                     <div class="card-4-text">
                         <h3>Sustentabilidade</h3>
-                        <p>Acreditamos que todas as <br> nossas ações devem ser <br> guiadas pelo respeito ao <br>meio ambiente, garantindo <br> um futuro sustentável para <br> as próximas gerações.</p>
+                        <p>Acreditamos que todas as <br> nossas ações devem ser <br> guiadas pelo respeito ao <br>meio
+                            ambiente, garantindo <br> um futuro sustentável para <br> as próximas gerações.</p>
                     </div>
                 </div>
-        
-              </div>
+
+            </div>
 
         </div>
 
-</section>
+    </section>
 
-<section id="values" class="values">
-    <h3 class="tit-values">
-        Tudo que você precisa
-    </h3>
-    <p class="subt">
-        A InnovaX nasceu para utilizar o poder dos dados e da tecnologia, <br> promovendo iniciativas de reflorestamento que ajudam a restaurar os ecossistemas. <br> Nosso objetivo é unir a natureza e a inovação para criar um futuro sustentável.
-    </p>
+    <section id="values" class="values">
+        <h3 class="tit-values">
+            Tudo que você precisa
+        </h3>
+        <p class="subt">
+            A InnovaX nasceu para utilizar o poder dos dados e da tecnologia, <br> promovendo iniciativas de
+            reflorestamento que ajudam a restaurar os ecossistemas. <br> Nosso objetivo é unir a natureza e a inovação
+            para criar um futuro sustentável.
+        </p>
 
-    <div class="card-content">
-      <div class="card">
-        <div class="quadrinho"><img src="assets/Icons=Ecosystem.svg"></div>
+        <div class="card-content">
+            <div class="card">
+                <div class="quadrinho"><img src="assets/Icons=Ecosystem.svg"></div>
 
-        <h3>Ecossistema de Integração</h3>
-        <p>Facilitamos a colaboração entre ONGs, governos e empresas através de ferramentas que conectam dados e promovem ações de reflorestamento coordenadas.</p>
-      </div>
-      <div class="card">
-        <div class="quadrinho"><img src="assets/Icons=Notifications.svg"></div>
+                <h3>Ecossistema de Integração</h3>
+                <p>Facilitamos a colaboração entre ONGs, governos e empresas através de ferramentas que conectam dados e
+                    promovem ações de reflorestamento coordenadas.</p>
+            </div>
+            <div class="card">
+                <div class="quadrinho"><img src="assets/Icons=Notifications.svg"></div>
 
-        <h3>Análise Inteligente de Dados</h3>
-        <p>Oferecemos monitoramento contínuo das áreas reflorestadas, com painéis interativos que permitem avaliar o impacto das iniciativas em tempo real.</p>
-      </div>
+                <h3>Análise Inteligente de Dados</h3>
+                <p>Oferecemos monitoramento contínuo das áreas reflorestadas, com painéis interativos que permitem
+                    avaliar o impacto das iniciativas em tempo real.</p>
+            </div>
 
-      <div class="card">
-        <div class="quadrinho"><img src="assets/Icons=Lock.svg"></div>
+            <div class="card">
+                <div class="quadrinho"><img src="assets/Icons=Lock.svg"></div>
 
-        <h3>Segurança de Dados</h3>
-        <p>Protegemos seus dados e informações com tecnologia de criptografia avançada, assegurando que todas as operações sejam seguras e confiáveis.</p>
-      </div>
-      <!-- <div class="card">
+                <h3>Segurança de Dados</h3>
+                <p>Protegemos seus dados e informações com tecnologia de criptografia avançada, assegurando que todas as
+                    operações sejam seguras e confiáveis.</p>
+            </div>
+            <!-- <div class="card">
         <img src="./assets/planta.png" alt="" />
         <p>Resiliência</p>
       </div> -->
-    </div>
-  </section>
-
-
-<section id="services" class="services">
-    
-    <div>
-        
-        <div class="tit-services">
-            <h5 class="breve">em breve!</h5>
-            <h1 class="tit-ajudar">Interface Intuitiva: <br>Entenda como ajudamos o reflorestamento!</h1>
         </div>
-        
-        
-        <img src="./assets/novaimagem.png" alt="" />
-        
-        <div class="infos">
-            <div class="infos-content">
-                <div class="infos-1">
+    </section>
 
-                    <div class="info-services">
-                        <div class="info-img"><img src="assets/chart-line 1.svg" alt=""></div>
+    <section id="services" class="services">
 
-                        <h1 class="info-tit">Relatórios Visuais</h1>
-                        <p class="info-subt">
-                        Insights visuais sobre o
-                        desempenho das suas 
-                        áreas de reflorestamento.
-                        </p>
+        <div>
+
+            <div class="tit-services">
+                <h1 class="tit-ajudar">Interface Intuitiva: <br>Entenda como ajudamos o reflorestamento!</h1>
+            </div>
+
+
+            <img src="./assets/dashboard.png" alt="" />
+
+            <div class="infos">
+                <div class="infos-content">
+                    <div class="infos-1">
+
+                        <div class="info-services">
+                            <div class="info-img"><img src="assets/chart-line 1.svg" alt=""></div>
+
+                            <h1 class="info-tit">Relatórios Visuais</h1>
+                            <p class="info-subt">
+                                Insights visuais sobre o
+                                desempenho das suas
+                                áreas de reflorestamento.
+                            </p>
+                        </div>
+
+                        <div class="info-services">
+                            <div class="info-img"><img src="assets/target 1.svg" alt=""></div>
+                            <h1 class="info-tit">Definição de Metas Ambientais</h1>
+
+                            <p class="info-subt">
+                                Ajudamos você a definir e alcançar
+                                metas ambientais com assistência
+                                orientada.
+                            </p>
+                        </div>
+
+                        <div class="info-services">
+                            <div class="info-img"><img src="assets/cursor-click 1.svg" alt=""></div>
+
+                            <h1 class="info-tit">Otimização com um Clique</h1>
+                            <p class="info-subt">
+                                Faça otimizações dos seus projetos
+                                de reflorestamento com apenas um clique.
+                            </p>
+                        </div>
+
+                        <div class="info-services">
+                            <div class="info-img"><img src="assets/sparkle 1.svg" alt=""></div>
+    
+                            <h1 class="info-tit">Gerador Inteligente de Soluções</h1>
+    
+                            <p class="info-subt">
+                                Sugestões automáticas das melhores
+                                práticas e áreas para focar no
+                                reflorestamento.
+                            </p>
+                        </div>
+    
+                        <div class="info-services">
+                            <div class="info-img"><img src="assets/bell-ringing 1.svg" alt=""></div>
+    
+                            <h1 class="info-tit">Alertas Automatizados</h1>
+    
+                            <p class="info-subt">
+                                Notificações automáticas sobre
+                                o progresso dos seus projetos,
+                                incluindo soluções rápidas.
+                            </p>
+                        </div>
+    
+                        <div class="info-services">
+                            <div class="info-img"><img src="assets/files 1.svg" alt=""></div>
+    
+                            <h1 class="info-tit">Relatórios de Comparação</h1>
+    
+                            <p class="info-subt">
+                                Fornece insights sobre o progresso
+                                de iniciativas de reflorestamento
+                                similares.
+                            </p>
+                        </div>
                     </div>
-
-                    <div class="info-services">
-                        <div class="info-img"><img src="assets/target 1.svg" alt=""></div>
-                        <h1 class="info-tit">Definição de Metas Ambientais</h1>
-                    
-                    <p class="info-subt">
-                        Ajudamos você a definir e alcançar
-                        metas ambientais com assistência
-                        orientada.
-                    </p>
-                    </div>
-
-                    <div class="info-services">
-                        <div class="info-img"><img src="assets/cursor-click 1.svg" alt=""></div>
-
-                        <h1 class="info-tit">Otimização com um Clique</h1>
-                    <p class="info-subt">
-                        Faça otimizações dos seus projetos
-                        de reflorestamento com apenas um clique.
-                    </p>
-                    </div>
-
-                </div>
-
-                <div class="infos-2">
-                    
-                    <div class="info-services">
-                        <div class="info-img"><img src="assets/sparkle 1.svg" alt=""></div>
-
-                        <h1 class="info-tit">Gerador Inteligente de Soluções</h1>
-                    
-                    <p class="info-subt">
-                        Sugestões automáticas das melhores 
-                        práticas e áreas para focar no 
-                        reflorestamento.
-                    </p>
-                    </div>
-
-                    <div class="info-services">
-                        <div class="info-img"><img src="assets/bell-ringing 1.svg" alt=""></div>
-
-                        <h1 class="info-tit">Alertas Automatizados</h1>
-                    
-                    <p class="info-subt">
-                        Notificações automáticas sobre 
-                        o progresso dos seus projetos, 
-                        incluindo soluções rápidas.
-                    </p>
-                    </div>
-
-                    <div class="info-services">
-                        <div class="info-img"><img src="assets/files 1.svg" alt=""></div>
-
-                        <h1 class="info-tit">Relatórios de Comparação</h1>
-                    
-                    <p class="info-subt">
-                        Fornece insights sobre o progresso 
-                        de iniciativas de reflorestamento 
-                        similares.
-                    </p>
-                    </div>
-
                 </div>
             </div>
-        </div>
 
-</section>
+    </section>
 
-<section id="contatos">
-    <div class="contact">
+    <section id="contatos">
+        <div class="contact">
 
             <form action="" class="form-contato">
                 <div class="entrar-em-contato">
 
                     <h1>Fale conosco!</h1>
-                    <p>Entre em contato conosco e descubra como podemos potencializar suas iniciativas de reflorestamento!</p>
-        
+                    <p>Entre em contato conosco e descubra como podemos potencializar suas iniciativas de
+                        reflorestamento!</p>
+
                 </div>
 
                 <div class="info-principais">
@@ -330,14 +339,14 @@
                     </div>
 
                 </div>
-                
+
                 <div class="info-principais">
                     <div class="inputs">
-                    <label for="mensagem">Como podemos ajudar?</label>
-                    <textarea id="messagem-usuario" placeholder="Digite aqui a sua mensagem"></textarea>
+                        <label for="mensagem">Como podemos ajudar?</label>
+                        <textarea id="messagem-usuario" placeholder="Digite aqui a sua mensagem"></textarea>
+                    </div>
                 </div>
-                </div>
-                
+
 
                 <button class="btn-enviar" type="submit">
                     Enviar
@@ -346,31 +355,35 @@
 
             <div class="contact-img"><img src="assets/Image box.png" alt=""></div>
 
-    </div>
+        </div>
 
-  </section>
-  
-  <footer id="foot">
-    <div class="footer-container">
-      <div class="footer-section">
-        <img class="logo-1-footer" alt="" src="assets\logo.png">
-        <ul>
-          <li><a href="#main-info">Início</a></li>
-          <li><a href="#about">Sobre nós</a></li>
-          <li><a href="#services">Nosso serviço</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </div>
-      <div class="footer-section-1">
-        <h4>Contato</h4>
-        <p>Email: <br>InnovaX@gmail.com</p>
-        <p>Telefone: <br>(11) 1234-5678</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 InnovaX. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+    </section>
+
+    <footer id="foot">
+        <div id="footer-img-container">
+            <img class="logo-1-footer" alt="" src="assets\logo1.png">
+        </div>
+        <div class="footer-container">
+            <div class="footer-section">
+                <ul>
+                    <h4>Atalhos</h4>
+                    <li><a href="#main-info">Início</a></li>
+                    <li><a href="#about">Sobre nós</a></li>
+                    <li><a href="#services">Nosso serviço</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section-1">
+                <h4>Contatos</h4>
+                <p>Email: <br>InnovaX@gmail.com</p>
+                <p>Telefone: <br>(11) 1234-5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 InnovaX. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>
