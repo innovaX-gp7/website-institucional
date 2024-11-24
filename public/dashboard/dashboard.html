@@ -223,7 +223,11 @@
         atualizarDados.href = "./atualizarDadosEmpresa.html"
         document.querySelector(".display-none").classList.remove("display-none")
     } else {
-        b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
+        if(!sessionStorage.NOME_FUNCIONARIO){
+            b_usuario.innerHTML = "Usuário";
+        } else {
+            b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
+        }
         atualizarDados.href = "./atualizarDados.html"
     }
 
