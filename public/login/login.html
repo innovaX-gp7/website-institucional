@@ -34,7 +34,7 @@
             </div>
 
             <div class="input-content">
-                <div>
+                <div class="relative">
                     <p> Digite seu email </p>
                     <input type="email" id="iptEmail" placeholder="Roberto@exemplo.com">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -45,7 +45,7 @@
                     </svg>
                 </div>
 
-                <div>
+                <div class="relative">
                     <p> Digite sua senha </p>
                     <input type="password" id="iptPasswd" placeholder="Senha">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -74,6 +74,7 @@
 
 
             function validar() {
+
                 const email = document.getElementById('iptEmail');
                 const passwd = document.getElementById('iptPasswd');
                 const warning = document.getElementById('warning');
@@ -87,77 +88,45 @@
                     return;
                 }
 
+                fetch("/usuario/autenticar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        emailServer: email.value,
+                        senhaServer: passwd.value,
+                    }),
+                })
+                    .then(response => {
+                        if (response.status == 200) {
+                            
+                            response.json().then(data => {
 
-                autenticarEmpresa(email.value, passwd.value)
-                    .then((empresaLogada) => {
-                        if (empresaLogada) {
-                            // Redireciona para o dashboard de empresa
-                            setTimeout(() => {
-                                window.location.href = "../dashboard/dashboard.html";
-                            }, 1000);
+                                sessionStorage.NOME_USUARIO = data.nome
+                                sessionStorage.cpf = data.cpf
+                                sessionStorage.role = data.role
+
+                                console.log(data)
+
+                                btnSubmit.innerText = "Redirecionando"
+                                btnSubmit.style.background = "green"
+    
+                                setTimeout(() => {
+                                   window.location.href = "../dashboard/dashboard.html";
+                                }, 2000);
+
+                            })
+                            
+
+                            
+                            
+
                         } else {
-                            // Se falhou como empresa, tenta autenticar como funcionário
-                            autenticarFuncionario(email.value, passwd.value)
-                                .then((funcionarioLogado) => {
-                                    if (funcionarioLogado) {
-                                        setTimeout(() => {
-                                            btnSubmit.innerText = "Login realizado com sucesso"
-                                            btnSubmit.style.background = "green"
-                                            window.location.href = "../dashboard/dashboard.html";
-                                          
-                                        }, 1000);
-                                    } else {
-                                        warning.style.display = "block";
-                                        warning.innerText = "Email ou senha incorretos!";
-                                    }
-                                })
-                                .catch((erro) => console.error(erro));
+                            warning.style.display = "block";
+                            warning.innerText = "Email ou senha incorretos!";
                         }
                     })
-                    .catch((erro) => console.error(erro));
-            }
+                    .catch(e => console.error(e))
 
-
-            function autenticarEmpresa(email, senha) {
-                return fetch("/empresas/autenticar", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ emailServer: email, senhaServer: senha }),
-                })
-                    .then((res) => res.ok ? res.json() : null)
-                    .then((json) => {
-                        if (json) {
-                            sessionStorage.setItem("ID_EMPRESA", json.idEmpresa);
-                            sessionStorage.setItem("NOME_EMPRESA", json.nome);
-                            sessionStorage.setItem("EMAIL_EMPRESA", json.email);
-                            sessionStorage.setItem("CNPJ_EMPRESA", json.cnpj);
-                            sessionStorage.setItem("SENHA_EMPRESA", json.senha);
-                            return true;
-                        }
-                        return false;
-                    });
-            }
-
-
-            function autenticarFuncionario(email, senha) {
-                return fetch("/funcionario/autenticar", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ emailServer: email, senhaServer: senha }),
-                })
-                    .then((res) => res.ok ? res.json() : null)
-                    .then((json) => {
-                        if (json) {
-                            sessionStorage.setItem("ID_FUNCIONARIO", json.idFuncionario);
-                            sessionStorage.setItem("NOME_FUNCIONARIO", json.nome);
-                            sessionStorage.setItem("EMAIL_FUNCIONARIO", json.email);
-                            sessionStorage.setItem("CPF_FUNCIONARIO", json.cpf);
-                            sessionStorage.setItem("SENHA_FUNCIONARIO", json.senha);
-                            sessionStorage.setItem("FK_EMPRESA", json.fkEmpresaFuncio);
-                            return true;
-                        }
-                        return false;
-                    });
             }
 
 

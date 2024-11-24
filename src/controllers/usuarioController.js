@@ -1,4 +1,4 @@
-var funcionarioModel = require("../models/funcionarioModel");
+var usuarioModel = require("../models/usuarioModel");
 
 
 function autenticar(req, res) {
@@ -11,7 +11,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        funcionarioModel.autenticar(email, senha)
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -19,20 +19,18 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                        res.json({
-                            idFuncionario: resultadoAutenticar[0].idFuncionario,
+                        res.status(200).json({
+                            id: resultadoAutenticar[0].id,
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             cpf: resultadoAutenticar[0].cpf,
                             senha: resultadoAutenticar[0].senha,
-                            fkEmpresaFuncio: resultadoAutenticar[0].fkEmpresaFuncio
+                            fkEmpresa: resultadoAutenticar[0].fkEmpresa
 
 
                         });
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
-                    } else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    } else  {
+                        res.status(404).send("Email e/ou senha inválido(s)");
                     }
                 }
             ).catch(
@@ -48,25 +46,25 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var razaoSocial = req.body.razaoSocialServer;
+    var nomeFantasia = req.body.nomeFantasiaServer
+    var cnpj = req.body.cnpjServer;
     var nome = req.body.nomeServer
     var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresaFuncio = req.body.fkEmpresaFuncioServer; 
     
     // Faça as validações dos valores
     if (cpf == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
+        res.status(400).send("Seu cpf está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresaFuncio === undefined || fkEmpresaFuncio === 'undefined') {
-        return res.status(400).send("O ID da empresa está indefinido!");
     } else {
         console.log(cpf)
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        funcionarioModel.cadastrar(nome, cpf, email, senha, fkEmpresaFuncio)
+        usuarioModel.cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -86,13 +84,13 @@ function cadastrar(req, res) {
 
 
 function editar(req, res) {
-    var idFuncionario = req.body.idFuncionarioServer;
+    var id = req.body.idServer;
     var nome = req.body.nomeServer;
     var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    funcionarioModel.editar(idFuncionario, nome, cpf, email, senha)
+    usuarioModel.editar(id, nome, cpf, email, senha)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -108,20 +106,20 @@ function editar(req, res) {
 
 }
 
-function getAllFuncionario(req, res) {
+/*function getAllFuncionario(req, res) {
 
     const id = req.params.idEmpresa
 
-    funcionarioModel.getAllFuncionario(id)
+    usuarioModel.getAllFuncionario(id)
     .then((funcionario) => { 
         return res.status(200).json(funcionario) 
     })
-}
+}*/
 
 function deletarFuncionario(req, res) {
     const id = req.params.id
 
-    funcionarioModel.deletarFuncionario(id)
+    usuarioModel.deletarFuncionario(id)
     .then((funcionario) => {
         return res.status(204).json(funcionario)
     })
@@ -132,7 +130,6 @@ module.exports = {
     autenticar,
     cadastrar,
     editar,
-    getAllFuncionario,
     deletarFuncionario
 
 }

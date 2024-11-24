@@ -1,6 +1,6 @@
 var empresaModel = require("../models/empresaModel");
 
-function autenticar(req, res) {
+/* function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
@@ -19,7 +19,7 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json({
-                            idEmpresa: resultadoAutenticar[0].idEmpresa,
+                            idEmpresa: resultadoAutenticar[0].id,
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             cnpj: resultadoAutenticar[0].cnpj,
@@ -40,9 +40,9 @@ function autenticar(req, res) {
             );
     }
 
-}
+} */
 
-function cadastrar(req, res) {
+/* function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer
     var cnpj = req.body.cnpjServer;
@@ -75,16 +75,16 @@ function cadastrar(req, res) {
                 }
             );
     }
-}
+} */
 
 function editar(req, res) {
-    var idEmpresa = req.body.idEmpresaServer;
-    var nome = req.body.nomeServer;
+    var id = req.body.idServer;
+    var razaoSocial = req.body.razaoSocialServer;
+    var nomeFantasia = req.body.nomeFantasiaServer;
     var cnpj = req.body.cnpjServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+  
 
-    empresaModel.editar(idEmpresa, nome, cnpj, email, senha)
+    empresaModel.editar(id, razaoSocial, nomeFantasia, cnpj)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -110,11 +110,17 @@ function deletar(req, res) {
     })
 }
 
+function getEmpresas(req, res) {
+    empresaModel.getEmpresas()
+    .then((empresa) => {
+        return res.status(200).json(empresa)
+    })
+}
+
 
 
 module.exports = {
-    autenticar,
-    cadastrar,
     editar,
-    deletar
+    deletar,
+    getEmpresas
 }

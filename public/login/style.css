@@ -11,13 +11,13 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-header {
-    margin-bottom: 3rem;
-}
-
 header img {
     max-width: 150px;
     width: 100%;
+}
+
+.relative {
+    position: relative;
 }
 
 form {
@@ -52,8 +52,11 @@ form {
     font-weight: 700;
 }
 
-.input-content div input {
+form input {
     width: 100%;
+}
+
+.input-content div input {
     border: 3px solid transparent;
     padding: 20px 40px;
     border-radius: 5px;
@@ -66,25 +69,23 @@ form {
     color: white;
 }
 
-form .input-content div:nth-child(2) svg {
-    position: absolute;
-    top: 165px;
-    left: 10px;
+
+form .half-input {
+    display: flex;
+    gap: 10px;
 }
 
-form .input-content div:nth-child(3) svg {
-    position: absolute;
-    top: 277px;
-    left: 10px;
+form .half-input div {
+    flex: 1;
 }
 
 form svg {
     position: absolute;
-    top: 52px;
     left: 10px;
+    bottom: 21px;
 }
 
-form a{
+form a {
     text-align: right;
     color: white;
     text-decoration: none;
@@ -133,10 +134,6 @@ aside {
         grid-template-columns: 1fr 1.5fr;
         gap: 50px;
         justify-items: center;
-    }
-
-    header {
-        margin-bottom: 2rem;
     }
 
     aside {
