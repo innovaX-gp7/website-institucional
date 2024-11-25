@@ -71,6 +71,7 @@ modified_at datetime
 
 create table parametroRecomendacao (
 id int primary key not null auto_increment,
+parametro DECIMAL(6,2),
 fkEmpresa int,
 fkTipoParametro int,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -90,5 +91,9 @@ constraint fk_empresa_log foreign key (fkEmpresa) references empresa(id)
 
 insert into userRole (nome)
 values ('Representante'),
-('Gestor'),
+('Gerente'),
 ('Funcionário');
+
+insert into tipoParametro (nome) values ('Área'),
+('Temperatura'),
+('Precipitação');

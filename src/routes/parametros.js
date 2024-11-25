@@ -8,7 +8,7 @@ router.post("/cadastrar", function (req, res) {
 })
 
 
-router.put("/editar/:idParametro", function (req, res) {
+router.put("/editar/:idEmpresa", function (req, res) {
     parametroController.editar(req, res);
 });
 

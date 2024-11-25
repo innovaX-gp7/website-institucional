@@ -36,10 +36,12 @@ function cadastrar(req, res) {
 
 
 function editar(req, res) {
-    var id = req.params.idParametro;
+   
+    var fkTipoParametro = req.body.fkTipoParametroServer;
     var parametro = req.body.parametroServer;
+    var fkEmpresa = req.body.idEmpresaServer;
 
-    parametroModel.editar(id, parametro)
+    parametroModel.editar(fkTipoParametro, parametro, fkEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
