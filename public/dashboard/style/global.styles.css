@@ -161,6 +161,28 @@ td:hover {
     display: none;
 }
 
+select {
+    padding: 17px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #041802;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+#button-editar {
+
+    border: none;
+    background-color: #041802;
+    color: white;
+    width: 30%;
+    height: 55%;
+    border-radius: 5px;
+  
+
+}
+
 @keyframes comeIn {
     0% {
         transform: translateY(-20px);
