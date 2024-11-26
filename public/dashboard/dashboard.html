@@ -233,6 +233,7 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+
     if (sessionStorage.getItem('fkUserRole') === '3') {
     document.querySelector(".total").classList.add("display-none");
 } else if (sessionStorage.getItem('fkUserRole') === '2') {
@@ -241,6 +242,7 @@
 } else if (sessionStorage.getItem('fkUserRole') === '1') {
     document.querySelector("#gerenciarFuncionario a").href = "./gerenciarFuncionario.html";
 } 
+
 
 
     const ctx = document.getElementById('myChart');
