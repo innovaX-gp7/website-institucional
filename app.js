@@ -18,6 +18,7 @@ var empresaRouter = require("./src/routes/empresas");
 var usuarioRouter = require("./src/routes/usuario");
 var parametroRouter = require("./src/routes/parametros");
 var recomendacaoRouter = require("./src/routes/recomendacoes");
+var leituraRouter = require("./src/routes/leitura");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,6 +31,7 @@ app.use("/empresas", empresaRouter);
 app.use("/usuario", usuarioRouter);
 app.use("/parametros", parametroRouter);
 app.use("/recomendacao", recomendacaoRouter);
+app.use("/leitura", leituraRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

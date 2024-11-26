@@ -141,6 +141,7 @@
                     </svg>
                 </div>
                 <span id="estadoPrejudicado">Amapá</span>
+                <span id="percentualEstadoPrejudicado">10% comparado ao ano anterior</span>
             </div>
 
             <div class="card-kpi">
@@ -157,12 +158,12 @@
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="#ff7070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        stroke="#ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-chevrons-up">
                         <path d="m17 11-5-5-5 5" />
                         <path d="m17 18-5-5-5 5" />
                     </svg>
-                    <span>10%</span>
+                    <span id="temperatura">10%</span>
                 </div>
             </div>
 
@@ -180,12 +181,12 @@
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="#ff7070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        stroke="#ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-chevrons-up">
                         <path d="m17 11-5-5-5 5" />
                         <path d="m17 18-5-5-5 5" />
                     </svg>
-                    <span> 20%</span>
+                    <span id="desmatamentoTotal">20%</span>
                 </div>
             </div>
 
@@ -226,6 +227,124 @@
 
 <script>
 
+    const idEmpresa = sessionStorage.idEmpresa
+
+    fetch(`/leitura/${idEmpresa}`)
+        .then(response => response.json())
+        .then(data => {
+
+            const ctx = document.getElementById('myChart');
+            const ctv = document.getElementById('myChart3');
+
+            const estados = ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins', 'Mato Grosso', 'Maranhão'];
+            const temperaturas = estados.map(estado => {
+                const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+                return estadoData ? parseFloat(estadoData.temperaturaMensal) : 0;
+            });
+
+            const umidades = estados.map(estado => {
+                const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+                return estadoData ? parseFloat(estadoData.precipitacaoMensal) : 0; 
+            });
+
+            const areasDesmatadas = estados.map(estado => {
+            const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+            return estadoData ? parseFloat(estadoData.areaDesmatada) : 0; 
+        });
+
+
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
+                    datasets: [{
+                        label: 'Temperatura',
+                        data: temperaturas,
+                        borderWidth: 1,
+                        backgroundColor: '#00ad79',
+                        borderColor: 'black',
+                        order: 2,
+                    },
+                    {
+                        label: 'Umidade',
+                        data: umidades,
+                        type: 'line',
+                        backgroundColor: 'white',
+                        borderColor: '#006546',
+                        order: 1
+                    }],
+                },
+                options: {
+                    layout: {
+                        padding: 10
+                    }
+                }
+            });
+
+            new Chart(ctv, {
+                type: 'bar',
+                data: {
+                    label: 'Estado',
+                    labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
+                    datasets: [{
+                        label: 'Área desmatada',
+                        data: areasDesmatadas,
+                        borderWidth: 1,
+                        backgroundColor: '#00ce90',
+                        borderColor: 'rgb(75, 192, 192)',
+                    },
+                    ]
+                },
+                options: {
+                    plugins: {
+                    },
+                }
+            });;
+        })
+
+        fetch(`/leitura/${idEmpresa}/maiordesmatamentopercentual`)
+        .then(response => response.json())
+        .then(data => {
+            data = data[0]
+            estadoPrejudicado.innerHTML = data.unidadeFederativa;
+            percentualEstadoPrejudicado.innerHTML = `${Math.floor(data.diferencaDesmatamento)}% comparado ao ano anterior`
+        })
+        .catch(e => console.error(e))
+
+        fetch(`/leitura/${idEmpresa}/temperatura`)
+        .then(response => response.json())
+        .then(data => {
+            data = data[0]
+
+            const texto = Math.floor(data.alteracaoPercentualTotalTemperatura) + '%'
+            
+            if (data.alteracaoPercentualTotalTemperatura < 0) {
+                temperatura.style.color = 'green'       
+            } 
+
+            temperatura.innerHTML = texto
+        })
+        .catch(e => console.error(e))
+
+        
+        fetch(`/leitura/${idEmpresa}/desmatamentoTotalComparadoAoAnoAnterior`)
+        .then(response => response.json())
+        .then(data => {
+            data = data[0]
+
+            const texto = Math.floor(data.alteracaoPercentualTotal) + '%'
+            
+            if (data.alteracaoPercentualTotal < 0) {
+                desmatamentoTotal.style.color = 'green'       
+            } 
+
+            desmatamentoTotal.innerHTML = texto  
+        })
+        .catch(e => console.error(e))
+
+        
+
     function deslogar() {
         sessionStorage.clear()
         window.location = "../"
@@ -245,54 +364,5 @@
         atualizarDados.href = "./atualizarDados.html"
     }
 
-    const ctx = document.getElementById('myChart');
-    const ctv = document.getElementById('myChart3');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
-            datasets: [{
-                label: 'Temperatura',
-                data: [12, 19, 3, 5, 2, 3, 10, 20, 30],
-                borderWidth: 1,
-                backgroundColor: '#00ad79',
-                borderColor: 'black',
-                order: 2,
-            },
-            {
-                label: 'Umidade',
-                data: [20, 20, 20, 20, 20, 10, 10, 10, 5],
-                type: 'line',
-                backgroundColor: 'white',
-                borderColor: '#006546',
-                order: 1
-            }],
-        },
-        options: {
-            layout: {
-                padding: 10
-            }
-        }
-    });
-
-    new Chart(ctv, {
-        type: 'bar',
-        data: {
-            label: 'Estado',
-            labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
-            datasets: [{
-                label: 'Área desmatada',
-                data: [12, 19, 3, 5, 2, 3, 10, 10],
-                borderWidth: 1,
-                backgroundColor: '#00ce90',
-                borderColor: 'rgb(75, 192, 192)',
-            },
-            ]
-        },
-        options: {
-            plugins: {
-            },
-        }
-    });;
 </script>

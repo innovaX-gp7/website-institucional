@@ -33,7 +33,6 @@
                 <p> Bem-vindo! Se cadastre para ter acesso aos nossos recursos! </p>
             </div>
 
-            
             <div class="input-content">
                 <h2>Dados da empresa</h2>
 
@@ -76,7 +75,7 @@
                 </div>
 
                 <h2>Dados do representante legal</h2>
-                
+
                 <div class="half-input">
                     <div class="relative">
                         <p> Nome </p>
@@ -99,11 +98,19 @@
                         </svg>
                     </div>
                 </div>
-                
+
                 <div class="relative">
                     <p> CPF </p>
                     <input id="iptCPF" type="text" placeholder="00.000.000/0001-00"> <!--oninput="formatCNPJ(this)"-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-id-card"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-id-card">
+                        <path d="M16 10h2" />
+                        <path d="M16 14h2" />
+                        <path d="M6.17 15a3 3 0 0 1 5.66 0" />
+                        <circle cx="9" cy="11" r="2" />
+                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                    </svg>
                 </div>
                 <div class="relative">
                     <p> Senha</p>
@@ -134,7 +141,7 @@
 
         function validar() {
 
-        
+
             const razaoSocial = iptRazaoSocial
             const nomeFantasia = iptNomeFantasia
             const email = iptEmail
@@ -295,10 +302,10 @@
                 btnSubmit.disabled = true
                 warning.innerText = ""
 
-            fetch("/usuario/cadastrar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
+                fetch("/usuario/cadastrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
                         razaoSocialServer: razaoSocial.value,
                         cnpjServer: cnpj.value,
                         nomeFantasiaServer: nomeFantasia.value,
@@ -306,32 +313,32 @@
                         cpfServer: cpf.value,
                         emailServer: email.value,
                         senhaServer: passwd.value,
-                    
-                })
-            }).then(response => {
-                console.log("Insert Response: ")
-                console.log(response)
-                if (response.ok) {
-                    warning.innerText = ""
-                    passwd.classList.remove("input-warning")
-                    email.classList.remove("input-warning")
-                    cnpj.classList.remove("input-warning")
-                    razaoSocial.classList.remove("input-warning")
-                    nomeFantasia.classList.remove("input-warning")
-                    nome.classList.remove("input-warning")
-                    cpf.classList.remove("input-warning")
-                    
-                    
-                    btnSubmit.innerText = "Redirecionando"
-                    btnSubmit.style.background = "green"
-                    setTimeout(() => window.location = "./login.html", 3000)
-                }
-            }).catch(error => {
-                btnSubmit.disabled = false
-                console.log("Erro na Inserção: " + error)
-            })
 
-        }
+                    })
+                }).then(response => {
+                    console.log("Insert Response: ")
+                    console.log(response)
+                    if (response.ok) {
+                        warning.innerText = ""
+                        passwd.classList.remove("input-warning")
+                        email.classList.remove("input-warning")
+                        cnpj.classList.remove("input-warning")
+                        razaoSocial.classList.remove("input-warning")
+                        nomeFantasia.classList.remove("input-warning")
+                        nome.classList.remove("input-warning")
+                        cpf.classList.remove("input-warning")
+
+
+                        btnSubmit.innerText = "Redirecionando"
+                        btnSubmit.style.background = "green"
+                        setTimeout(() => window.location = "./login.html", 3000)
+                    }
+                }).catch(error => {
+                    btnSubmit.disabled = false
+                    console.log("Erro na Inserção: " + error)
+                })
+
+            }
         }
         //o tal do regex
         function formatCNPJ(input) {
