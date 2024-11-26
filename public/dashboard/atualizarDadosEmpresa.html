@@ -249,6 +249,7 @@
     }
 
     function deletar() {
+        var idEmpresa = sessionStorage.idEmpresa;
         fetch(`http://localhost:80/empresas/deletar/${idEmpresa}`, {
             method: "DELETE"
         })

@@ -18,7 +18,7 @@ router.get("/:idEmpresa", (req, res) => {
 });
 
 
-router.delete("/deletar/:idParametro", (req, res) => {
+router.delete("/deletarParametro/:idEmpresa", (req, res) => {
     parametroController.deletarParametro(req, res);
 })
 

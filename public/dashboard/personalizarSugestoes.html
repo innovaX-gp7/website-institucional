@@ -142,7 +142,7 @@
                 </div>
                 <button class="cadastrar" onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
                 <div class="btn-content">
-                    <button id="btnSubmit" class="btn-alter" onclick="editar()">Alterar</button>
+                    <button class="btn-alter" onclick="editar()">Atualizar</button>
                     <button class="btn-delete" onclick="gerarModalExcluir()">Excluir parametrização</button>
                 </div>
             </div>
@@ -167,7 +167,7 @@
 
         <div>
             <button onclick="cancelar()">Cancelar</button>
-            <button onclick="deletarParametrizacao()">Excluir</button>
+            <button onclick="deletarParametro()" id="btnSubmit">Excluir</button>
         </div>
 
     </div>
@@ -240,97 +240,87 @@
 
                 if (success) {
 
-
-                    sessionStorage.setItem("area", area);
-                    sessionStorage.setItem("temperatura", temperatura);
-                    sessionStorage.setItem("precipitacao", precipitacao);
-                    btnSubmit.innerText = "Cadastro de parametrização realizado com sucesso";
-                    btnSubmit.style.background = "green";
+                    document.querySelector('#btnSubmit').innerHTML = "Cadastro de parametrização realizado com sucesso";
+                 document.querySelector('#btnSubmit').style.background = "green";
 
                 } else {
 
-                    btnSubmit.innerText = "Erro ao cadastrar parametrização";
-                    btnSubmit.style.background = "red";
+                    document.querySelector('#btnSubmit').innerHTML = "Erro ao cadastrar parametrização";
+                    document.querySelector('#btnSubmit').style.background = "red";
                 }
             })
             .catch((error) => {
                 console.error("Erro na Inserção: ", error);
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "Erro ao cadastrar parametrização";
-                btnSubmit.style.background = "red";
             });
     }
 
 
 
     function editar() {
-    var idEmpresa = sessionStorage.idEmpresa;
-    let idUsuario = sessionStorage.ID_USUARIO;
+        let idEmpresa = sessionStorage.idEmpresa;
+        let area = document.getElementById("area").value;
+        let temperatura = document.getElementById("temperatura").value;
+        let precipitacao = document.getElementById("precipitacao").value;
+       
+        function editarParametro(parametro, fkTipoParametro) {
+            return fetch(`/parametros/editar/${sessionStorage.getItem("idEmpresa")}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    parametroServer: parametro,
+                    fkTipoParametroServer: fkTipoParametro,
+                    fkEmpresaServer: idEmpresa
+                }),
+            });
+        }
 
-    // Captura os valores dos campos de entrada
-    let area = document.getElementById("area").value;
-    let temperatura = document.getElementById("temperatura").value;
-    let precipitacao = document.getElementById("precipitacao").value;
+        Promise.all([
+            editarParametro(area, 1),
+            editarParametro(temperatura, 2),
+            editarParametro(precipitacao, 3),
+        ])
+            .then((responses) => {
+                let success = true;
 
-    // Função para enviar o update de cada parâmetro
-    function editarParametro(parametro, fkTipoParametro) {
-        return fetch(`/parametros/editar`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify({
-                parametroServer: parametro,
-                fkTipoParametroServer: fkTipoParametro,
-                fkEmpresaServer: idEmpresa,
-            }),
-        });
+
+                responses.forEach((response) => {
+                    if (!response.ok) success = false;
+                });
+
+                if (success) {
+
+                    document.querySelector('#btnSubmit').innerHTML = "Parâmetros atualizados";
+                 document.querySelector('#btnSubmit').style.background = "green";
+
+                } else {
+
+                    document.querySelector('#btnSubmit').innerHTML = "Erro ao atualizar parametrização";
+                    document.querySelector('#btnSubmit').style.background = "red";
+                }
+            })
+            .catch((error) => {
+                console.error("Erro na Inserção: ", error);
+            });
     }
 
-    // Promises para realizar o update de todos os parâmetros
-    Promise.all([
-        editarParametro(area, 1),
-        editarParametro(temperatura, 2),
-        editarParametro(precipitacao, 3),
-    ])
-        .then((responses) => {
-            let success = true;
 
-            // Verificar se todas as respostas foram bem-sucedidas
-            responses.forEach((response) => {
-                if (!response.ok) success = false;
-            });
 
-            if (success) {
-                // Atualizar os dados no sessionStorage
-                sessionStorage.setItem("area", area);
-                sessionStorage.setItem("temperatura", temperatura);
-                sessionStorage.setItem("precipitacao", precipitacao);
 
-                // Feedback visual de sucesso
-                btnSubmit.innerText = "Parâmetros atualizados com sucesso!";
-                btnSubmit.style.background = "green";
-            } else {
-                // Feedback visual de erro
-                btnSubmit.innerText = "Erro ao atualizar os parâmetros!";
-                btnSubmit.style.background = "red";
-            }
+    function deletarParametro() {
+        var idEmpresa = sessionStorage.idEmpresa;
+        fetch(`http://localhost:80/parametros/deletarParametro/${idEmpresa}`, {
+            method: "DELETE"
         })
-        .catch((error) => {
-            console.error("Erro na atualização:", error);
-
-            // Feedback visual de erro
-            btnSubmit.innerText = "Erro ao atualizar os parâmetros!";
-            btnSubmit.style.background = "red";
-        });
-}
+            .then(response => {
+                if (response.status == 204) {
+                    document.querySelector('#btnSubmit').innerHTML = "Parâmetros deletados!";
+                    document.querySelector("#modal").style.display = 'none'
+                    document.querySelector(".overlay").style.display = 'none'
 
 
-
-
-
-
-
-    function deletarParametrizacao() {
-        // lógica para deletar
+                }
+            })
+            .catch(error => console.error(error))
     }
 
 
