@@ -24,7 +24,7 @@ function deletar(idEmpresa) {
     database.executar(sql)
     sql = `DELETE FROM logJAR WHERE fkEmpresa = ${idEmpresa}`
     database.executar(sql)
-    sql = `DELETE FROM recomendacaoIA WHERE fkEmpresa = ${idEmpresa}`
+    sql = `DELETE FROM recomendacao WHERE fkEmpresa = ${idEmpresa}`
     database.executar(sql)
     sql = `DELETE FROM leitura WHERE fkEmpresa = ${idEmpresa}`
     database.executar(sql)

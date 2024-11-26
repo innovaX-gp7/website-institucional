@@ -105,9 +105,10 @@ function deletar(req, res) {
     const idEmpresa = req.params.idEmpresa
 
     empresaModel.deletar(idEmpresa)
-    .then((empresa) => {
-        return res.status(204).json(empresa)
+    .then(() => {
+        return res.status(204).json({"msg": "Empresa deletada"})
     })
+    .catch(e => console.error(e))
 }
 
 function getEmpresas(req, res) {
