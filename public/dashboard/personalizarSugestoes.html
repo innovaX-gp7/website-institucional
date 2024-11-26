@@ -177,12 +177,52 @@
         document.querySelector(".overlay").style.display = 'none'
     }
 
-    function editarParametrizacao() {
-        // lógica para editar 
-    }
 
-    function deletarParametrizacao() {
-        deletarParametrizacao()
+    function editar() {
+        let idEmpresa = sessionStorage.idEmpresa;
+        let area = document.getElementById("area").value;
+        let temperatura = document.getElementById("temperatura").value;
+        let precipitacao = document.getElementById("precipitacao").value;
+       
+        function editarParametro(parametro, fkTipoParametro) {
+            return fetch(`/parametros/editar/${sessionStorage.getItem("idEmpresa")}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    parametroServer: parametro,
+                    fkTipoParametroServer: fkTipoParametro,
+                    fkEmpresaServer: idEmpresa
+                }),
+            });
+        }
+
+        Promise.all([
+            editarParametro(area, 1),
+            editarParametro(temperatura, 2),
+            editarParametro(precipitacao, 3),
+        ])
+            .then((responses) => {
+                let success = true;
+
+
+                responses.forEach((response) => {
+                    if (!response.ok) success = false;
+                });
+
+                if (success) {
+
+                    document.querySelector('#btnSubmit').innerHTML = "Parâmetros atualizados";
+                 document.querySelector('#btnSubmit').style.background = "green";
+
+                } else {
+
+                    document.querySelector('#btnSubmit').innerHTML = "Erro ao atualizar parametrização";
+                    document.querySelector('#btnSubmit').style.background = "red";
+                }
+            })
+            .catch((error) => {
+                console.error("Erro na Inserção: ", error);
+            });
     }
 
    

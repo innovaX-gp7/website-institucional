@@ -190,7 +190,11 @@
         document.querySelector(".total").classList.add("display-none")
     } else if (sessionStorage.getItem('fkUserRole') === '2') {
         document.querySelector(".atualizarDadosEmpresa").style.display = 'none'
-    }
+        document.querySelector("#gerenciarFuncionario a").href = "./gerenciarFuncionario-gerente.html";
+    } else if (sessionStorage.getItem('fkUserRole') === '1') {
+        document.querySelector("#gerenciarFuncionario a").href = "./gerenciarFuncionario.html";
+    } 
+
 
     var idEmpresa = sessionStorage.idEmpresa
 

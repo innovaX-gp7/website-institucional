@@ -226,8 +226,9 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Seus dados foram atualizados com sucesso!");
-                
+
+                btnSubmit.innerText = "Seus dados foram atualizados com sucesso!";
+                btnSubmit.style.background = "green"
 
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -237,10 +238,6 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-
-
-
-        
     }
 
 
@@ -261,13 +258,15 @@
 
     function deletar() {
         fetch(`/empresas/deletar/${sessionStorage.getItem('idEmpresa')}`, {
+
             method: "DELETE"
         }) 
 
         .then(response => {
             cancelar();
-
+            console.log("Feito")
                 if (response.status == 204) {
+
                     warningEditar.style.display = "flex"
                     
                     setTimeout(() => {
@@ -278,7 +277,5 @@
             })
             .catch(error => console.error(error))
     }
-    
-
-
+   
 </script>
