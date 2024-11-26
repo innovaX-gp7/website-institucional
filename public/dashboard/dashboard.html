@@ -352,11 +352,16 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    if (sessionStorage.getItem('fkUserRole') === '3') {
-        document.querySelector(".total").classList.add("display-none")
-    } else if (sessionStorage.getItem('fkUserRole') === '2') {
-        document.querySelector(".atualizarDadosEmpresa").style.display = 'none'
-
+    if (sessionStorage.ROLE = "representante") {
+        atualizarDados.href = "./atualizarDadosEmpresa.html"
+        document.querySelector(".display-none").classList.remove("display-none")
+    } else {
+        if(!sessionStorage.NOME_FUNCIONARIO){
+            b_usuario.innerHTML = "Usuário";
+        } else {
+            b_usuario.innerHTML = sessionStorage.NOME_FUNCIONARIO;
+        }
+        atualizarDados.href = "./atualizarDados.html"
     }
 
 
