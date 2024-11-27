@@ -30,7 +30,7 @@ body {
     width: 100%;
 }
 
-.form input {
+.form input, select {
     padding: 17px;
     width: 100%;
     border-radius: 5px;
@@ -39,6 +39,8 @@ body {
     color: white;
     outline: none;
 }
+
+
 
 .form button {
     background-color: #478547;

@@ -100,3 +100,21 @@ main p {
     width: 100% !important;
     height: 30 !important;
 }
+
+select, button {
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: rgb(231, 231, 231);
+    border-radius: 10px;
+    border: 2px solid ;
+}
+
+button {
+    cursor: pointer;
+}
+
+select option {
+    color: black;
+}

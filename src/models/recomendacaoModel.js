@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-async function getByIdEmpresa(id) {
+function getByIdEmpresa(id) {
     const sql = `
         SELECT * FROM recomendacao 
         WHERE fkEmpresa = ${id} 
@@ -8,7 +8,7 @@ async function getByIdEmpresa(id) {
         LIMIT 1;
     `;
 
-    await database.executar(sql);
+    return database.executar(sql);
 }
 
 module.exports = {

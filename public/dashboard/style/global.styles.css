@@ -117,7 +117,7 @@ td {
     padding: .5rem;
 }
 
-td:nth-child(5) {
+td:nth-child(7) {
     cursor: pointer;
 }
 
@@ -160,6 +160,8 @@ td:hover {
 
     display: none;
 }
+
+
 
 @keyframes comeIn {
     0% {

@@ -206,7 +206,7 @@
 
             <div class="card-grid">
                 <h3>Recomendações IA</h3>
-                <p>
+                <p id="recomendacao">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero a ullam modi consectetur ipsa,
                     nostrum corporis illo quam laborum eius distinctio error voluptates in, nobis tenetur earum
                     praesentium accusantium dolore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
@@ -340,6 +340,17 @@
             } 
 
             desmatamentoTotal.innerHTML = texto  
+        })
+        .catch(e => console.error(e))
+
+        fetch(`/recomendacao/${idEmpresa}`)
+        .then(response => {
+            console.log(response) 
+            return response.json()
+         })
+        .then(data => {
+            console.log(data)
+            recomendacao.innerHTML = data[0].recomendacao
         })
         .catch(e => console.error(e))
 
