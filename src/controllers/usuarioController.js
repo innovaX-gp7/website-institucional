@@ -10,6 +10,8 @@ function autenticar(req, res) {
     var cnpj = req.body.cnpjServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+ 
+  
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");

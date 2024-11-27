@@ -42,15 +42,10 @@ body {
 
 
 
-.form button {
-    background-color: #478547;
-    width: 100%;
-    padding: 17px;
-    color: white;
-    border-radius: 5px;
-}
 
-.form button {
+
+
+ button {
     background-color: #1d331d;
     width: 100%;
     padding: 17px;
@@ -63,10 +58,7 @@ body {
     border: none;
 }
 
-.form button:hover {
-    background-color: #1d331de0;
-    transition: .2s;
-}
+
 
 .flex-content>img {
     width: 100%;
@@ -83,18 +75,24 @@ body {
     border: 3px solid #ff5757 !important;
 }
 
+
 .btn-content {
     display: flex;
-    gap: 5px;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.btn-content #btn-delete {
-    background: rgba(165, 0, 0, 0.514);
+.btn-alter, .btn-delete  {
+    background: none; 
+    border: none;    
+    color: white;      
+    font-size: small;
+    text-decoration: underline;
+    cursor: pointer; 
+    padding: 0;      
 }
 
-.btn-content #btn-delete:hover {
-    background: rgba(121, 0, 0, 0.356);
-}
+
 
 .overlay {
     display: none;
@@ -159,4 +157,12 @@ body {
     color: white;
 }
 
-
+.form select {
+    padding: 17px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--gray-color);
+    border: none;
+    color: white;
+    outline: none;
+}
