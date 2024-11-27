@@ -36,13 +36,10 @@ function cadastrar(req, res) {
 
 
 function editar(req, res) {
-   
+    var id = req.params.idParametro;
     var parametro = req.body.parametroServer;
-    var fkEmpresa = req.body.fkEmpresaServer;
-    var fkTipoParametro = req.body.fkTipoParametroServer;
-  
 
-    parametroModel.editar(parametro, fkEmpresa, fkTipoParametro)
+    parametroModel.editar(id, parametro)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -60,18 +57,18 @@ function editar(req, res) {
 
 function getAllParametro(req, res) {
 
-    const idEmpresa = req.params.idEmpresa
+    const id = req.params.idEmpresa
 
-    parametroModel.getAllParametro(idEmpresa)
+    parametroModel.getAllParametro(id)
     .then((parametroRecomendacao) => { 
         return res.status(200).json(parametroRecomendacao) 
     })
 }
 
 function deletarParametro(req, res) {
-    const idEmpresa = req.params.idEmpresa
+    const id = req.params.idParametro
 
-    parametroModel.deletarParametro(idEmpresa)
+    parametroModel.deletarParametro(id)
     .then((parametroRecomendacao) => {
         return res.status(204).json(parametroRecomendacao)
     })

@@ -10,10 +10,14 @@ function cadastrar(parametro, fkEmpresa, fkTipoParametro) {
 }
 
 
-function editar(parametro,  idEmpresa, fkTipoParametro) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ",parametro,  fkTipoParametro);
+function editar(id, parametro) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", id, parametro);
     var instrucaoSql = `
-        UPDATE parametroRecomendacao SET parametro = '${parametro}', modified_at = now() WHERE fkTipoParametro = ${fkTipoParametro} AND fkEmpresa = ${idEmpresa};
+        UPDATE parametroRecomendacao SET modified_at = now() WHERE id = ${id};
+    `;
+    database.executar(instrucaoSql);
+    var instrucaoSql = `
+        UPDATE parametroRecomendacao SET parametro = '${parametro}' WHERE id = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -24,8 +28,8 @@ function getAllParametro(idEmpresa) {
     return database.executar(instrucaoSql)
 }
 
-function deletarParametro(idEmpresa) {
-    const instrucaoSql = `DELETE FROM parametroRecomendacao WHERE fkEmpresa = ${idEmpresa}`
+function deletarParametro(id) {
+    const instrucaoSql = `DELETE FROM parametroRecomendacao WHERE id = ${id}`
     return database.executar(instrucaoSql)
 }
 
