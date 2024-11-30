@@ -229,15 +229,15 @@
 
     const idEmpresa = sessionStorage.idEmpresa
 
-    fetch(`/leitura/${idEmpresa}`)
-        .then(response => response.json())
-        .then(data => {
+    fetch(`/leitura/temperaturaPrecipitacao`)
+    .then(response => response.json())
+    .then(data => {
 
-            const ctx = document.getElementById('myChart');
-            const ctv = document.getElementById('myChart3');
+        console.log(data)
 
-            const estados = ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins', 'Mato Grosso', 'Maranhão'];
-            const temperaturas = estados.map(estado => {
+        const estados = ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO', 'MT', 'MA'];
+
+        const temperaturas = estados.map(estado => {
                 const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
                 return estadoData ? parseFloat(estadoData.temperaturaMensal) : 0;
             });
@@ -247,14 +247,8 @@
                 return estadoData ? parseFloat(estadoData.precipitacaoMensal) : 0; 
             });
 
-            const areasDesmatadas = estados.map(estado => {
-            const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
-            return estadoData ? parseFloat(estadoData.areaDesmatada) : 0; 
-        });
-
-
-
-            new Chart(ctx, {
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Acre', 'Amapá', 'Amazonas', 'Pará ', 'Rondônia', 'Roraima ', 'Tocantins', 'Mato Grosso', 'Maranhão'],
@@ -281,6 +275,25 @@
                     }
                 }
             });
+    })
+    .catch(e => console.error(e))
+
+    fetch(`/leitura/areaDesmatada`)
+        .then(response => response.json())
+        .then(data => {
+
+            const ctv = document.getElementById('myChart3');
+
+            const estados = ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO', 'MT', 'MA'];
+
+            const areasDesmatadas = estados.map(estado => {
+            const estadoData = data.find(d => d.unidadeFederativa.trim() === estado.trim());
+            return estadoData ? parseFloat(estadoData.areaDesmatada) : 0; 
+        });
+
+
+
+           
 
             new Chart(ctv, {
                 type: 'bar',
@@ -303,7 +316,7 @@
             });;
         })
 
-        fetch(`/leitura/${idEmpresa}/maiordesmatamentopercentual`)
+        fetch(`/leitura/maiordesmatamentopercentual`)
         .then(response => response.json())
         .then(data => {
             data = data[0]
@@ -317,9 +330,9 @@
         .then(data => {
             data = data[0]
 
-            const texto = Math.floor(data.alteracaoPercentualTotalTemperatura) + '%'
+            const texto = Math.floor(data.desmatamentoTotalComparadoPercentual) + '%'
             
-            if (data.alteracaoPercentualTotalTemperatura < 0) {
+            if (data.desmatamentoTotalComparadoPercentual < 0) {
                 temperatura.style.color = 'green'       
             } 
 
@@ -328,14 +341,15 @@
         .catch(e => console.error(e))
 
         
-        fetch(`/leitura/${idEmpresa}/desmatamentoTotalComparadoAoAnoAnterior`)
+        fetch(`/leitura/desmatamentoTotalComparadoAoAnoAnterior`)
         .then(response => response.json())
         .then(data => {
             data = data[0]
+            console.log(data)
 
-            const texto = Math.floor(data.alteracaoPercentualTotal) + '%'
+            const texto = Math.floor(data.desmatamentoTotalComparadoPercentual) + '%'
             
-            if (data.alteracaoPercentualTotal < 0) {
+            if (data.desmatamentoTotalComparadoPercentual < 0) {
                 desmatamentoTotal.style.color = 'green'       
             } 
 
@@ -345,11 +359,9 @@
 
         fetch(`/recomendacao/${idEmpresa}`)
         .then(response => {
-            console.log(response) 
             return response.json()
          })
         .then(data => {
-            console.log(data)
             recomendacao.innerHTML = data[0].recomendacao
         })
         .catch(e => console.error(e))

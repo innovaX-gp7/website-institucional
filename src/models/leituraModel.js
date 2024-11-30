@@ -1,21 +1,25 @@
 var database = require("../database/config")
 
-function getLeituraByIdEmpresa(idEmpresa) {
+function getLeituraDesmatamentoAtual() {
     const sql = `
-        SELECT *
-        FROM leitura l
-        WHERE l.ano = (
-            SELECT MAX(l2.ano)
-            FROM leitura l2
-            WHERE l2.unidadeFederativa = l.unidadeFederativa
-        ) 
-        AND l.mes = (
-            SELECT MAX(l3.mes)
-            FROM leitura l3
-            WHERE l3.unidadeFederativa = l.unidadeFederativa
-            AND l3.ano = l.ano
-        )
-        AND fkEmpresa = 8;`
+        WITH ranked_data AS (
+        SELECT 
+            unidadeFederativa,
+            ano,
+            mes,
+            areaDesmatada,
+            ROW_NUMBER() OVER (PARTITION BY unidadeFederativa ORDER BY ano DESC, mes DESC) AS rn
+        FROM leitura
+        WHERE areaDesmatada IS NOT NULL
+    )
+    SELECT 
+        unidadeFederativa,
+        ano,
+        mes,
+        areaDesmatada
+    FROM ranked_data
+    WHERE rn = 1;
+    `
     return database.executar(sql)
 }
 
@@ -47,7 +51,7 @@ function getAlteracaoTemperaturaTotal(idEmpresa) {
     return database.executar(sql)
 }
 
-function getMaiorDesmatamentoPercentual(idEmpresa) {
+function getMaiorDesmatamentoPercentual() {
     const sql = `
         SELECT 
     l1.unidadeFederativa,
@@ -59,44 +63,66 @@ function getMaiorDesmatamentoPercentual(idEmpresa) {
     ON 
         l1.unidadeFederativa = l2.unidadeFederativa
         AND l1.ano = l2.ano + 1
-    WHERE 
-        l1.fkEmpresa = ${idEmpresa} LIMIT 1;
+        LIMIT 1;
     `
 
     return database.executar(sql)
 }
 
-function getDesmatamentoTotalComparadoAnoAnterior(idEmpresa) {
+function getDesmatamentoTotalComparadoAnoAnterior() {
     const sql = `
-    SELECT 
-    ROUND(
-        (SUM(l1.areaDesmatada) - SUM(IFNULL(l2.areaDesmatada, 0))) / SUM(IFNULL(l2.areaDesmatada, 1)) * 100, 
-        2
-    ) AS alteracaoPercentualTotal
-    FROM 
-        leitura l1
-    LEFT JOIN 
-        leitura l2
-    ON 
-        l1.unidadeFederativa = l2.unidadeFederativa
-        AND l1.ano = l2.ano + 1  -- Compara o ano atual com o ano imediatamente anterior
-    WHERE 
-        l1.fkEmpresa = ${idEmpresa}
-        AND EXISTS (
-            SELECT 1
-            FROM leitura l3
-            WHERE l3.fkEmpresa = ${idEmpresa} 
-            AND l3.ano = l1.ano - 1  -- Verifica se existe o ano anterior
-            AND l3.unidadeFederativa = l1.unidadeFederativa
-        );
+            SELECT 
+            ROUND(
+                (SUM(l1.areaDesmatada) - SUM(IFNULL(l2.areaDesmatada, 0))) / NULLIF(SUM(IFNULL(l2.areaDesmatada, 1)), 0) * 100,
+                2
+            ) AS desmatamentoTotalComparadoPercentual
+        FROM 
+            leitura l1
+        LEFT JOIN 
+            leitura l2
+            ON l1.unidadeFederativa = l2.unidadeFederativa
+            AND l1.ano = l2.ano + 1  -- Comparando o ano atual com o ano anterior
+        WHERE 
+            l1.areaDesmatada IS NOT NULL  -- Garantir que há dados para o ano atual
+            AND l2.areaDesmatada IS NOT NULL  -- Garantir que há dados para o ano anterior
+            AND l1.ano = YEAR(CURDATE());  -- Ano atual
     `
 
     return database.executar(sql)
 }
+
+function getPrecipitacaoTemperaturaAtuais() {
+    const sql = `
+WITH ranked_data AS (
+    SELECT 
+        unidadeFederativa,
+        ano,
+        mes,
+        temperaturaMensal,
+        precipitacaoMensal,
+        ROW_NUMBER() OVER (PARTITION BY unidadeFederativa ORDER BY ano DESC, mes DESC) AS rn
+    FROM leitura
+    WHERE unidadeFederativa IS NOT NULL 
+      AND temperaturaMensal IS NOT NULL 
+      AND precipitacaoMensal IS NOT NULL
+)
+    SELECT 
+        unidadeFederativa,
+        ano,
+        mes,
+        temperaturaMensal,
+        precipitacaoMensal
+    FROM ranked_data
+    WHERE rn = 1;
+    `
+    return database.executar(sql)
+}
+
 
 module.exports = {
-    getLeituraByIdEmpresa,
+    getPrecipitacaoTemperaturaAtuais,
+    getLeituraDesmatamentoAtual,
     getAlteracaoTemperaturaTotal,
     getMaiorDesmatamentoPercentual,
-    getDesmatamentoTotalComparadoAnoAnterior
+    getDesmatamentoTotalComparadoAnoAnterior,
 };

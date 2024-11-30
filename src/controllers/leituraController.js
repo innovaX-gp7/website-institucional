@@ -1,9 +1,15 @@
 var leituraModel = require("../models/leituraModel");
 
-function getLeituraByIdEmpresa(req, res) {
-    const idEmpresa = req.params.idEmpresa
+function getLeituraDesmatamentoAtual(req, res) {
+    leituraModel.getLeituraDesmatamentoAtual()
+    .then(response => {
+        return res.status(200).json(response)
+    })
+    .catch(e => console.error(e))
+}
 
-    leituraModel.getLeituraByIdEmpresa(idEmpresa)
+function getPrecipitacaoTemperaturaAtuais(req, res) {
+    leituraModel.getPrecipitacaoTemperaturaAtuais()
     .then(response => {
         return res.status(200).json(response)
     })
@@ -21,9 +27,8 @@ function getAlteracaoTemperaturaTotal(req, res) {
 }
 
 function getMaiorDesmatamentoPercentual(req, res) {
-    const idEmpresa = req.params.idEmpresa
 
-    leituraModel.getMaiorDesmatamentoPercentual(idEmpresa)
+    leituraModel.getMaiorDesmatamentoPercentual()
     .then(response => {
         return res.status(200).json(response)
     })
@@ -31,18 +36,20 @@ function getMaiorDesmatamentoPercentual(req, res) {
 }
 
 function getDesmatamentoTotalComparadoAnoAnterior(req, res) {
-    const idEmpresa = req.params.idEmpresa
 
-    leituraModel.getDesmatamentoTotalComparadoAnoAnterior(idEmpresa)
+
+    leituraModel.getDesmatamentoTotalComparadoAnoAnterior()
     .then(response => {
         return res.status(200).json(response)
     })
     .catch(e => console.error(e))
 }
 
+
 module.exports = {
-    getLeituraByIdEmpresa,
+    getPrecipitacaoTemperaturaAtuais,
     getAlteracaoTemperaturaTotal,
     getMaiorDesmatamentoPercentual,
-    getDesmatamentoTotalComparadoAnoAnterior
+    getDesmatamentoTotalComparadoAnoAnterior,
+    getLeituraDesmatamentoAtual
 }
