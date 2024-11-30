@@ -78,14 +78,8 @@ body {
     margin-top: 10px;
 }
 
-.btn-alter, .btn-delete  {
-    background: none; 
-    border: none;    
-    color: white;      
-    font-size: small;
-    text-decoration: underline;
-    cursor: pointer; 
-    padding: 0;      
+#btn-delete {
+    background-color: rgba(255, 0, 0, 0.568);
 }
 
 
@@ -146,6 +140,10 @@ body {
 
 .excluirModal div:nth-of-type(2) button:hover {
     opacity: .8;
+}
+
+.excluirModal div button:nth-of-type(1) {
+    color: black;
 }
 
 .excluirModal div button:nth-of-type(2) {

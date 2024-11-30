@@ -141,32 +141,23 @@
                     <p>CPF</p>
                     <input type="CPF" id="iptCPF" placeholder="000.000.000-00">
                 </div>
-                <div>
-                    <p>Cargo</p>
-<<<<<<< HEAD
-                </div>
-                  <select name="" id="iptCargo">
-                    <option value="">Selecione o cargo</option>
-                    <option class="cargoAlto" value="1">Representante</option>
-                    <option class="cargoAlto2" value="2">Gestor</option>
-                    <option value="3">Funcionário</option>
-                  </select>
-=======
+                    <div>
+                        <p>Cargo</p>
+                    </div>
                     <select name="" id="iptCargo">
                         <option value="">Selecione o cargo</option>
                         <option class="cargoAlto" value="1">Representante</option>
                         <option class="cargoAlto2" value="2">Gerente</option>
                         <option value="3">Funcionário</option>
                     </select>
+                    <p id="warning">Preencha todos os campos!</p>
+                    <button onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
                 </div>
 
->>>>>>> 88ceaf4 (Merge pull request #31 from innovaX-gp7/fix/cruds)
 
-                <p id="warning">Preencha todos os campos!</p>
-                <button onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
       
+                <img src="../assets/funcionario.png" alt="">
             </div>
-            <img src="../assets/funcionario.png" alt="">
     </main>
 
     <script>
