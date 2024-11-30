@@ -199,6 +199,15 @@ function deletarFuncionario(req, res) {
     })
 }
 
+function getUsuario(req, res) {
+    const id = req.params.id
+
+    usuarioModel.getUsuario(id)
+    .then((usuario) => {
+        return res.status(200).json(usuario)
+    })
+}
+
 
 module.exports = {
     autenticar,
@@ -207,6 +216,7 @@ module.exports = {
     deletarFuncionario,
     cadastrarFuncionario,
     getAllFuncionario,
-    editarCargo
+    editarCargo,
+    getUsuario
 
 }

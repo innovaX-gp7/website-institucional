@@ -95,6 +95,11 @@ function deletarFuncionario(id) {
     return database.executar(instrucaoSql)
 }
 
+function getUsuario(id) {
+    const instrucaoSql = `SELECT * FROM usuario WHERE id = ${id}`
+    return database.executar(instrucaoSql)
+}
+
 function cadastrarFuncionario(nome, cpf, email, cpf, fkEmpresa, fkUserRole) {
     let instrucaoSql = `
          INSERT INTO usuario (nome, cpf, email, senha, fkEmpresa, fkUserRole) VALUES ('${nome}', '${cpf}', '${email}', '${cpf}', '${fkEmpresa}', '${fkUserRole}');
@@ -110,5 +115,6 @@ module.exports = {
     deletarFuncionario,
     cadastrarFuncionario,
     getAllFuncionario,
-    editarCargo
+    editarCargo,
+    getUsuario
 };

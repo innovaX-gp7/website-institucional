@@ -143,6 +143,24 @@ td:hover {
     display: none;
 }
 
+#warningDeletar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+
+    background-color: #041802;
+    padding: 20px;
+
+    animation: comeIn ease-out .4s;
+
+    display: none;
+}
+
 #warningEditar {
     display: flex;
     align-items: center;

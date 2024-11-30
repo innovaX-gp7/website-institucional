@@ -35,5 +35,9 @@ router.delete("/deletar/:id", (req, res) => {
    usuarioController.deletarFuncionario(req, res);
 })
 
+router.get("/getUsuario/:id", (req, res) => {
+   usuarioController.getUsuario(req, res);
+})
+
 
 module.exports = router;

@@ -1,15 +1,6 @@
 var database = require("../database/config")
 
 
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-/*function cadastrar(razaoSocial, nomeFantasia, cnpj) {
-    var instrucaoSql = `
-        INSERT INTO empresa (razaoSocial, nomeFantasia, cnpj) VALUES ('${razaoSocial}','${nomeFantasia}','${cnpj}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-} */
-
 function editar(idEmpresa, razaoSocial, nomeFantasia, cnpj) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idEmpresa, cnpj, nomeFantasia, razaoSocial);
     var instrucaoSql = `
@@ -24,7 +15,7 @@ function deletar(idEmpresa) {
     database.executar(sql)
     sql = `DELETE FROM logJAR WHERE fkEmpresa = ${idEmpresa}`
     database.executar(sql)
-    sql = `DELETE FROM recomendacao WHERE fkEmpresa = ${idEmpresa}`
+    sql = `DELETE FROM recomendacaoia WHERE fkEmpresa = ${idEmpresa}`
     database.executar(sql)
     sql = `DELETE FROM leitura WHERE fkEmpresa = ${idEmpresa}`
     database.executar(sql)
@@ -34,8 +25,8 @@ function deletar(idEmpresa) {
     return database.executar(sql);
 }
 
-function getEmpresa(cnpj) {
-    let sql = `SELECT id FROM empresa WHERE cnpj = '${cnpj}';`
+function getEmpresa(id) {
+    let sql = `SELECT * FROM empresa WHERE id = '${id}';`
     let response = database.executar(sql)
     console.log(`Resposta do getEmpresa: ${response}`) 
     return response
