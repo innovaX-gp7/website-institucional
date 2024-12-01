@@ -12,7 +12,7 @@ router.get("/temperaturaPrecipitacao", (req, res) => {
     leituraController.getPrecipitacaoTemperaturaAtuais(req, res);
 });
 
-router.get("/:idEmpresa/temperatura", (req, res) => {
+router.get("/temperatura", (req, res) => {
     leituraController.getAlteracaoTemperaturaTotal(req, res);
 });
 

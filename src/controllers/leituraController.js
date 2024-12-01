@@ -17,9 +17,8 @@ function getPrecipitacaoTemperaturaAtuais(req, res) {
 }
 
 function getAlteracaoTemperaturaTotal(req, res) {
-    const idEmpresa = req.params.idEmpresa
 
-    leituraModel.getAlteracaoTemperaturaTotal(idEmpresa)
+    leituraModel.getAlteracaoTemperaturaTotal()
     .then(response => {
         return res.status(200).json(response)
     })

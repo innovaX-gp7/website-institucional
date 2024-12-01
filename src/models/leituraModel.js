@@ -2,50 +2,50 @@ var database = require("../database/config")
 
 function getLeituraDesmatamentoAtual() {
     const sql = `
-        WITH ranked_data AS (
         SELECT 
             unidadeFederativa,
-            ano,
-            mes,
-            areaDesmatada,
-            ROW_NUMBER() OVER (PARTITION BY unidadeFederativa ORDER BY ano DESC, mes DESC) AS rn
+            SUM(areaDesmatada) AS areaDesmatada
         FROM leitura
         WHERE areaDesmatada IS NOT NULL
-    )
-    SELECT 
-        unidadeFederativa,
-        ano,
-        mes,
-        areaDesmatada
-    FROM ranked_data
-    WHERE rn = 1;
+        GROUP BY unidadeFederativa;
     `
     return database.executar(sql)
 }
 
-function getAlteracaoTemperaturaTotal(idEmpresa) {
+function getAlteracaoTemperaturaTotal() {
     const sql = `
-    SELECT 
-    ROUND(
-        (SUM(l1.temperaturaMensal) - SUM(IFNULL(l2.temperaturaMensal, 0))) / SUM(IFNULL(l2.temperaturaMensal, 1)) * 100, 
-        2
-    ) AS alteracaoPercentualTotalTemperatura
-    FROM 
-        leitura l1
-    LEFT JOIN 
-        leitura l2
-    ON 
-        l1.unidadeFederativa = l2.unidadeFederativa
-        AND l1.ano = l2.ano + 1 
-    WHERE 
-        l1.fkEmpresa = ${idEmpresa}
-        AND EXISTS (
-            SELECT 1
-            FROM leitura l3
-            WHERE l3.fkEmpresa = ${idEmpresa} 
-            AND l3.ano = l1.ano - 1 
-            AND l3.unidadeFederativa = l1.unidadeFederativa
-        );
+            WITH MaxAno AS (
+            -- Encontrar o ano mais recente presente na tabela
+            SELECT MAX(ano) AS anoMaisRecente
+            FROM leitura
+            WHERE temperaturaMensal IS NOT NULL
+        ),
+        AnoAnterior AS (
+            -- Encontrar o ano anterior ao mais recente
+            SELECT (anoMaisRecente - 1) AS anoAnterior
+            FROM MaxAno
+        ),
+        CTE AS (
+            -- Selecionar as temperaturas para os anos 2024 e 2023
+            SELECT 
+                ano, 
+                temperaturaMensal
+            FROM leitura
+            WHERE temperaturaMensal IS NOT NULL
+            AND (ano = (SELECT anoMaisRecente FROM MaxAno) OR ano = (SELECT anoAnterior FROM AnoAnterior))
+        )
+        -- Calcular a média geral de temperatura para cada ano
+        SELECT 
+            'Geral' AS unidadeFederativa, 
+            (SELECT anoMaisRecente FROM MaxAno) AS ano_recente,
+            (SELECT anoAnterior FROM AnoAnterior) AS ano_anterior,
+            ROUND(
+                (AVG(CASE WHEN ano = (SELECT anoMaisRecente FROM MaxAno) THEN temperaturaMensal END) 
+                - AVG(CASE WHEN ano = (SELECT anoAnterior FROM AnoAnterior) THEN temperaturaMensal END)) 
+                / AVG(CASE WHEN ano = (SELECT anoAnterior FROM AnoAnterior) THEN temperaturaMensal END) * 100, 
+                2
+            ) AS diferenca_percentual
+        FROM CTE;
     `
 
     return database.executar(sql)

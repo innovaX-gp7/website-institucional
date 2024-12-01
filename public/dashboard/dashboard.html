@@ -196,7 +196,7 @@
 
         <div class="grid-content">
             <div class="card-grid">
-                <h3>Gráfico de temperatura (°C) e umidade (mm) mensal </h3>
+                <h3>Gráfico de temperatura (°C) e umidade (mm) mês mais recente </h3>
                 <canvas id="myChart" class="grafico"></canvas>
             </div>
             <div class="card-grid">
@@ -325,14 +325,15 @@
         })
         .catch(e => console.error(e))
 
-        fetch(`/leitura/${idEmpresa}/temperatura`)
+        fetch(`/leitura/temperatura`)
         .then(response => response.json())
         .then(data => {
             data = data[0]
+            console.log(data)
 
-            const texto = Math.floor(data.desmatamentoTotalComparadoPercentual) + '%'
+            const texto = Math.floor(data.diferenca_percentual) + '%'
             
-            if (data.desmatamentoTotalComparadoPercentual < 0) {
+            if (data.diferenca_percentual < 0) {
                 temperatura.style.color = 'green'       
             } 
 
