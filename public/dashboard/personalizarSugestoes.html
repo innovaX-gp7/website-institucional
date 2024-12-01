@@ -126,19 +126,19 @@
         </header>
         <div class="flex-content">
             <div class="form">
-                <h2>Personalizar dados</h2>
+                <h2>Parametrize os dados para recomendação IA</h2>
                 <div>
-                    <p>Ser notificado quando atingir: (km²)</p>
+
+                    <p> Defina a Área Desmatada Limite Prioritária (km²)</p>
                     <input id="area" placeholder="Ex: 200" type="Nome">
                 </div>
                 <div>
-                    <p>Ser notificado quando a temperatura atingir: (°C)</p>
+                    <p>Defina a Temperatura Limite Prioritária (°C) </p>
                     <input id="temperatura" placeholder="Ex: 20" type="Nome">
                 </div>
                 <div>
-                    <p>Ser notificado quando a precipitação atingir: (mm)</p>
+                    <p>Defina Precipitação Limite Prioritária: (mm)</p>
                     <input id="precipitacao" placeholder="Ex: 60" type="Nome">
-
                 </div>
                 <button class="cadastrar" onclick="cadastrar()" id="btnSubmit" type="button">Cadastrar</button>
                 <div class="btn-content">
@@ -149,6 +149,20 @@
             <img src="../assets/update.png" alt="">
         </div>
     </main>
+
+    <div id="warningDelete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-shield-check">
+            <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+        </svg>
+        <div>
+            <h3>Parametrização deletada com sucesso!</h3>
+            <p>A parametrização foi deletada, recarregue a página para a visualização</p>
+        </div>
+    </div>
 
     <div class="overlay"></div>
     <div class="excluirModal" id="modal">
@@ -241,7 +255,7 @@
                 if (success) {
 
                     document.querySelector('#btnSubmit').innerHTML = "Cadastro de parametrização realizado com sucesso";
-                 document.querySelector('#btnSubmit').style.background = "green";
+                    document.querySelector('#btnSubmit').style.background = "green";
 
                 } else {
 
@@ -259,7 +273,7 @@
         let area = document.getElementById("area").value;
         let temperatura = document.getElementById("temperatura").value;
         let precipitacao = document.getElementById("precipitacao").value;
-       
+
         function editarParametro(parametro, fkTipoParametro) {
             return fetch(`/parametros/editar/${sessionStorage.getItem("idEmpresa")}`, {
                 method: "PUT",
@@ -288,7 +302,7 @@
                 if (success) {
 
                     document.querySelector('#btnSubmit').innerHTML = "Parâmetros atualizados";
-                 document.querySelector('#btnSubmit').style.background = "green";
+                    document.querySelector('#btnSubmit').style.background = "green";
 
                 } else {
 
@@ -315,7 +329,12 @@
                     document.querySelector("#modal").style.display = 'none'
                     document.querySelector(".overlay").style.display = 'none'
 
+                    warningDelete.style.display = "flex"
 
+                    setTimeout(() => {
+                        warningDelete.style.display = "none"
+                        location.reload()
+                    }, 3000)
                 }
             })
             .catch(error => console.error(error))

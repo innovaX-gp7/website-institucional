@@ -43,7 +43,7 @@ async function cadastrar(razaoSocial, nomeFantasia, cnpj, nome, cpf, email, senh
         console.log("Empresa inserida com sucesso.");
 
         // Buscar o id da empresa recém inserida
-        const resultado = await empresaModel.getEmpresa(cnpj); // Espera o resultado da consulta da empresa
+        const resultado = await empresaModel.getEmpresaByCnpj(cnpj); // Espera o resultado da consulta da empresa
 
         if (!resultado || resultado.length === 0) {
             throw new Error("Empresa não encontrada após a inserção.");
@@ -83,15 +83,20 @@ function editarCargo(id, fkUserRole) {
     return database.executar(instrucaoSql);
 }
 
-function getAllFuncionario(idEmpresa) {
+function getAllFuncionario(idEmpresa, idUsuario) {
     const instrucaoSql = `SELECT usuario.*, userRole.nome as userRole FROM usuario 
                          INNER JOIN  userRole ON usuario.fkUserRole = userRole.id 
-                         WHERE fkEmpresa = ${idEmpresa}`
+                         WHERE fkEmpresa = ${idEmpresa} AND usuario.id != ${idUsuario}`
     return database.executar(instrucaoSql)
 }
 
 function deletarFuncionario(id) {
     const instrucaoSql = `DELETE FROM usuario WHERE id = ${id}`
+    return database.executar(instrucaoSql)
+}
+
+function getUsuario(id) {
+    const instrucaoSql = `SELECT * FROM usuario WHERE id = ${id}`
     return database.executar(instrucaoSql)
 }
 
@@ -110,5 +115,6 @@ module.exports = {
     deletarFuncionario,
     cadastrarFuncionario,
     getAllFuncionario,
-    editarCargo
+    editarCargo,
+    getUsuario
 };

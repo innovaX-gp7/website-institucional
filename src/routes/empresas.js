@@ -8,8 +8,8 @@ router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
-router.get("/empresas", (req, res) => {
-    empresaController.getEmpresas(req, res);
+router.get("/:id", (req, res) => {
+    empresaController.getEmpresa(req, res);
 })
 
 router.post("/autenticar", function (req, res) {

@@ -31,7 +31,7 @@ form {
 }
 
 .form-header {
-    align-self: flex-start;
+    align-self: flex-start; 
     margin-bottom: 2rem;
 }
 

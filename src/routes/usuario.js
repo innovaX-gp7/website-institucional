@@ -26,13 +26,17 @@ router.put("/editarCargo/:id", function (req, res) {
 });
 
 
-router.get("/:idEmpresa", (req, res) => {
+router.get("/empresa/:idEmpresa/usuario/:idUsuario", (req, res) => {
     usuarioController.getAllFuncionario(req, res);
 });
 
 
 router.delete("/deletar/:id", (req, res) => {
    usuarioController.deletarFuncionario(req, res);
+})
+
+router.get("/getUsuario/:id", (req, res) => {
+   usuarioController.getUsuario(req, res);
 })
 
 

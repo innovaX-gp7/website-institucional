@@ -133,7 +133,7 @@
         </header>
         <div class="flex-content">
             <div class="form">
-                <h2>Atualizar Dados</h2>
+                <h2>Atualizar Dados da Empresa</h2>
                 <div>
                     <p>Razão Social</p>
                     <input id="inputRazao" type="Nome">
@@ -177,7 +177,7 @@
 
     </div>
 
-    <div id="warningEditar">
+    <div id="warningDeletar">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="lucide lucide-shield-check">
@@ -188,6 +188,20 @@
         <div>
             <h3>Empresa deletado com sucesso!</h3>
             <p>Empresa foi deletada, redirecionando para tela inicial..</p> 
+        </div>
+
+    </div>
+    <div id="warningEditar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-shield-check">
+            <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+        </svg>
+        <div>
+            <h3>Empresa editada com sucesso!</h3>
+            <p>Empresa foi editada, recarregando a tela</p> 
         </div>
 
     </div>
@@ -207,11 +221,23 @@
         document.querySelector("#gerenciarFuncionario a").href = "./gerenciarFuncionario.html";
     } gerenciarFuncionario.href = "./gerenciarFuncionario-gerente.html"
 
+    
+    fetch(`/empresas/${sessionStorage.idEmpresa}`)
+    .then(response => response.json())
+    .then(data => {
+        data = data[0]
 
+        sessionStorage.NOME_EMPRESA = data.nomeFantasia
+        sessionStorage.RAZAO = data.razaoSocial
+        sessionStorage.CNPJ = data.cnpj
 
-    inputNome.value = sessionStorage.NOME_EMPRESA
-    inputRazao.value = sessionStorage.RAZAO
-    inputCNPJ.value = sessionStorage.CNPJ
+        inputNome.value = data.nomeFantasia
+        inputRazao.value = data.razaoSocial
+        inputCNPJ.value = data.cnpj
+
+    })
+    .catch(e => console.error(e))
+    
 
     function editar() {
 
@@ -223,8 +249,8 @@
             },
             body: JSON.stringify({
                 idEmpresaServer: idEmpresa,
-                nomeServer: inputNome.value,
-                razaoServer: inputRazao.value,
+                nomeFantasiaServer: inputNome.value,
+                razaoSocialServer: inputRazao.value,
                 cnpjServer: inputCNPJ.value,
 
             })
@@ -234,6 +260,13 @@
 
                 btnSubmit.innerText = "Seus dados foram atualizados com sucesso!";
                 btnSubmit.style.background = "green"
+
+                warningEditar.style.display = "flex"
+                    
+                    setTimeout(() => {
+                        warningEditar.style.display = "none"
+                        window.location.reload();
+                    }, 3000)
 
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -272,10 +305,10 @@
             console.log("Feito")
                 if (response.status == 204) {
 
-                    warningEditar.style.display = "flex"
+                    warningDeletar.style.display = "flex"
                     
                     setTimeout(() => {
-                        warningEditar.style.display = "none"
+                        warningDeletar.style.display = "none"
                         window.location = "../index.html"
                     }, 3000)
                 }

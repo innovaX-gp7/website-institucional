@@ -183,8 +183,9 @@ function editarCargo(req, res) {
 function getAllFuncionario(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
+    var idUsuario = req.params.idUsuario;
 
-    usuarioModel.getAllFuncionario(idEmpresa)
+    usuarioModel.getAllFuncionario(idEmpresa, idUsuario)
     .then((usuario) => { 
         return res.status(200).json(usuario) 
     })
@@ -199,6 +200,15 @@ function deletarFuncionario(req, res) {
     })
 }
 
+function getUsuario(req, res) {
+    const id = req.params.id
+
+    usuarioModel.getUsuario(id)
+    .then((usuario) => {
+        return res.status(200).json(usuario)
+    })
+}
+
 
 module.exports = {
     autenticar,
@@ -207,6 +217,7 @@ module.exports = {
     deletarFuncionario,
     cadastrarFuncionario,
     getAllFuncionario,
-    editarCargo
+    editarCargo,
+    getUsuario
 
 }

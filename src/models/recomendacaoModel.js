@@ -2,13 +2,13 @@ var database = require("../database/config")
 
 function getByIdEmpresa(id) {
     const sql = `
-        SELECT * FROM recomendacao 
+        SELECT * FROM recomendacaoia
         WHERE fkEmpresa = ${id} 
         ORDER BY created_at DESC 
         LIMIT 1;
     `;
 
-    return database.executar(sql);
+    return database.executar(sql); 
 }
 
 module.exports = {
