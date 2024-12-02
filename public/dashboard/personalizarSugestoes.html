@@ -311,7 +311,7 @@
 
     function deletarParametro() {
         var idEmpresa = sessionStorage.idEmpresa;
-        fetch(`http://localhost:80/parametros/deletarParametro/${idEmpresa}`, {
+        fetch(`/parametros/deletarParametro/${idEmpresa}`, {
             method: "DELETE"
         })
             .then(response => {
