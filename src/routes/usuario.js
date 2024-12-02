@@ -26,7 +26,7 @@ router.put("/editarCargo/:id", function (req, res) {
 });
 
 
-router.get("/:idEmpresa", (req, res) => {
+router.get("/empresa/:idEmpresa/usuario/:idUsuario", (req, res) => {
     usuarioController.getAllFuncionario(req, res);
 });
 

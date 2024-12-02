@@ -53,17 +53,25 @@ function getAlteracaoTemperaturaTotal() {
 
 function getMaiorDesmatamentoPercentual() {
     const sql = `
-        SELECT 
-    l1.unidadeFederativa,
-    ROUND((l1.areaDesmatada - l2.areaDesmatada), 2) AS diferencaDesmatamento
-    FROM 
-        leitura l1
-    JOIN 
-        leitura l2
-    ON 
-        l1.unidadeFederativa = l2.unidadeFederativa
-        AND l1.ano = l2.ano + 1
-        LIMIT 1;
+        with anoAnterior as (
+            select unidadeFederativa, sum(areaDesmatada) somaDesmatamento
+            from leitura
+            where ano = year(curdate()) - 2
+            group by unidadeFederativa
+        ), anoAtual as (
+            select unidadeFederativa, sum(areaDesmatada) somaDesmatamento
+            from leitura
+            where ano = year(curdate()) - 1
+            group by unidadeFederativa
+        )
+        select anoAtual.unidadeFederativa, (anoAtual.somaDesmatamento - anoAnterior.somaDesmatamento)/anoAnterior.somaDesmatamento * 100 AS percentual
+        from anoAtual
+        join anoAnterior on anoAnterior.unidadeFederativa = anoAtual.unidadeFederativa
+        where (anoAtual.somaDesmatamento - anoAnterior.somaDesmatamento) = (
+            select max(anoAtual.somaDesmatamento - anoAnterior.somaDesmatamento)
+            from anoAtual
+            join anoAnterior on anoAnterior.unidadeFederativa = anoAtual.unidadeFederativa
+        );
     `
 
     return database.executar(sql)

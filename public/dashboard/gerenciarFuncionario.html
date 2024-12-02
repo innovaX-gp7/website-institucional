@@ -246,7 +246,7 @@
 
     }
 
-    gerarTabela(`http://localhost:80/usuario/${idEmpresa}`);
+    gerarTabela(`http://localhost:80/usuario/empresa/${idEmpresa}/usuario/${sessionStorage.ID_USUARIO}`);
 
     function deletarFuncionario(id) {
         fetch(`http://localhost:80/usuario/deletar/${id}`, {

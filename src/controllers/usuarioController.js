@@ -183,8 +183,9 @@ function editarCargo(req, res) {
 function getAllFuncionario(req, res) {
 
     var idEmpresa = req.params.idEmpresa;
+    var idUsuario = req.params.idUsuario;
 
-    usuarioModel.getAllFuncionario(idEmpresa)
+    usuarioModel.getAllFuncionario(idEmpresa, idUsuario)
     .then((usuario) => { 
         return res.status(200).json(usuario) 
     })

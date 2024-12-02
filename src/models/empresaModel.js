@@ -32,9 +32,17 @@ function getEmpresa(id) {
     return response
 }
 
+function getEmpresaByCnpj(cnpj) {
+    let sql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}';`
+    let response = database.executar(sql)
+    console.log(`Resposta do getEmpresa: ${response}`) 
+    return response
+}
+
 
 module.exports = {
     editar,
     deletar,
-    getEmpresa
+    getEmpresa,
+    getEmpresaByCnpj
 };

@@ -196,6 +196,8 @@
 
     function gerarTabela(api) {
 
+        
+
         const isGerente = sessionStorage.getItem('fkUserRole') === '2';
         const isRepresentante = sessionStorage.getItem('fkUserRole') === '1';
 
@@ -204,17 +206,21 @@
         fetch(api)
             .then(response => response.json())
             .then(data => {
+       
 
                 let counter = 0;
                 data.forEach(element => {
 
+                    console.log(element.nome)
+
                     const table = document.createElement('tr')
 
-                    if (isGerente && element.userRole !== 'Funcionário') {
+                    if (isGerente && element.fkUserRole !== 3) {
                         return;
                     }
 
                     counter++
+
 
                     table.innerHTML = `
                     <td>${counter}</td>
@@ -233,7 +239,7 @@
 
     }
 
-    gerarTabela(`http://localhost:80/usuario/${idEmpresa}`);
+    gerarTabela(`http://localhost:80/usuario/empresa/${idEmpresa}/usuario/${sessionStorage.ID_USUARIO}`);
 
     function deletarFuncionario(id) {
         fetch(`http://localhost:80/usuario/deletar/${id}`, {
