@@ -101,7 +101,7 @@
 
                 <div class="relative">
                     <p> CPF </p>
-                    <input id="iptCPF" type="text" placeholder="00.000.000/0001-00"> <!--oninput="formatCNPJ(this)"-->
+                    <input id="iptCPF" type="text" placeholder="000.000.000-00"> <!--oninput="formatCNPJ(this)"-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-id-card">
@@ -137,7 +137,15 @@
         </aside>
     </main>
 
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
     <script>
+
+        $('#iptCNPJ').mask('00.000.000/0000-00', {reverse: true});
+        $('#iptCPF').mask('000.000.000-00', {reverse: true});
+        
 
         function validar() {
 
@@ -216,7 +224,7 @@
                 cnpj.focus()
             }
 
-            else if (cnpj.value.length < 14 || cnpj.value.length > 14 || regexMaiuscula.test(cnpj.value) || regexMinuscula.test(cnpj.value)) {
+            else if (cnpj.value.length != 18 || regexMaiuscula.test(cnpj.value) || regexMinuscula.test(cnpj.value)) {
                 passwd.classList.remove("input-warning")
                 email.classList.remove("input-warning")
                 razaoSocial.classList.remove("input-warning")
@@ -244,7 +252,7 @@
                 cpf.focus()
             }
 
-            else if (cpf.value.length < 11 || cpf.value.length > 11 || regexMaiuscula.test(cpf.value) || regexMinuscula.test(cpf.value)) {
+            else if (cpf.value.length != 14 || regexMaiuscula.test(cpf.value) || regexMinuscula.test(cpf.value)) {
 
                 email.classList.remove("input-warning")
                 nome.classList.remove("input-warning")
@@ -307,10 +315,10 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         razaoSocialServer: razaoSocial.value,
-                        cnpjServer: cnpj.value,
+                        cnpjServer: cnpj.value.replace(/\D/g, ""),
                         nomeFantasiaServer: nomeFantasia.value,
                         nomeServer: nome.value,
-                        cpfServer: cpf.value,
+                        cpfServer: cpf.value.replace(/\D/g, ""),
                         emailServer: email.value,
                         senhaServer: passwd.value,
 
@@ -338,33 +346,6 @@
                     console.log("Erro na Inserção: " + error)
                 })
 
-            }
-        }
-        //o tal do regex
-        function formatCNPJ(input) {
-            // Remove todos os caracteres que não sejam números
-            let cnpj = input.value.replace(/\D/g, '');
-
-            // Limita o CNPJ a no máximo 14 dígitos
-            if (cnpj.length > 14) {
-                cnpj = cnpj.slice(0, 14);
-            }
-
-            // Aplica a formatação do CNPJ apenas se tiver 14 dígitos
-            if (cnpj.length === 14) {
-                cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
-                cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-                cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
-                cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
-            }
-
-            // Define o valor formatado no campo de entrada
-            input.value = cnpj;
-
-            // Verifica se o CNPJ contém exatamente 14 dígitos numéricos
-            if (cnpj.replace(/\D/g, '').length < 14) {
-                // Aqui você pode adicionar um aviso ou lógica se necessário
-                console.warn("O CNPJ deve conter exatamente 14 dígitos numéricos.");
             }
         }
 
