@@ -11,16 +11,6 @@ function editar(idEmpresa, razaoSocial, nomeFantasia, cnpj) {
 }
 
 function deletar(idEmpresa) {
-    let sql = `DELETE FROM usuario WHERE fkEmpresa = ${idEmpresa}`
-    database.executar(sql)
-    sql = `DELETE FROM logJAR WHERE fkEmpresa = ${idEmpresa}`
-    database.executar(sql)
-    sql = `DELETE FROM recomendacaoIA WHERE fkEmpresa = ${idEmpresa}`
-    database.executar(sql)
-    sql = `DELETE FROM leitura WHERE fkEmpresa = ${idEmpresa}`
-    database.executar(sql)
-    sql = `DELETE FROM parametroRecomendacao WHERE fkEmpresa = ${idEmpresa}`
-    database.executar(sql)
     sql = `DELETE FROM empresa WHERE id = ${idEmpresa}`
     return database.executar(sql);
 }
