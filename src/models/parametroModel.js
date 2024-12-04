@@ -29,9 +29,19 @@ function deletarParametro(idEmpresa) {
     return database.executar(instrucaoSql)
 }
 
+function getParametroByEmpresa(idEmpresa) {
+    const instrucaoSql = 
+    `SELECT parametro, nome FROM parametroRecomendacao 
+    INNER JOIN tipoParametro on
+    tipoParametro.id = parametroRecomendacao.fkTipoParametro
+    WHERE fkEmpresa = ${idEmpresa};`
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     cadastrar,
     editar,
     getAllParametro,
-    deletarParametro
+    deletarParametro,
+    getParametroByEmpresa
 };

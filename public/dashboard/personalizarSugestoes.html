@@ -331,5 +331,26 @@
             .catch(error => console.error(error))
     }
 
+    fetch(`/parametros/${sessionStorage.idEmpresa}/empresa`)
+    .then(response => response.json())
+    .then(data => {
+
+
+        data.forEach(element => {
+            console.log(element.nome)
+            if(element.nome == "Área") {
+                area.value = element.parametro
+            }
+            if(element.nome == "Temperatura") {
+                temperatura.value = element.parametro
+            }
+            if(element.nome == "Precipitação") {
+                precipitacao.value = element.parametro
+            } 
+        })
+
+    })
+    .catch(e => console.error(e))
+
 
 </script>

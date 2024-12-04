@@ -77,10 +77,23 @@ function deletarParametro(req, res) {
     })
 }
 
+function getParametroByEmpresa(req, res) {
+    const idEmpresa = req.params.idEmpresa
+
+    parametroModel.getParametroByEmpresa(idEmpresa)
+    .then(response => {
+        return res.status(200).json(response)
+    })
+    .catch(e => console.error(e))
+
+    
+}
+
 
 module.exports = {
     cadastrar,
     editar,
     getAllParametro,
-    deletarParametro
+    deletarParametro,
+    getParametroByEmpresa
 }

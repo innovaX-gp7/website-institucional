@@ -17,6 +17,10 @@ router.get("/:idEmpresa", (req, res) => {
     parametroController.getAllParametro(req, res);
 });
 
+router.get("/:idEmpresa/empresa", (req, res) => {
+    parametroController.getParametroByEmpresa(req, res);
+});
+
 
 router.delete("/deletarParametro/:idEmpresa", (req, res) => {
     parametroController.deletarParametro(req, res);
