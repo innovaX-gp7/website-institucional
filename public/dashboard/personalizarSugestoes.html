@@ -336,13 +336,13 @@
     .then(data => {
 
         data.forEach(element => {
-            if(element.nome == "Área") {
+            if(element.nome == "desmatamento") {
                 area.value = element.parametro
             }
-            if(element.nome == "Temperatura") {
+            if(element.nome == "temperatura") {
                 temperatura.value = element.parametro
             }
-            if(element.nome == "Precipitação") {
+            if(element.nome == "precipitação") {
                 precipitacao.value = element.parametro
             } 
         })
