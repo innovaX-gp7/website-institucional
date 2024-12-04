@@ -335,9 +335,7 @@
     .then(response => response.json())
     .then(data => {
 
-
         data.forEach(element => {
-            console.log(element.nome)
             if(element.nome == "Área") {
                 area.value = element.parametro
             }
